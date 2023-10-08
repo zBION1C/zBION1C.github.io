@@ -1,9 +1,7 @@
 <script>
-    var canvas = document.createElement('canvas');
+    var c = document.getElementById("myCanvas");
     document.body.appendChild(canvas);
     var ctx = canvas.getContext('2d');
-    ctx.canvas.width  = 20;
-    ctx.canvas.height = 20;
     
     function drawPoint() {
         if (canvas.getContext) {
