@@ -110,7 +110,7 @@ The following javascript code draws a point, a line, a circle and a rectangle in
 
  <canvas id="myCanvas"></canvas>
 
-{% include assets/javascript/h1.js}
+{% include assets/javascript/h1.js %}
 
 
 ### C# Code
