@@ -30,7 +30,7 @@ github_username:  zBION1C
 
 # Build settings
 #theme: minima
-remote_theme: broccolini/swiss
+theme: jekyll-athena
 plugins:
   - jekyll-feed
 
