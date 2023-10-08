@@ -112,7 +112,6 @@ The following javascript code draws a point, a line, a circle and a rectangle in
 
 <script>
     var canvas = document.getElementById("myCanvas");
-    document.body.appendChild(canvas);
     var ctx = canvas.getContext('2d');
     
     function drawPoint() {
