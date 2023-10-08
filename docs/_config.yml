@@ -30,7 +30,7 @@ github_username:  zBION1C
 
 # Build settings
 #theme: minima
-theme: jekyll-athena
+theme: minimal-mistakes-jekyll
 plugins:
   - jekyll-feed
 
