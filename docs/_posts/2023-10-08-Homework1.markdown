@@ -78,4 +78,6 @@ The following javascript code draws a point, a line, a circle and a rectangle in
             ctx.stroke() // outline
         }
     }
+
+    draw()
 </script>
