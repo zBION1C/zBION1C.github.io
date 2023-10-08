@@ -14,19 +14,7 @@ Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit number
 
 Jekyll also offers powerful support for code snippets:
 
-{% highlight javascript %}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset=utf-8 />
-    <title>Draw a circle</title>
-</head>
-<body onload="draw();">
-      
-</body>
-</html>
- 
- 
+{% highlight javascript %} 
 <script>
     function draw() {
         var canvas = document.createElement('canvas');
