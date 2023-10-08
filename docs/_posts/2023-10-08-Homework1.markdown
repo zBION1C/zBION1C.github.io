@@ -1,19 +1,37 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Homework1"
 date:   2023-10-08 10:39:32 +0200
-categories: jekyll update
+categories: statistics
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
-Jekyll requires blog post files to be named according to the following format:
+# Theory
+## What is statistic and what are its relationships with other disciplines? What are some example of use in cybersecurity?
+Statistic is the collection, analysis and presentation of data for the study and prediction of some phenomena.
 
-`YEAR-MONTH-DAY-title.MARKUP`
+## Describe the concepts of variable, attribute, population, sample and dataset?
+The population in statistics is a set of statistical units on which i want to study something.
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+A population sample is a subset of a larger population. This sample has to be representative of the whole population, so it must be choosen at random.
 
-Jekyll also offers powerful support for code snippets:
+An attribute is an abstract concept that i want to study on a population or a sample.
 
+A variable is the ‘concretization’ of an attribute in the study. It has some values that it can take and this values are called level of measurement. Variables that have different level of measurement are different.
+
+A dataset is a matrix on wich the rows represent the statistical units of the population, and for each row we have some variables associated to the corresponding statistical unit.
+
+## Briefly describe the main sampling techniques?
+Simple random sampling, cluster sampling, accidental sampling.
+[source:https://en.wikipedia.org/wiki/Sampling_(statistics) ]
+
+## Briefly describe the main experiment designs?
+Independent measures, repeated measures, matched pairs.
+[source:https://www.simplypsychology.org/experimental-designs.html ] 
+
+
+
+# Application
+The following javascript code draws a point, a line, a circle and a rectangle in a canvas element:
 {% highlight javascript %} 
 <script>
     function draw() {
@@ -32,15 +50,7 @@ Jekyll also offers powerful support for code snippets:
             ctx.strokeStyle = '#FF0000';  // color of outline
             ctx.fill(); // fill inside the circle
             ctx.stroke() // outline
- 
- 
         }
     }
 </script>
 {% endhighlight %}
-
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
