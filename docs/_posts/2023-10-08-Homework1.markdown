@@ -58,3 +58,24 @@ The following javascript code draws a point, a line, a circle and a rectangle in
     }
 </script>
 {% endhighlight %}
+
+<script>
+    function draw() {
+        var canvas = document.createElement('canvas');
+        document.body.appendChild(canvas);
+       // var canvas = document.getElementById('circle');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            var X = canvas.width / 2;
+            var Y = canvas.height / 2;
+            var R = 45;
+            ctx.beginPath();
+            ctx.arc(X, Y, R, 0, 2 * Math.PI, false);
+            ctx.lineWidth = 3;
+            ctx.fillStyle = "green";  // color inside the circle
+            ctx.strokeStyle = '#FF0000';  // color of outline
+            ctx.fill(); // fill inside the circle
+            ctx.stroke() // outline
+        }
+    }
+</script>
