@@ -6,10 +6,10 @@ categories: statistics
 ---
 
 # Theory
-## What is statistic and what are its relationships with other disciplines? What are some example of use in cybersecurity?
+### What is statistic and what are its relationships with other disciplines? What are some example of use in cybersecurity?
 Statistic is the collection, analysis and presentation of data for the study and prediction of some phenomena.
 
-## Describe the concepts of variable, attribute, population, sample and dataset?
+### Describe the concepts of variable, attribute, population, sample and dataset?
 The population in statistics is a set of statistical units on which i want to study something.
 
 A population sample is a subset of a larger population. This sample has to be representative of the whole population, so it must be choosen at random.
@@ -20,13 +20,13 @@ A variable is the ‘concretization’ of an attribute in the study. It has some
 
 A dataset is a matrix on wich the rows represent the statistical units of the population, and for each row we have some variables associated to the corresponding statistical unit.
 
-## Briefly describe the main sampling techniques?
+### Briefly describe the main sampling techniques?
 Simple random sampling, cluster sampling, accidental sampling.
-[source:https://en.wikipedia.org/wiki/Sampling_(statistics) ]
+[source](https://en.wikipedia.org/wiki/Sampling_(statistics))
 
-## Briefly describe the main experiment designs?
+### Briefly describe the main experiment designs?
 Independent measures, repeated measures, matched pairs.
-[source:https://www.simplypsychology.org/experimental-designs.html ] 
+[source](https://www.simplypsychology.org/experimental-designs.html)
 
 
 
