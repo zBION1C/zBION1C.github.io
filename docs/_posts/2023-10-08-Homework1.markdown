@@ -227,3 +227,5 @@ The following javascript code draws a point, a line, a circle and a rectangle in
         }
     }
   {% endhighlight %}
+
+  ![image tooltip here](/assets/cs1.PNG)
