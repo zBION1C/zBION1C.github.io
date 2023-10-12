@@ -12,7 +12,7 @@ categories: statistics
 > Statistic is the collection, analysis and presentation of data for the study and prediction of some phenomena.
 > It is related to a lot of scientific disciplines, for example:
   > - the study of geological phenomena, like how the temperature of the planet changed in the years
-  > - In sociology statistics is used to study human behaviour.\
+  > - In sociology statistics is used to study human behaviour.
 > In cybersecurity one application of statistics is **anomaly detection**, where we model the normal behaviour of a system via statistics means, and if the behaviour deviates from what we expect, then there is an anomaly.
 
 ### Describe the concepts of variable, attribute, population, sample and dataset?
