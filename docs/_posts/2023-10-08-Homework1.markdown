@@ -9,11 +9,11 @@ categories: statistics
 
 ### What is statistic and what are its relationships with other disciplines? What are some example of use in cybersecurity?
   
-Statistic is the collection, analysis and presentation of data for the study and prediction of some phenomena.
-It is related to a lot of scientific disciplines, for example:
-  > the study of geological phenomena, like how the temperature of the planet changed in the years
-  > In sociology statistics is used to study human behaviour.
-In cybersecurity one application of statistics is **anomaly detection**, where we model the normal behaviour of a system via statistics means, and if the behaviour deviates from what we expect, then there is an anomaly.
+  > Statistic is the collection, analysis and presentation of data for the study and prediction of some phenomena.
+  > It is related to a lot of scientific disciplines, for example:
+  > - the study of geological phenomena, like how the temperature of the planet changed in the years
+  > - In sociology statistics is used to study human behaviour.
+  > In cybersecurity one application of statistics is **anomaly detection**, where we model the normal behaviour of a system via statistics means, and if the behaviour deviates from what we expect, then there is an anomaly.
 
 ### Describe the concepts of variable, attribute, population, sample and dataset?
 
@@ -181,52 +181,40 @@ The following javascript code draws a point, a line, a circle and a rectangle in
   {% highlight csharp %}
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Data;
-    using System.Drawing;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using System.Windows.Forms;
-
+    using System.Drawing;
+    
     namespace hw1
     {
-        public partial class Form1 : Form
+        internal class Class1
         {
-            public Form1()
+            static void Main(String[] args)
             {
-                InitializeComponent();
-            }
+                int width = 1000;
+                int height = 1000;
     
-            private void Form1_Paint(object sender, PaintEventArgs e)
-            {
-                System.Drawing.Graphics g = e.Graphics;
-                g = this.CreateGraphics();
+                Bitmap bitmap = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                Graphics graphics = Graphics.FromImage(bitmap);
     
-         
-                Brush myBrush = new SolidBrush(System.Drawing.Color.Red);
-                g.FillEllipse(myBrush, this.Width/3, this.Height/2, 5, 5);
+                Pen pen = new Pen(Color.Red, 3);
+                Brush brush = new SolidBrush(Color.Red);
     
-                float x1 = (float)(this.Width / 2.5);
-                float y1 = this.Height / 2;
-                float x2 = x1 + 40;
-                float y2 = (this.Height / 2);
-                Pen myPen  = new Pen(System.Drawing.Color.Red, 3);
-                g.DrawLine(myPen, x1, y1, x2, y2);
+                int x1 = (int)(width / 3);
+                int y1 = (int)(height / 2);
     
-                g.FillEllipse(myBrush, this.Width / 2, (this.Height / 2) - 50, 100, 100);
+                graphics.FillEllipse(brush,  x1, y1-3, 6, 6);
     
-                int rx1 = (int)(this.Width / 1.5);
-                int ry1 = (int)(this.Height / 2) - 50;
-                Rectangle myRectangle = new Rectangle(rx1, ry1, 100, 100);
-                g.FillRectangle(myBrush, myRectangle);
+                graphics.DrawLine(pen, x1+50, y1, x1+100, y1);
     
-            }
+                graphics.FillEllipse(brush, x1+150, y1-25, 50, 50);
     
-        public static void Main()
-            {
-                Application.EnableVisualStyles();
-                Application.Run(new Form1());
+                Rectangle rect = new Rectangle(x1+250, y1-25, 100, 50);
+    
+                graphics.FillRectangle(brush, rect);
+    
+                bitmap.Save("C:/users/nicho/desktop/hw1.png");
             }
         }
     }
