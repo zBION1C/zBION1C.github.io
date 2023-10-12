@@ -18,25 +18,23 @@ categories: statistics
 
 ### Describe the concepts of variable, attribute, population, sample and dataset?
 
-The population in statistics is a set of statistical units on which i want to study something.
-
-A population sample is a subset of a larger population. This sample has to be representative of the whole population, so it must be choosen at random.
-
-An attribute is an abstract concept that i want to study on a population or a sample.
-
-A variable is the ‘concretization’ of an attribute in the study. It has some values that it can take and this values are called level of measurement. Variables that have different level of measurement are different.
-
-A dataset is a matrix on wich the rows represent the statistical units of the population, and for each row we have some variables associated to the corresponding statistical unit.
+> The population in statistics is a set of statistical units on which i want to study something.
+>
+> A population sample is a subset of a larger population. This sample has to be representative of the whole population, so it must be choosen at random.
+>
+> An attribute is an abstract concept that i want to study on a population or a sample.
+> 
+> A variable is the ‘concretization’ of an attribute in the study. It has some values that it can take and this values are called level of measurement. Variables that have different level of measurement are different.
+> 
+> A dataset is a matrix on wich the rows represent the statistical units of the population, and for each row we have some variables associated to the corresponding statistical unit.
 
 ### Briefly describe the main sampling techniques?
 
-Simple random sampling, cluster sampling, accidental sampling.
-[source](https://en.wikipedia.org/wiki/Sampling_(statistics))
+> Simple random sampling, cluster sampling, accidental sampling. [source](https://en.wikipedia.org/wiki/Sampling_(statistics))
 
 ### Briefly describe the main experiment designs?
 
-Independent measures, repeated measures, matched pairs.
-[source](https://www.simplypsychology.org/experimental-designs.html)
+> Independent measures, repeated measures, matched pairs. [source](https://www.simplypsychology.org/experimental-designs.html)
 
 ## Application
 
@@ -179,6 +177,7 @@ The following javascript code draws a point, a line, a circle and a rectangle in
 </script>
 
 ### C# Code
+  The following C# code does the same.
   {% highlight csharp %}
     using System;
     using System.Collections.Generic;
@@ -221,4 +220,4 @@ The following javascript code draws a point, a line, a circle and a rectangle in
     }
   {% endhighlight %}
 
-  ![image tooltip here](/assets/cs1.PNG)
+  ![image tooltip here](/assets/hw1.PNG)
