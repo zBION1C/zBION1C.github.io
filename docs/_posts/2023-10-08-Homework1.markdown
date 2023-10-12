@@ -18,15 +18,15 @@ categories: statistics
 
 ### Describe the concepts of variable, attribute, population, sample and dataset?
 
-> The population in statistics is a set of statistical units on which i want to study something.
+> A **population** in statistics is a set of statistical units on which i want to study something.
 >
-> A population sample is a subset of a larger population. This sample has to be representative of the whole population, so it must be choosen at random.
+> A **population sample** is a subset of a larger population. This sample has to be representative of the whole population, so it must be choosen at random.
 >
-> An attribute is an abstract concept that i want to study on a population or a sample.
+> An **attribute** is an abstract concept that i want to study on a population or a sample.
 > 
-> A variable is the ‘concretization’ of an attribute in the study. It has some values that it can take and this values are called level of measurement. Variables that have different level of measurement are different.
+> A **variable** is the ‘concretization’ of an attribute in the study. It has some values that it can take and this values are called level of measurement. Variables that have different level of measurement are different.
 > 
-> A dataset is a matrix on wich the rows represent the statistical units of the population, and for each row we have some variables associated to the corresponding statistical unit.
+> A **dataset** is a matrix on wich the rows represent the statistical units of the population, and for each row we have some variables associated to the corresponding statistical unit.
 
 ### Briefly describe the main sampling techniques?
 
