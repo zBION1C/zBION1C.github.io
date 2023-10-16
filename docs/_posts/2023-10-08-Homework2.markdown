@@ -65,7 +65,7 @@ categories: statistics
     			computeJointDistribution() {
     				var key = "";
     				var arr = []; 
-					for (let j = 0; j < 54; j++) {
+					for (let j = 0; j < this.total_unit; j++) {
 						key = "";
 						for (let i = 0; i < arguments.length; i++){
 							if (i == arguments.length-1){ //If last element of key, do not put comma
