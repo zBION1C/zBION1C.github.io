@@ -9,79 +9,79 @@ categories: statistics
 ### Javascript code
 {% highlight javascript %}
 <script>
-	class Distribution {
-        constructor(total_unit) {
-        	this.array = [];
-        	this.total_unit = total_unit;
-        }
+class Distribution {
+    constructor(total_unit) {
+    	this.array = [];
+    	this.total_unit = total_unit;
+    }
 
-        getGlobalDistribution() {
-        	var values = [];
-        	for (let i = 0; i < this.array.length; i++){
-        		values.push([this.array[i][0], this.array[i][1]]);
-        	}
-        	return values;
-        };
-
-        getRelativeDistribution(){
-        	var values = [];
-        	for (let i = 0; i < this.array.length; i++){
-        		values.push([this.array[i][0], this.array[i][1]/this.total_unit]);
-        	}
-        	return values;
-        }
-
-        getPercentageDistribution(){
-        	var values = [];
-        	for (let i = 0; i < this.array.length; i++){
-        		values.push([this.array[i][0], (this.array[i][1]/this.total_unit)*100]);
-        	}
-        	return values;
-        }
-
-
-        addElement(key) {
-        	var found = 0;
-        	for (let i = 0; i < this.array.length; i++) {
-        		var keyC = [this.array[i][0]]; //take the current value 
-        		if (key.localeCompare(keyC) == 0) { //compare it with all the values on the array
-        			found = 1; //if found, do not push, just update
-        			this.array[i] = [key, this.array[i][1]+1];
-        			return;
-        		}
-        	}
-        	if (found != 1) { //if not found, you have to push it because it is new
-        		this.array.push([key, 1]);	    					
-        	}
-        	
-        };
-
-        createDistribution(arr) {
-          	for (let i = 0; i < arr.length; i++) {
-        		this.addElement(arr[i]);
-        	}
-        }
-
-        computeJointDistribution() {
-        	var key = "";
-        	var arr = []; 
-        	for (let j = 0; j < this.total_unit; j++) {
-        		key = "";
-        		for (let i = 0; i < arguments.length; i++){
-        			if (i == arguments.length-1){ //If last element of key, do not put comma
-        				key = key.concat(arguments[i][j])
-        			} else {
-        				key = key.concat(arguments[i][j], ",");
-        			}
-        		}
-        		arr.push(key); //push the corrent tuple on the final array for the calculation of the distribution
-        	}
-
-        	for (let i = 0; i < arr.length; i++) { //Calculation of the distribution
-        		this.addElement(arr[i]);
-        	}
-        }
+    getGlobalDistribution() {
+    	var values = [];
+    	for (let i = 0; i < this.array.length; i++){
+    		values.push([this.array[i][0], this.array[i][1]]);
+    	}
+    	return values;
     };
+
+    getRelativeDistribution(){
+    	var values = [];
+    	for (let i = 0; i < this.array.length; i++){
+    		values.push([this.array[i][0], this.array[i][1]/this.total_unit]);
+    	}
+    	return values;
+    }
+
+    getPercentageDistribution(){
+    	var values = [];
+    	for (let i = 0; i < this.array.length; i++){
+    		values.push([this.array[i][0], (this.array[i][1]/this.total_unit)*100]);
+    	}
+    	return values;
+    }
+
+
+    addElement(key) {
+    	var found = 0;
+    	for (let i = 0; i < this.array.length; i++) {
+    		var keyC = [this.array[i][0]]; //take the current value 
+    		if (key.localeCompare(keyC) == 0) { //compare it with all the values on the array
+    			found = 1; //if found, do not push, just update
+    			this.array[i] = [key, this.array[i][1]+1];
+    			return;
+    		}
+    	}
+    	if (found != 1) { //if not found, you have to push it because it is new
+    		this.array.push([key, 1]);	    					
+    	}
+    	
+    };
+
+    createDistribution(arr) {
+      	for (let i = 0; i < arr.length; i++) {
+    		this.addElement(arr[i]);
+    	}
+    }
+
+    computeJointDistribution() {
+    	var key = "";
+    	var arr = []; 
+    	for (let j = 0; j < this.total_unit; j++) {
+    		key = "";
+    		for (let i = 0; i < arguments.length; i++){
+    			if (i == arguments.length-1){ //If last element of key, do not put comma
+    				key = key.concat(arguments[i][j])
+    			} else {
+    				key = key.concat(arguments[i][j], ",");
+    			}
+    		}
+    		arr.push(key); //push the corrent tuple on the final array for the calculation of the distribution
+    	}
+
+    	for (let i = 0; i < arr.length; i++) { //Calculation of the distribution
+    		this.addElement(arr[i]);
+    	}
+    }
+};
 </script>
 {% endhighlight %}
 
