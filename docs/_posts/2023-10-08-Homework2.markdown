@@ -8,6 +8,7 @@ categories: statistics
 ## Excercise 1
 ### Javascript code
 {% highlight javascript %}
+<script>
   class Distribution {
   constructor() {
     this.array = [];
@@ -62,7 +63,8 @@ categories: statistics
       this.addElement(arr[i]);
     }
   }
-}; 
+};
+</script>
 {% endhighlight %}
 
 ### C# code
