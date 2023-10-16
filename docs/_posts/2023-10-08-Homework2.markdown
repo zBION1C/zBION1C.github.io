@@ -5,35 +5,124 @@ date:   2023-10-08 10:39:32 +0200
 categories: statistics
 ---
 
-## Theory
+## Excercise 1
+### Javascript code
+{% highlight javascript %}
+  class Distribution {
+  constructor() {
+    this.array = [];
+  }
 
-### What is statistic and what are its relationships with other disciplines? What are some example of use in cybersecurity?
-  
-Statistic is the collection, analysis and presentation of data for the study and prediction of some phenomena.
+  getDistribution() {
+    var values = [];
+    for (let i = 0; i < this.array.length; i++){
+      values.push([this.array[i][0], this.array[i][1]]);
+    }
+    return values;
+  };
 
-### Describe the concepts of variable, attribute, population, sample and dataset?
+  addElement(key) {
+    var found = 0;
+    for (let i = 0; i < this.array.length; i++) {
+      var keyC = [this.array[i][0]]; //take the current value 
+      if (key.localeCompare(keyC) == 0) { //compare it with all the values on the array
+        found = 1; //if found, do not push, just update
+        this.array[i] = [key, this.array[i][1]+1];
+        return;
+      }
+    }
+    if (found != 1) { //if not found, you have to push it because it is new
+      this.array.push([key, 1]);	    					
+    }
+    
+  };
 
-The population in statistics is a set of statistical units on which i want to study something.
+  createDistribution(arr) {
+    for (let i = 0; i < arr.length; i++) {
+    this.addElement(arr[i]);
+  }
+  }
 
-A population sample is a subset of a larger population. This sample has to be representative of the whole population, so it must be choosen at random.
+  computeJointDistribution() {
+    var key = "";
+    var arr = []; 
+  for (let j = 0; j < 54; j++) {
+    key = "";
+    for (let i = 0; i < arguments.length; i++){
+      if (i == arguments.length-1){ //If last element of key, do not put comma
+        key = key.concat(arguments[i][j])
+      } else {
+        key = key.concat(arguments[i][j], ",");
+      }
+    }
+    arr.push(key); //push the corrent tuple on the final array for the calculation of the distribution
+  }
 
-An attribute is an abstract concept that i want to study on a population or a sample.
+  for (let i = 0; i < arr.length; i++) { //Calculation of the distribution
+      this.addElement(arr[i]);
+    }
+  }
+}; 
+{% endhighlight %}
 
-A variable is the ‘concretization’ of an attribute in the study. It has some values that it can take and this values are called level of measurement. Variables that have different level of measurement are different.
+### C# code
+{% highlight csharp %}
+internal class Distribution
+{
+private Dictionary<String, int> dict;
 
-A dataset is a matrix on wich the rows represent the statistical units of the population, and for each row we have some variables associated to the corresponding statistical unit.
+public Distribution() {
+    dict = new Dictionary<string, int>();
+}
 
-### Briefly describe the main sampling techniques?
+public void printDistribution() {
+    foreach (var kvp in this.dict) {
+        Console.WriteLine("{0}, {1}", kvp.Key, kvp.Value);
+    }
+}
+public void addElement(String key) {
+    if (this.dict.ContainsKey(key)){ //If dict already contains key, just add 1
+        this.dict[key] += 1;
+    }
+    else {    //else you have to add the key to the dict
+        this.dict.Add(key, 1);
+    }
+}
 
-Simple random sampling, cluster sampling, accidental sampling.
-[source](https://en.wikipedia.org/wiki/Sampling_(statistics))
+public void createDistribution(String[] arr) {
+    foreach (var e in arr) {
+        this.addElement(e);
+    }
+}
 
-### Briefly describe the main experiment designs?
+public void jointDistribution(params String[][] args) {
+    String key = "";
+    List<String> lst = new List<String>();
 
-Independent measures, repeated measures, matched pairs.
-[source](https://www.simplypsychology.org/experimental-designs.html)
+    for (int i = 0; i < 52; i++)
+    {
+        key = "";
+        foreach (var a in args) {
+            if (key.Equals(""))
+            {
+                key += a[i];
+            }
+            else
+            {
+                key = key + "," + a[i];
+            }
+        }
+        lst.Add(key);
+    }
 
-## Application
+    foreach (var e in lst) {
+        this.addElement(e);
+    }
+
+}
+{% endhighlight %}
+
+## Excercise 2
 
 ### Javascript code
 
