@@ -90,56 +90,75 @@ categories: statistics
 {% highlight csharp %}
 internal class Distribution
 {
-private Dictionary<String, int> dict;
+    private Dictionary<String, int> dict;
+    private double n;
 
-public Distribution() {
-    dict = new Dictionary<string, int>();
-}
-
-public void printDistribution() {
-    foreach (var kvp in this.dict) {
-        Console.WriteLine("{0}, {1}", kvp.Key, kvp.Value);
+    public Distribution(double n) {
+        dict = new Dictionary<string, int>();
+        this.n = n;
     }
-}
-public void addElement(String key) {
-    if (this.dict.ContainsKey(key)){ //If dict already contains key, just add 1
-        this.dict[key] += 1;
-    }
-    else {    //else you have to add the key to the dict
-        this.dict.Add(key, 1);
-    }
-}
 
-public void createDistribution(String[] arr) {
-    foreach (var e in arr) {
-        this.addElement(e);
-    }
-}
-
-public void jointDistribution(params String[][] args) {
-    String key = "";
-    List<String> lst = new List<String>();
-
-    for (int i = 0; i < 52; i++)
-    {
-        key = "";
-        foreach (var a in args) {
-            if (key.Equals(""))
-            {
-                key += a[i];
-            }
-            else
-            {
-                key = key + "," + a[i];
-            }
+    public void printGlobalDistribution() {
+        foreach (var kvp in this.dict) {
+            Console.WriteLine("{0}, {1}", kvp.Key, kvp.Value);
         }
-        lst.Add(key);
     }
 
-    foreach (var e in lst) {
-        this.addElement(e);
+    public void printRelativeDistribution()
+    {
+        foreach (var kvp in this.dict)
+        {
+            Console.WriteLine("{0}, {1}", kvp.Key, kvp.Value/n);
+        }
     }
 
+    public void printPercentageDistribution()
+    {
+        foreach (var kvp in this.dict)
+        {
+            Console.WriteLine("{0}, {1}", kvp.Key, (kvp.Value/n)*100);
+        }
+    }
+    public void addElement(String key) {
+        if (this.dict.ContainsKey(key)){ //If dict already contains key, just add 1
+            this.dict[key] += 1;
+        }
+        else {    //else you have to add the key to the dict
+            this.dict.Add(key, 1);
+        }
+    }
+
+    public void createDistribution(String[] arr) {
+        foreach (var e in arr) {
+            this.addElement(e);
+        }
+    }
+
+    public void jointDistribution(params String[][] args) {
+        String key = "";
+        List<String> lst = new List<String>();
+
+        for (int i = 0; i < 52; i++)
+        {
+            key = "";
+            foreach (var a in args) {
+                if (key.Equals(""))
+                {
+                    key += a[i];
+                }
+                else
+                {
+                    key = key + "," + a[i];
+                }
+            }
+            lst.Add(key);
+        }
+
+        foreach (var e in lst) {
+            this.addElement(e);
+        }
+
+    }
 }
 {% endhighlight %}
 
