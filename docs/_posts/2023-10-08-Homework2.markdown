@@ -178,6 +178,20 @@ internal class Distribution
 #### Arrays
 {% highlight javascript %}
 <script>
+    //Array iteration
+    for (let i = 0; i < array.length; i++) {
+        console.log(array[i]);
+    }
+    //add
+    array.push();
+    //remove
+    array.pop();
+    array.shift();
+    //set
+    array[i] = value;
+    //get
+    value = array[i];
+    //For the check just iterate and condition over values
 </script>
 {% endhighlight %}
 
@@ -207,6 +221,7 @@ for (int i = 0; i < array.Length; i++)
 #### Lists
 {% highlight javascript %}
 <script>
+    //In javascript lists are equivalent to arrays
 </script>
 {% endhighlight %}
 
@@ -242,6 +257,53 @@ public int FindIndex (int startIndex, int count, Predicate<T> match);
 #### Dictionaries
 {% highlight javascript %}
 <script>
+    class Dictionary {
+      constructor() {
+        this.data = {};
+      }
+
+      // Add a key-value pair to the dictionary
+      add(key, value) {
+        this.data[key] = value;
+      }
+
+      // Retrieve a value by key
+      get(key) {
+        return this.data[key];
+      }
+
+      // Check if a key exists in the dictionary
+      has(key) {
+        return key in this.data;
+      }
+
+      // Remove a key-value pair from the dictionary
+      remove(key) {
+        if (this.has(key)) {
+          delete this.data[key];
+        }
+      }
+
+      // Get all keys in the dictionary
+      keys() {
+        return Object.keys(this.data);
+      }
+
+      // Get all values in the dictionary
+      values() {
+        return Object.values(this.data);
+      }
+
+      // Get the number of key-value pairs in the dictionary
+      size() {
+        return Object.keys(this.data).length;
+      }
+
+      // Clear the dictionary
+      clear() {
+        this.data = {};
+      }
+    }
 </script>
 {% endhighlight %}
 
@@ -274,6 +336,35 @@ public bool ContainsValue (TValue value);
 #### Sorted lists
 {% highlight javascript %}
 <script>
+    class SortedList {
+      constructor() {
+        this.list = [];
+      }
+
+      // Insert an element into the sorted list while maintaining the order
+      insert(element) {
+        this.list.push(element);
+        this.list.sort((a, b) => a - b); // Sort the list in ascending order
+      }
+
+      // Remove an element from the sorted list
+      remove(element) {
+        const index = this.list.indexOf(element);
+        if (index !== -1) {
+          this.list.splice(index, 1);
+        }
+      }
+
+      // Get the size (number of elements) of the sorted list
+      size() {
+        return this.list.length;
+      }
+
+      // Get the elements of the sorted list as an array
+      toArray() {
+        return this.list.slice(); // Return a copy to prevent external modifications
+      }
+    }
 </script>
 {% endhighlight %}
 
@@ -334,6 +425,49 @@ public bool Contains (T item);
 #### Sortedsets
 {% highlight javascript %}
 <script>
+    class SortedSet {
+      constructor(compareFunction) {
+        this.set = new Set();
+        this.compare = compareFunction || ((a, b) => a - b);
+      }
+
+      // Add an element to the sorted set
+      add(element) {
+        if (!this.has(element)) {
+          this.set.add(element);
+          this.sort();
+        }
+      }
+
+      // Delete an element from the sorted set
+      delete(element) {
+        if (this.has(element)) {
+          this.set.delete(element);
+        }
+      }
+
+      // Check if an element exists in the sorted set
+      has(element) {
+        return this.set.has(element);
+      }
+
+      // Get the size (number of elements) of the sorted set
+      size() {
+        return this.set.size;
+      }
+
+      // Get the elements of the sorted set as an array
+      toArray() {
+        return Array.from(this.set);
+      }
+
+      // Sort the elements in the set
+      sort() {
+        const array = this.toArray();
+        array.sort(this.compare);
+        this.set = new Set(array);
+      }
+    }
 </script>
 {% endhighlight %}
 
@@ -361,6 +495,47 @@ public virtual bool Contains (T item);
 #### Queues
 {% highlight javascript %}
 <script>
+    class Queue {
+      constructor() {
+        this.items = [];
+      }
+
+      // Add an element to the end of the queue
+      enqueue(element) {
+        this.items.push(element);
+      }
+
+      // Remove and return the element at the front of the queue
+      dequeue() {
+        if (this.isEmpty()) {
+          return null;
+        }
+        return this.items.shift();
+      }
+
+      // Return the element at the front of the queue without removing it
+      front() {
+        if (this.isEmpty()) {
+          return null;
+        }
+        return this.items[0];
+      }
+
+      // Check if the queue is empty
+      isEmpty() {
+        return this.items.length === 0;
+      }
+
+      // Get the number of elements in the queue
+      size() {
+        return this.items.length;
+      }
+
+      // Clear the queue
+      clear() {
+        this.items = [];
+      }
+    }
 </script>
 {% endhighlight %}
 
@@ -385,6 +560,47 @@ public virtual bool Contains (object? obj);
 #### Stacks 
 {% highlight javascript %}
 <script>
+    class Stack {
+      constructor() {
+        this.items = [];
+      }
+
+      // Push an element onto the stack
+      push(element) {
+        this.items.push(element);
+      }
+
+      // Pop and return the element from the top of the stack
+      pop() {
+        if (this.isEmpty()) {
+          return null;
+        }
+        return this.items.pop();
+      }
+
+      // Return the element at the top of the stack without removing it
+      peek() {
+        if (this.isEmpty()) {
+          return null;
+        }
+        return this.items[this.items.length - 1];
+      }
+
+      // Check if the stack is empty
+      isEmpty() {
+        return this.items.length === 0;
+      }
+
+      // Get the number of elements in the stack
+      size() {
+        return this.items.length;
+      }
+
+      // Clear the stack
+      clear() {
+        this.items = [];
+      }
+    }
 </script>   
 {% endhighlight %}
 
@@ -408,6 +624,66 @@ public virtual bool Contains (object? obj);
 
 #### Linkedlists
 {% highlight javascript %}
+<script>
+    class Node {
+      constructor(data) {
+        this.data = data;
+        this.next = null;
+      }
+    }
+
+    class LinkedList {
+      constructor() {
+        this.head = null;
+        this.size = 0;
+      }
+
+      // Add an element to the end of the linked list
+      add(data) {
+        const newNode = new Node(data);
+        if (!this.head) {
+          this.head = newNode;
+        } else {
+          let current = this.head;
+          while (current.next) {
+            current = current.next;
+          }
+          current.next = newNode;
+        }
+        this.size++;
+      }
+
+      // Remove an element by value from the linked list
+      remove(data) {
+        if (!this.head) {
+          return;
+        }
+        if (this.head.data === data) {
+          this.head = this.head.next;
+          this.size--;
+          return;
+        }
+
+        let current = this.head;
+        let previous = null;
+
+        while (current && current.data !== data) {
+          previous = current;
+          current = current.next;
+        }
+
+        if (current) {
+          previous.next = current.next;
+          this.size--;
+        }
+      }
+
+      // Get the size (number of elements) of the linked list
+      getSize() {
+        return this.size;
+      }
+    }
+</script>
 {% endhighlight %}
 
 {% highlight csharp %}
