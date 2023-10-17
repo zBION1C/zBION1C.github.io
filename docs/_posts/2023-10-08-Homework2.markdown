@@ -439,3 +439,85 @@ public System.Collections.Generic.LinkedListNode<T>? Find (T value);
 
 
 ### [0,1] Distribution
+#### Javascript
+{% highlight javascript %}
+<script>
+</script>   
+{% endhighlight %}
+
+#### C#
+{% highlight csharp %}
+// There is no iteartion in stacks
+
+// Add
+public virtual void Push (object? obj);
+
+// Remove
+public virtual object? Pop ();
+
+// There is no set method
+
+// Get
+public virtual object? Peek ();
+
+// Find
+public virtual bool Contains (object? obj);
+{% endhighlight %}
+
+{% highlight csharp %}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace hw2_2
+{
+    internal class Class2
+    {
+        static void Main(String[] args)
+        {
+            int N = 5000;
+            int K = 50;
+
+            double[,] d = new double[K,N];
+
+            //Create bins
+            for (var i = 0; i < K; i++)
+            {
+                d[i,0] = (double) i / K;
+            }
+
+            Random r = new Random();
+            
+            for (var i = 0; i < N; i++) {
+                double v = r.NextDouble();
+
+                for (var j = 0; j < K-1; j++) 
+                {
+                    if (v > d[j, 0] && v <= d[j + 1, 0]) 
+                    {
+                        d[j, 1] += 1;
+                    }
+                }
+            }
+
+            for (var i = 0; i < K; i++)
+            {
+                Console.Write(d[i,0] + " ");
+                for (var j = 0; j < d[i, 1]; j++) {
+                    Console.Write("=");
+                }
+                Console.WriteLine();
+
+            }
+
+            Console.ReadLine();
+
+        }
+    }
+}
+{% endhighlight %}
+
+#### Conclusions
+The distribution approximates uniform when N is very large.
