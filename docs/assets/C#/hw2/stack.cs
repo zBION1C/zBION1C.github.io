@@ -1,26 +1,15 @@
-// Iteration in linked list
-foreach (string elemento in linkedList)
-{
-    // Esegui operazioni con l'elemento
-}
+// There is no iteartion in stacks
 
 // Add
-public void AddAfter (System.Collections.Generic.LinkedListNode<T> node, System.Collections.Generic.LinkedListNode<T> newNode);
-public void AddBefore (System.Collections.Generic.LinkedListNode<T> node, System.Collections.Generic.LinkedListNode<T> newNode);
-public void AddFirst (System.Collections.Generic.LinkedListNode<T> node);
-public void AddLast (System.Collections.Generic.LinkedListNode<T> node);
+public virtual void Push (object? obj);
 
 // Remove
-public void Remove (System.Collections.Generic.LinkedListNode<T> node);
-public void RemoveFirst ();
-public void RemoveLast ();
+public virtual object? Pop ();
 
 // There is no set method
 
 // Get
 public virtual object? Peek ();
-public virtual object? Pop ();
 
 // Find
-public bool Contains (T value);
-public System.Collections.Generic.LinkedListNode<T>? Find (T value);
+public virtual bool Contains (object? obj);
