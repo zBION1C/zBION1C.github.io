@@ -718,7 +718,26 @@ public System.Collections.Generic.LinkedListNode<T>? Find (T value);
 #### Javascript
 {% highlight javascript %}
 <script>
-</script>   
+
+  const N = 1000;
+  const K = 50;
+
+  var d = [];
+
+  for (let i = 0; i < K; i++){
+    d[i] = [ i / K, 0];
+  }
+
+  for (let i = 0; i < N; i++){
+    var r = Math.random();
+    for (let j = 0; j < K-1; j++){
+      if (r > d[j][0] && r <= d[j+1][0]){
+        d[j][1] += 1;
+      }
+    }
+  }
+
+</script>
 {% endhighlight %}
 
 #### C#
