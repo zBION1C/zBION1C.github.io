@@ -1,0 +1,515 @@
+---
+layout: post
+title:  "Homework3"
+date:   2023-10-25 18:45:32 +0200
+categories: statistics
+---
+
+## Excercise 1
+### Javascript code
+#### Program
+{% highlight javascript %}
+<script src="Rectangle.js"></script>
+<script src="Simulator.js"></script>
+<script src="Histogram.js"></script>
+<script>
+  const canvas = document.createElement("canvas");
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext("2d");
+  ctx.canvas.width = 8000;
+  ctx.canvas.height = 8000;
+
+  var systems = 300;
+  var attacks = 100;
+
+  const s = new Simulator(ctx, systems, attacks, 1, -1, 0.5, "", 0, 0, 20);
+  s.simulate();
+
+  const s1 = new Simulator(ctx, systems, attacks, 1, 0, 0.9, "", 850, 0, 20);
+  s1.simulate();
+
+  const s2 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "rel", 0, 650, 20);
+  s2.simulate();
+
+  const s3 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "reln", 850, 650, 20);
+  s3.simulate();
+</script>
+{% endhighlight %}
+#### Class Simualator
+{% highlight javascript %}
+class Simulator {
+  constructor(ctx,systems, attacks, success, failure, p, freq, x, y, mid_day){
+    this.p = p; 
+    this.freq = freq;
+    this.systems = systems;
+    this.attacks = attacks;
+    this.success = success;
+    this.failure = failure;
+    this.mid_day = mid_day;
+    this.ctx = ctx;
+    this.box = new Rectangle(x,y,800,600,this.ctx);
+    this.box.drawLine(0, this.box.h/2, this.box.w, this.box.h/2, "DarkGray")
+    this.scale = 5*(1-this.p);
+    if (this.freq==="rel") {
+      this.scale = 20*(1-this.p);
+    }
+    if (this.freq==="reln") { 
+      this.scale = 5*(1-this.p);
+    }
+    this.histo1 = new Histogram(this.ctx, 50, this.box.x+mid_day+this.box.w/7, this.box.y, this.box.w/7, this.box.h);
+    this.histo2 = new Histogram(this.ctx, 50, this.box.x+this.box.w-this.box.w/7, this.box.y, this.box.w/7, this.box.h);
+  }
+
+
+  timer(ms) {
+    return new Promise(res => setTimeout(res, ms));
+  }
+
+  async simulate() {
+    let r = 0;
+
+    for (let i = 1; i <= this.systems; i++){
+      var x1 = 0;
+      var y1 = this.box.h/2;
+      var x2 = 0;
+      var y2 = this.box.h/2;
+      var n_success = 0;
+      var divisor = 1;
+      var esito = 0;
+      var color = "#"+((1<<24)*Math.random()|0).toString(16);
+      for (let j = 1; j <= this.attacks; j++) {
+        if (j % (this.attacks/10) == 0){
+          await this.timer(10);
+        }
+        r = Math.random();
+        if (r <= this.p) {
+          n_success++;
+          if (this.freq==="rel") {
+            divisor = n_success;
+          }
+          if (this.freq === "reln") {
+            divisor = Math.sqrt(n_success);
+          }
+          esito += (this.success*this.scale)/divisor;
+
+
+        } else {
+          esito += (this.failure*this.scale)/divisor;
+        }
+        
+        if (j == this.mid_day){
+          this.histo1.addToBin(esito)
+        }
+
+        x2 = j*(this.box.w/this.attacks);
+        y2 = this.box.h/2-esito;
+        this.box.drawLine(x1, y1, x2, y2, color)
+        x1 = x2;
+        y1 = y2
+      }
+      this.histo2.addToBin(esito);
+    }
+  }
+}
+{% endhighlight %}
+#### Class Rectangle
+{% highlight javascript %}
+class Rectangle {
+  constructor(x,y,width,height,context){
+    this.x = x;
+    this.y = y;
+    this.h = height;
+    this.w = width;
+    this.ctx = context;
+    this.display();
+  }
+
+  display() {
+    this.ctx.beginPath();
+    this.ctx.rect(this.x, this.y, this.w, this.h);
+    this.ctx.stroke();
+  }
+
+
+  drawLine(x1, y1, x2, y2, color) {
+    this.ctx.beginPath();
+    this.ctx.moveTo(this.x+x1, this.y+y1);
+    this.ctx.lineTo(this.x+x2, this.y+y2);
+
+    this.ctx.strokeStyle = color;
+    this.ctx.stroke();
+    this.ctx.strokeStyle = "black";
+  }
+
+  drawRect(x, y, w, h, color) {
+    this.ctx.beginPath();
+    this.ctx.fillStyle  = color;
+    this.ctx.fillRect(this.x+x, this.y+y, w, h);
+  }
+
+}
+{% endhighlight %}
+#### Class Histogram
+{% highlight javascript %}
+class Histogram {
+  constructor(ctx, k, x, y, width, height) {
+    this.ctx = ctx;
+    this.k = k;
+    this.w = width;
+    this.h = height;
+    this.box = new Rectangle(x,y,this.w,this.h,this.ctx);
+    this.distance = this.h/this.k;
+    this.display();
+    this.histo = []
+    
+    var bin_value = -this.k/2;
+    for (let i = 0; i < this.k; i++) {
+      bin_value++
+      this.histo[i] = [(-bin_value*(this.distance)), 0]
+    }
+  }
+
+  display() {
+    for (let i = 0; i <= this.h; i+=this.distance) {
+      this.box.drawLine(0, i, this.w, (i), "black");
+    }
+  }
+
+
+  addToBin(v) {
+    for (let i = 0; i < this.k-1; i++) {
+      if (v > this.histo[i+1][0] && v <= this.histo[i][0]) {
+        this.histo[i][1] += 1;
+        this.box.drawRect(this.w, i*this.distance, this.histo[i][1]*1.5, this.distance, "FireBrick");
+      }
+    }
+  }
+}
+{% endhighlight %}
+#### Execution
+<script src="docs\assets\hw3\javascript\Rectangle.js"></script>
+<script src="docs\assets\hw3\javascript\Simulator.js"></script>
+<script src="docs\assets\hw3\javascript\Histogram.js"></script>
+<script>
+  const canvas = document.createElement("canvas");
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext("2d");
+  ctx.canvas.width = 8000;
+  ctx.canvas.height = 8000;
+
+  var systems = 300;
+  var attacks = 100;
+
+  const s = new Simulator(ctx, systems, attacks, 1, -1, 0.5, "", 0, 0, 20);
+  s.simulate();
+
+  const s1 = new Simulator(ctx, systems, attacks, 1, 0, 0.9, "", 850, 0, 20);
+  s1.simulate();
+
+  const s2 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "rel", 0, 650, 20);
+  s2.simulate();
+
+  const s3 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "reln", 850, 650, 20);
+  s3.simulate();
+
+
+</script>
+
+### C# Code
+#### Program
+{% highlight csharp %}
+using System.Security.Policy;
+using System.Timers;
+using System.Windows.Forms;
+
+namespace attacks_simulation
+{
+    internal static class Program
+    {
+        [STAThread]
+        static void Main()
+        {
+            // To customize application configuration such as set high DPI settings or default font,
+            // see https://aka.ms/applicationconfiguration.
+            ApplicationConfiguration.Initialize();
+            Form f = new Form1();
+
+            int width = 5000;
+            int height = 5000;
+
+            PictureBox pictureBox = new PictureBox();
+
+            Bitmap bitmap = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            pictureBox.Image = bitmap;
+            pictureBox.Dock = DockStyle.Fill;
+            f.Controls.Add(pictureBox);
+
+            System.Timers.Timer t = new System.Timers.Timer(500);
+            t.AutoReset = true;
+            t.Enabled = true;
+
+
+            Graphics graphics = Graphics.FromImage(bitmap);
+            Simulator s1 = new Simulator(50, 50, 1, 0, 0.5, "reln", 5, 10, 10, graphics, 50);
+            s1.drawChart();
+            s1.simulate();
+
+
+
+            Application.Run(f);
+        }
+    }
+}
+{% endhighlight %}
+#### Class Simulator
+{% highlight csharp %}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
+
+namespace attacks_simulation
+{
+    internal class Simulator
+    {
+        private int nSystems;
+        private int nAttacks;
+        private int successPoints;
+        private int failurePoints;
+        private double p;
+        private String frequencyType = "global";
+        private int midDay;
+        private float x;
+        private float y;
+        private Graphics graphics;
+        private Box box;
+        private float boxWidth = 800;
+        private float boxHeight = 600;
+        private float rowDistance;
+        private float colDistance;
+        private float stepX;
+        private float stepY;
+        Histogram h1, h2;
+        private int k;
+
+
+
+        public Simulator(int nSystems, int nAttacks, int successPoints, int failurePoints, double p, String frequencyType, int midDay, float x, float y, Graphics graphics, int k) 
+        { 
+            this.nSystems = nSystems;
+            this.nAttacks = nAttacks;
+            this.successPoints = successPoints;
+            this.failurePoints = failurePoints;
+            this.p = p;
+            this.frequencyType = frequencyType;
+            this.midDay = midDay;
+            this.x = x;
+            this.y = y;
+            this.graphics = graphics;
+            this.rowDistance = this.boxHeight / this.nAttacks;
+            this.colDistance = this.boxWidth / this.nAttacks;
+            this.stepX = this.colDistance;
+            this.stepY = this.rowDistance / 2;
+            this.box = new Box(graphics, x, y, this.boxWidth, this.boxHeight);
+            this.k = k;
+            
+        }
+
+        public void drawChart() 
+        {
+            float rowDistance = this.boxHeight / this.nAttacks;
+            float colDistance = this.boxWidth / this.nAttacks;
+            for (float i = rowDistance/2; i < this.boxHeight; i = i + rowDistance/2) {
+                this.box.drawLine(0, i, this.boxWidth, i, Color.LightGray);
+            }
+            for (float i = colDistance; i < this.boxWidth; i = i + colDistance)
+            {
+                this.box.drawLine(i, 0, i, this.boxHeight, Color.LightGray);
+            }
+            
+            this.h1 = new Histogram(this.graphics, this.k, this.x + this.midDay * this.colDistance, this.y, 30, this.boxHeight);
+            this.h1.drawChart();
+            this.h2 = new Histogram(this.graphics, this.k, this.x+this.boxWidth, this.y, 30, this.boxHeight);
+            this.h2.drawChart();
+
+
+        }
+
+        public void simulate()
+        {
+            Random r = new Random();
+            Random rnd = new Random();
+            System.Timers.Timer t = new System.Timers.Timer();
+            t.Interval = 2000;
+            for (int i = 0; i < this.nSystems; i++) 
+            {
+                float x1 = 0;
+                float y1 = this.boxHeight / 2;
+                float x2 = 0;
+                float y2 = this.boxHeight / 2;
+                int esito = 0;
+                double count = 0;
+                double s = 0;
+                Color randomColor = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256));
+
+                for (int j = 0; j < this.nAttacks; j++) 
+                {   
+                    if (r.NextDouble() >= this.p)
+                    {
+                        esito = esito + this.successPoints;
+                    }
+                    else
+                    {
+                        esito = esito + this.failurePoints;
+                    }
+
+                    count += 1;
+                    if (this.frequencyType.Equals("rel"))
+                    {
+                        s = (esito / count) * 10;
+                    }
+                    else if (this.frequencyType.Equals("reln"))
+                    {
+                        s = (esito / Math.Sqrt(count)) * 4;
+                    }
+                    else 
+                    {
+                        s = esito;
+                    }
+
+                    if (j == this.midDay) 
+                    {
+                        this.h1.addToBin((int) s);
+                    }
+
+
+                    x2 = x1 + this.stepX;
+                    y2 = (float) ((this.boxHeight/2) - (this.stepY * s));
+                    this.box.drawLine(x1, y1, x2, y2, randomColor);
+                    x1 = x2;
+                    y1 = y2;
+                }
+                this.h2.addToBin((int) s);
+            }
+        }
+    }
+}
+
+{% endhighlight %}
+#### Class Box
+{% highlight csharp %}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace attacks_simulation
+{
+    internal class Box
+    {
+        float x, y, width, height;
+        public Graphics graphics;
+        public Box(Graphics graphics, float x, float y, float width, float heigth) 
+        {
+            this.graphics = graphics;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = heigth;
+            Pen pen = new Pen(Color.Black, 2);
+            this.graphics.DrawRectangle(pen, this.x, this.y, this.width, this.height);
+        }
+
+        public void drawLine(float x1, float y1, float x2, float y2, Color color) 
+        {
+            Pen pen = new Pen(color, 2);
+            float relative_x1 = this.x + x1;
+            float relative_y1 = this.y + y1;
+
+            float relative_x2 = this.x + x2;
+            float relative_y2 = this.y + y2;
+
+            this.graphics.DrawLine(pen, relative_x1, relative_y1, relative_x2, relative_y2);
+        }
+
+        public void drawRect(float x, float y, float width, float height, Color color) 
+        {
+            SolidBrush brush = new SolidBrush(color);
+            this.graphics.FillRectangle(brush, this.x + x, this.y + y, width, height);
+        }
+
+    }
+}
+
+{% endhighlight %}
+#### Class Histogram
+{% highlight csharp %}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+
+namespace attacks_simulation
+{
+    internal class Histogram
+    {
+        private int k;
+        private float x;
+        private float y;
+        private float width;
+        private float height;
+        private Box box;
+        private float distance;
+        private float[,] histoValues;
+
+        public Histogram(Graphics graphic, int k, float x, float y, float width, float height)
+        {
+            this.k = k;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.box = new Box(graphic, x, y, this.width, this.height);
+            this.distance = this.height/this.k;
+            this.histoValues = new float[k, 100];
+
+            int c_bin = -this.k / 2;
+            for (int i = 0; i < this.k; i++) 
+            {
+                this.box.graphics.DrawString((-c_bin*2).ToString(), new Font("Tahoma", 8), Brushes.Black, this.x + this.width, i*this.distance);
+                histoValues[i,0] = (-c_bin*2);
+                c_bin++;
+            }
+
+        }
+
+        public void drawChart() 
+        { 
+            for (int i = 0; i < this.height; i += (int) this.distance) 
+            {
+                this.box.drawLine(0, i, this.width, i, Color.Black);
+            }
+        }
+
+        public void addToBin(int value)
+        {
+            for (int i = 0; i < this.k-1; i++)
+            {
+                if (value > this.histoValues[i + 1, 0] && value <= this.histoValues[i, 0])
+                {
+                    this.histoValues[i, 1] += 1;
+                    this.box.drawRect(this.width,  i * this.distance, this.histoValues[i, 1]*4, this.distance, Color.Red);
+                }
+            }
+
+        }
+    }
+}
+
+{% endhighlight %}
