@@ -187,6 +187,7 @@ class Histogram {
 }
 {% endhighlight %}
 #### Execution
+<canvas id="myCanvas" width=600 height=300 ></canvas>
 <script>
 class Rectangle {
   constructor(x,y,width,height,context){
@@ -335,26 +336,25 @@ class Histogram {
 }
 </script>
 <script>
-  const canvas = document.createElement("canvas");
-  document.body.appendChild(canvas);
-  const ctx = canvas.getContext("2d");
-  ctx.canvas.width = 8000;
-  ctx.canvas.height = 8000;
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.canvas.width = 8000;
+    ctx.canvas.height = 8000;
 
-  var systems = 300;
-  var attacks = 100;
+    var systems = 300;
+    var attacks = 100;
 
-  const s = new Simulator(ctx, systems, attacks, 1, -1, 0.5, "", 0, 0, 20);
-  s.simulate();
+    const s = new Simulator(ctx, systems, attacks, 1, -1, 0.5, "", 0, 0, 20);
+    s.simulate();
 
-  const s1 = new Simulator(ctx, systems, attacks, 1, 0, 0.9, "", 850, 0, 20);
-  s1.simulate();
+    const s1 = new Simulator(ctx, systems, attacks, 1, 0, 0.9, "", 850, 0, 20);
+    s1.simulate();
 
-  const s2 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "rel", 0, 650, 20);
-  s2.simulate();
+    const s2 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "rel", 0, 650, 20);
+    s2.simulate();
 
-  const s3 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "reln", 850, 650, 20);
-  s3.simulate();
+    const s3 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "reln", 850, 650, 20);
+    s3.simulate();
 </script>
 
 ### C# Code
