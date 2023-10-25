@@ -341,7 +341,7 @@ class Histogram {
     ctx.canvas.width = 8000;
     ctx.canvas.height = 8000;
 
-    var systems = 300;
+    var systems = 150;
     var attacks = 100;
 
     const s = new Simulator(ctx, systems, attacks, 1, -1, 0.5, "", 0, 0, 20);
