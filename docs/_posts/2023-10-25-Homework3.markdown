@@ -329,7 +329,7 @@ class Histogram {
     for (let i = 0; i < this.k-1; i++) {
       if (v > this.histo[i+1][0] && v <= this.histo[i][0]) {
         this.histo[i][1] += 1;
-        this.box.drawRect(this.w, i*this.distance, this.histo[i][1]*1.5, this.distance, "FireBrick");
+        this.box.drawRect(this.w, i*this.distance, -this.histo[i][1]*1.5, this.distance, "FireBrick");
       }
     }
   }
