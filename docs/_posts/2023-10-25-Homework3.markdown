@@ -187,7 +187,7 @@ class Histogram {
 }
 {% endhighlight %}
 #### Execution
-<canvas id="myCanvas" width=600 height=300 ></canvas>
+<canvas id="myCanvas"></canvas>
 <script>
 class Rectangle {
   constructor(x,y,width,height,context){
@@ -234,7 +234,7 @@ class Simulator {
     this.failure = failure;
     this.mid_day = mid_day;
     this.ctx = ctx;
-    this.box = new Rectangle(x,y,800,600,this.ctx);
+    this.box = new Rectangle(x,y,600,400,this.ctx);
     this.box.drawLine(0, this.box.h/2, this.box.w, this.box.h/2, "DarkGray")
     this.scale = 5*(1-this.p);
     if (this.freq==="rel") {
