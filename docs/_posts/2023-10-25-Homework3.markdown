@@ -338,8 +338,8 @@ class Histogram {
 <script>
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
-    ctx.canvas.width = 8000;
-    ctx.canvas.height = 8000;
+    ctx.canvas.width = 2000;
+    ctx.canvas.height = 1000;
 
     var systems = 150;
     var attacks = 100;
