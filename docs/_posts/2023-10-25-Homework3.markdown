@@ -187,9 +187,9 @@ class Histogram {
 }
 {% endhighlight %}
 #### Execution
-<script src="docs/assets/hw3/javascript/Rectangle.js"></script>
-<script src="docs/assets/hw3/javascript/Simulator.js"></script>
-<script src="docs/assets/hw3/javascript/Histogram.js"></script>
+<script src="zBION1C.github.io/docs\assets/hw3/javascript/Rectangle.js"></script>
+<script src="zBION1C.github.io/docs\assets/hw3/javascript/Simulator.js"></script>
+<script src="zBION1C.github.io/docs\assets/hw3/javascript/Histogram.js"></script>
 <script>
   const canvas = document.createElement("canvas");
   document.body.appendChild(canvas);
