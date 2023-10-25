@@ -187,9 +187,153 @@ class Histogram {
 }
 {% endhighlight %}
 #### Execution
-<script src="Rectangle.js"></script>
-<script src="Simulator.js"></script>
-<script src="Histogram.js"></script>
+<script>
+class Rectangle {
+  constructor(x,y,width,height,context){
+    this.x = x;
+    this.y = y;
+    this.h = height;
+    this.w = width;
+    this.ctx = context;
+    this.display();
+  }
+
+  display() {
+    this.ctx.beginPath();
+    this.ctx.rect(this.x, this.y, this.w, this.h);
+    this.ctx.stroke();
+  }
+
+
+  drawLine(x1, y1, x2, y2, color) {
+    this.ctx.beginPath();
+    this.ctx.moveTo(this.x+x1, this.y+y1);
+    this.ctx.lineTo(this.x+x2, this.y+y2);
+
+    this.ctx.strokeStyle = color;
+    this.ctx.stroke();
+    this.ctx.strokeStyle = "black";
+  }
+
+  drawRect(x, y, w, h, color) {
+    this.ctx.beginPath();
+    this.ctx.fillStyle  = color;
+    this.ctx.fillRect(this.x+x, this.y+y, w, h);
+  }
+}
+</script>
+<script>
+class Simulator {
+  constructor(ctx,systems, attacks, success, failure, p, freq, x, y, mid_day){
+    this.p = p; 
+    this.freq = freq;
+    this.systems = systems;
+    this.attacks = attacks;
+    this.success = success;
+    this.failure = failure;
+    this.mid_day = mid_day;
+    this.ctx = ctx;
+    this.box = new Rectangle(x,y,800,600,this.ctx);
+    this.box.drawLine(0, this.box.h/2, this.box.w, this.box.h/2, "DarkGray")
+    this.scale = 5*(1-this.p);
+    if (this.freq==="rel") {
+      this.scale = 20*(1-this.p);
+    }
+    if (this.freq==="reln") { 
+      this.scale = 5*(1-this.p);
+    }
+    this.histo1 = new Histogram(this.ctx, 50, this.box.x+mid_day+this.box.w/7, this.box.y, this.box.w/7, this.box.h);
+    this.histo2 = new Histogram(this.ctx, 50, this.box.x+this.box.w-this.box.w/7, this.box.y, this.box.w/7, this.box.h);
+  }
+
+
+  timer(ms) {
+    return new Promise(res => setTimeout(res, ms));
+  }
+
+  async simulate() {
+    let r = 0;
+
+    for (let i = 1; i <= this.systems; i++){
+      var x1 = 0;
+      var y1 = this.box.h/2;
+      var x2 = 0;
+      var y2 = this.box.h/2;
+      var n_success = 0;
+      var divisor = 1;
+      var esito = 0;
+      var color = "#"+((1<<24)*Math.random()|0).toString(16);
+      for (let j = 1; j <= this.attacks; j++) {
+        if (j % (this.attacks/10) == 0){
+          await this.timer(10);
+        }
+        r = Math.random();
+        if (r <= this.p) {
+          n_success++;
+          if (this.freq==="rel") {
+            divisor = n_success;
+          }
+          if (this.freq === "reln") {
+            divisor = Math.sqrt(n_success);
+          }
+          esito += (this.success*this.scale)/divisor;
+
+
+        } else {
+          esito += (this.failure*this.scale)/divisor;
+        }
+        
+        if (j == this.mid_day){
+          this.histo1.addToBin(esito)
+        }
+
+        x2 = j*(this.box.w/this.attacks);
+        y2 = this.box.h/2-esito;
+        this.box.drawLine(x1, y1, x2, y2, color)
+        x1 = x2;
+        y1 = y2
+      }
+      this.histo2.addToBin(esito);
+    }
+  }
+}
+</script>
+<script>
+class Histogram {
+  constructor(ctx, k, x, y, width, height) {
+    this.ctx = ctx;
+    this.k = k;
+    this.w = width;
+    this.h = height;
+    this.box = new Rectangle(x,y,this.w,this.h,this.ctx);
+    this.distance = this.h/this.k;
+    this.display();
+    this.histo = []
+    
+    var bin_value = -this.k/2;
+    for (let i = 0; i < this.k; i++) {
+      bin_value++
+      this.histo[i] = [(-bin_value*(this.distance)), 0]
+    }
+  }
+
+  display() {
+    for (let i = 0; i <= this.h; i+=this.distance) {
+      this.box.drawLine(0, i, this.w, (i), "black");
+    }
+  }
+
+
+  addToBin(v) {
+    for (let i = 0; i < this.k-1; i++) {
+      if (v > this.histo[i+1][0] && v <= this.histo[i][0]) {
+        this.histo[i][1] += 1;
+        this.box.drawRect(this.w, i*this.distance, this.histo[i][1]*1.5, this.distance, "FireBrick");
+      }
+    }
+  }
+}
+</script>
 <script>
   const canvas = document.createElement("canvas");
   document.body.appendChild(canvas);
@@ -211,8 +355,6 @@ class Histogram {
 
   const s3 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "reln", 850, 650, 20);
   s3.simulate();
-
-
 </script>
 
 ### C# Code
