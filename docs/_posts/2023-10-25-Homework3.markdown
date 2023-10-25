@@ -234,7 +234,7 @@ class Simulator {
     this.failure = failure;
     this.mid_day = mid_day;
     this.ctx = ctx;
-    this.box = new Rectangle(x,y,600,400,this.ctx);
+    this.box = new Rectangle(x,y,500,300,this.ctx);
     this.box.drawLine(0, this.box.h/2, this.box.w, this.box.h/2, "DarkGray")
     this.scale = 5*(1-this.p);
     if (this.freq==="rel") {
@@ -347,13 +347,13 @@ class Histogram {
     const s = new Simulator(ctx, systems, attacks, 1, -1, 0.5, "", 0, 0, 20);
     s.simulate();
 
-    const s1 = new Simulator(ctx, systems, attacks, 1, 0, 0.9, "", 850, 0, 20);
+    const s1 = new Simulator(ctx, systems, attacks, 1, 0, 0.9, "", 550, 0, 20);
     s1.simulate();
 
-    const s2 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "rel", 0, 650, 20);
+    const s2 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "rel", 0, 350, 20);
     s2.simulate();
 
-    const s3 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "reln", 850, 650, 20);
+    const s3 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "reln", 550, 350, 20);
     s3.simulate();
 </script>
 
