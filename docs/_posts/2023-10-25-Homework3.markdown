@@ -668,7 +668,7 @@ Some examples of probability spaces are:
     - P(\{2,4,6\}) = 3/6
 - The throwing of a coin where:
     - Ω = \{H, T\}
-    - F = \{{H\}, \{T\}\}
+    - F = \{\{H\}, \{T\}\}
     - P(H) = 1/2 ; P(T) = 1/2
 
 In the case of excercise 2 the triple is:
