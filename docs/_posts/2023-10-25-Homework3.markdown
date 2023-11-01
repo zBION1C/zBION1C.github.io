@@ -673,5 +673,5 @@ Some examples of probability spaces are:
 
 In the case of excercise 2 the triple is:
 - Ω = \{SUCCESS, FAILURE\}
-- F = \{{SUCCESS\}, \{FAILURE\}\}
+- F = \{\{SUCCESS\}, \{FAILURE\}\}
 - P(SUCCESS) = p ; P(FAILURE) = 1-p
