@@ -663,15 +663,15 @@ A *probability space* is a mathematical object that models the execution of vola
 - P is a *probability function* wich assigns to each event space a probability, a number between 0 and 1.
 Some examples of probability spaces are:
 - The throwing of a dice, where we want to study the probability of the landing on a even number:
-    - Ω = {1,2,3,4,5,6}
-    - F = {2,4,6}
-    - P({2,4,6}) = 3/6
+    - Ω = \{1,2,3,4,5,6\}
+    - F = \{2,4,6\}
+    - P(\{2,4,6\}) = 3/6
 - The throwing of a coin where:
-    - Ω = {H, T}
-    - F = {{H}, {T}}
+    - Ω = \{H, T\}
+    - F = \{{H\}, \{T\}\}
     - P(H) = 1/2 ; P(T) = 1/2
 
 In the case of excercise 2 the triple is:
-- Ω = {SUCCESS, FAILURE}
-- F = {{SUCCESS}, {FAILURE}}
+- Ω = \{SUCCESS, FAILURE\}
+- F = \{{SUCCESS\}, \{FAILURE\}\}
 - P(SUCCESS) = p ; P(FAILURE) = 1-p
