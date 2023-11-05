@@ -5,7 +5,6 @@ class Rectangle {
 		this.h = height;
 		this.w = width;
 		this.ctx = context;
-		this.display();
 	}
 
 	display() {
