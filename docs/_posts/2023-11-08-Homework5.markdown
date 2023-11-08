@@ -86,7 +86,7 @@ This execution is set with a value of lambda = 20.
 			var esito = 0;
 			var color = "#"+((1<<24)*Math.random()|0).toString(16);
 			for (let j = this.distance*this.width; j <= this.width; j += this.distance*this.width) {
-				if (j % (5) == 0){
+				if (j % (100) == 0){
 					await this.timer(10);
 				}
 				r = Math.random();
