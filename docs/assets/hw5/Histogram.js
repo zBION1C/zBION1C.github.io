@@ -2,7 +2,7 @@ class Histogram {
 	constructor(ctx, N, k, x, y, width, height) {
 		this.ctx = ctx;
 		this.N = N;
-		this.k = k+1;
+		this.k = k;
 		this.w = width;
 		this.h = height;
 		this.box = new Rectangle(x,y,this.w,this.h,this.ctx);
@@ -24,14 +24,12 @@ class Histogram {
 
 
 	addToBin(v) {
-		console.log(this.h*this.distance)
 		if (v == this.histo[this.k][0]){
 			this.histo[this.k][1] += 1;
 			this.box.drawRect(this.w, 0*(this.h*this.distance), -this.histo[this.k][1]*1.2, this.distance*this.h, "FireBrick");
 
 		}
 		else if (v == this.histo[0][0]){
-			console.log(v)
 			this.histo[0][1] += 1;
 			this.box.drawRect(this.w, (this.k/this.N-1)*(this.h*this.distance), -this.histo[0][1]*1.3, this.distance*this.h, "FireBrick");
 		}

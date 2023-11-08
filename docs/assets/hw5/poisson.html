@@ -10,13 +10,13 @@
 	ctx.canvas.width = 8000;
 	ctx.canvas.height = 8000;
 
-	var systems = 5000;
+	var systems = 500;
 	var T = 1;
-	var N = 50;
+	var N = 100;
 
-	p = 10*(T/N)
+	p = 20*(T/N)
 
-	const s = new Simulator(ctx, systems, T, N, 1, 0, p, "", 0, 0, 20);
+	const s = new Simulator(ctx, systems, T, N, 1, 0, p, "", 0, 0, 300);
 	s.calculateIntervals()
 	s.simulate()
 

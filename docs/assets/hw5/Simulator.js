@@ -13,7 +13,7 @@ class Simulator {
 		this.width = 1000;
 		this.height = 800;
 		this.box = new Rectangle(x,y,this.width,this.height,this.ctx);
-		this.histo1 = new Histogram(this.ctx, 1, N, this.box.x+mid_day+this.box.w/3, this.box.y, this.box.w/7, this.box.h);
+		this.histo1 = new Histogram(this.ctx, 1, N, this.box.x+mid_day-this.box.w/7, this.box.y, this.box.w/7, this.box.h);
 		this.histo2 = new Histogram(this.ctx, 1, N, this.box.x+this.box.w-this.box.w/7, this.box.y, this.box.w/7, this.box.h);
 	}
 
@@ -51,6 +51,7 @@ class Simulator {
 				}
 				
 				if (j == this.mid_day){
+					console.log(esito)
 					this.histo1.addToBin(esito)
 				}
 

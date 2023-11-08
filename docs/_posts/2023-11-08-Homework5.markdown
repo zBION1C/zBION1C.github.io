@@ -1,0 +1,12 @@
+---
+layout: post
+title:  "Homework4"
+date:   2023-11-01 10:24:32 +0200
+categories: statistics
+---
+
+## Excercise
+### Law of large numbers
+The *law of large numbers* is related to part b of homework 3 because we can see that if we calculate the cumulated frequency it tends to be the expected value. Indeed in my charts only one or two histogram bars are filling up.
+### Central Limit Theorem
+The *central limit theorem* is is related to part a of homework 3 because we can see in the charts that the distribution of the attacks at the end approximate the standard normal distribution.
