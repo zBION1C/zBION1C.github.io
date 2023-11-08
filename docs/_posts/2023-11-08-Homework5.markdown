@@ -1,12 +1,172 @@
 ---
 layout: post
-title:  "Homework4"
-date:   2023-11-01 10:24:32 +0200
+title:  "Homework5"
+date:   2023-11-08 17:24:32 +0200
 categories: statistics
 ---
 
-## Excercise
-### Law of large numbers
-The *law of large numbers* is related to part b of homework 3 because we can see that if we calculate the cumulated frequency it tends to be the expected value. Indeed in my charts only one or two histogram bars are filling up.
-### Central Limit Theorem
-The *central limit theorem* is is related to part a of homework 3 because we can see in the charts that the distribution of the attacks at the end approximate the standard normal distribution.
+## Javascript
+<canvas id="myCanvas"></canvas>
+<script>
+	class Rectangle {
+	constructor(x,y,width,height,context){
+		this.x = x;
+		this.y = y;
+		this.h = height;
+		this.w = width;
+		this.ctx = context;
+	}
+
+	display() {
+		this.ctx.beginPath();
+		this.ctx.rect(this.x, this.y, this.w, this.h);
+		this.ctx.stroke();
+	}
+
+
+	drawLine(x1, y1, x2, y2, color) {
+		this.ctx.beginPath();
+		this.ctx.moveTo(this.x+x1, this.y+y1);
+		this.ctx.lineTo(this.x+x2, this.y+y2);
+
+		this.ctx.strokeStyle = color;
+		this.ctx.stroke();
+		this.ctx.strokeStyle = "black";
+	}
+
+	drawRect(x, y, w, h, color) {
+		this.ctx.beginPath();
+		this.ctx.fillStyle  = color;
+		this.ctx.fillRect(this.x+x, this.y+y, w, h);
+	}
+	}
+
+	class Simulator {
+	constructor(ctx,systems, T, N, success, failure, p, freq, x, y, mid_day){
+		this.p = p; 
+		this.freq = freq;
+		this.systems = systems;
+		this.T = T;
+		this.N = N;
+		this.distance = T/N;
+		this.success = success;
+		this.failure = failure;
+		this.mid_day = mid_day;
+		this.ctx = ctx;
+		this.width = 1000;
+		this.height = 800;
+		this.box = new Rectangle(x,y,this.width,this.height,this.ctx);
+		this.histo1 = new Histogram(this.ctx, 1, N, this.box.x+mid_day-this.box.w/7, this.box.y, this.box.w/7, this.box.h);
+		this.histo2 = new Histogram(this.ctx, 1, N, this.box.x+this.box.w-this.box.w/7, this.box.y, this.box.w/7, this.box.h);
+	}
+
+	calculateIntervals() {
+		for (let i = 0; i <= this.T; i += (this.T/this.N)) {
+			this.box.drawLine(i * this.width, 0, i * this.width, this.box.h, "lightgrey");
+			this.box.drawLine(0, i * this.height, this.width, i * this.height, "lightgrey")
+		}
+
+	}
+
+	timer(ms) {
+		return new Promise(res => setTimeout(res, ms));
+	}
+
+	async simulate() {
+		let r = 0;
+
+		for (let i = 1; i <= this.systems; i++){
+			var x1 = 0;
+			var y1 = this.box.h;
+			var x2 = 0;
+			var y2 = this.box.h;
+			var n_success = 0;
+			var divisor = 1;
+			var esito = 0;
+			var color = "#"+((1<<24)*Math.random()|0).toString(16);
+			for (let j = this.distance*this.width; j <= this.width; j += this.distance*this.width) {
+				await this.timer(0.5);
+				r = Math.random();
+				if (r <= this.p) {
+					esito += this.success;
+				} else {
+					esito += this.failure;
+				}
+				
+				if (j == this.mid_day){
+					console.log(esito)
+					this.histo1.addToBin(esito)
+				}
+
+				x2 = j;
+				y2 = this.box.h-(esito*this.distance*this.height);
+				this.box.drawLine(x1, y1, x2, y2, color)
+				x1 = x2;
+				y1 = y2
+			}
+			this.histo2.addToBin(esito);
+			}
+		}
+	}
+
+	class Histogram {
+	constructor(ctx, N, k, x, y, width, height) {
+		this.ctx = ctx;
+		this.N = N;
+		this.k = k;
+		this.w = width;
+		this.h = height;
+		this.box = new Rectangle(x,y,this.w,this.h,this.ctx);
+		this.distance = this.N/this.k;
+		this.display();
+		this.histo = []
+		
+		for (let i = 0; i <= this.k; i++) {
+			this.histo[i] = [i*this.distance*this.k, 0]
+		}
+	}
+
+	display() {
+		for (let i = 0; i <= this.h; i+=this.distance*this.h) {
+			this.box.drawLine(this.w-5, i, this.w+5, (i), "black");
+			this.box.ctx.fillText(i/this.h*this.k, this.w*7.1, this.h-(i));
+		}
+	}
+
+
+	addToBin(v) {
+		if (v == this.histo[this.k][0]){
+			this.histo[this.k][1] += 1;
+			this.box.drawRect(this.w, 0*(this.h*this.distance), -this.histo[this.k][1]*1.2, this.distance*this.h, "FireBrick");
+
+		}
+		else if (v == this.histo[0][0]){
+			this.histo[0][1] += 1;
+			this.box.drawRect(this.w, (this.k/this.N-1)*(this.h*this.distance), -this.histo[0][1]*1.3, this.distance*this.h, "FireBrick");
+		}
+
+		for (let i = 0; i < this.k; i++) {
+			if (v < this.histo[i+1][0] && v >= this.histo[i][0]) {
+				this.histo[i][1] += 1;
+				this.box.drawRect(this.w, ((this.k-i-1)/this.N)*(this.h*this.distance), -this.histo[i][1]*1.3, this.distance*this.h, "FireBrick");
+				}
+			}
+		}
+	}
+
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+	ctx.canvas.width = 8000;
+	ctx.canvas.height = 8000;
+
+	var systems = 500;
+	var T = 1;
+	var N = 100;
+
+	p = 20*(T/N)
+
+	const s = new Simulator(ctx, systems, T, N, 1, 0, p, "", 0, 0, 300);
+	s.calculateIntervals()
+	s.simulate()
+
+</script>
