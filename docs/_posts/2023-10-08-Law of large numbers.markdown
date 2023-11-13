@@ -3,6 +3,7 @@ layout: post
 title:  "Homework1"
 date:   2023-10-08 10:39:32 +0200
 categories: statistics
+tag: thesis
 ---
 
 ## Theory
