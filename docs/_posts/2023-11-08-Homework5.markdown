@@ -3,6 +3,7 @@ layout: post
 title:  "Homework5"
 date:   2023-11-08 17:24:32 +0200
 categories: statistics
+tag: hw
 ---
 
 ## Javascript
