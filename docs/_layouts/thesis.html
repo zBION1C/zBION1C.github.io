@@ -13,7 +13,6 @@ layout: default
     <h2 class="post-list-heading">{{ page.list_title | default: "Thesis" }}</h2>
     <ul class="post-list">
       {%- for tag in site.tags -%}
-      {%- if tag == "thesis" -%}
       <li>
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
         <span class="post-meta">{{ thesis.date | date: date_format }}</span>
@@ -26,7 +25,6 @@ layout: default
           {{ thesis.excerpt }}
         {%- endif -%}
       </li>
-      {%- endif -%}
       {%- endfor -%}
     </ul>
 
