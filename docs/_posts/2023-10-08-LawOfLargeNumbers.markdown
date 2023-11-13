@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Homework1"
+title:  "Law of large numbers"
 date:   2023-10-08 10:39:32 +0200
 categories: statistics
 tag: thesis
