@@ -7,4 +7,4 @@ title: "Thesis"
 permalink: /thesis/
 ---
 
-### <li class="masthead__menu-item"><a href="xxx.github.io/research.html">Research</a></li>
+<li class="masthead__menu-item"><a href="xxx.github.io/research.html">Research</a></li>
