@@ -22,6 +22,3 @@ Some example of continuous distributions are:
 * Beta distribution
 * Uniform distribution
 * Triangular distribution
-
-
-
