@@ -11,5 +11,5 @@ tag: thesis
 The Gaussian distribution is one the most famous distribution of all statistics. A.K.A normal distribution, has the shape of a bell and it is used very often in natural and social sciences. Indeed we already saw that this distribution arise naturally from the sampling of independent and identically distributed random variables.
 
 ### Simulation
-	We already simulated this type of distribution in some homeworks of the course.
+We already simulated this type of distribution in some homeworks of the course.
 
