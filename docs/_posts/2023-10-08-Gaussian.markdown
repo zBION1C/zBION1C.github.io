@@ -12,5 +12,8 @@ The Gaussian distribution is one the most famous distribution of all statistics.
 
 ### Simulation
 We already simulated this type of distribution in some homeworks of the course.
+<<<<<<< HEAD
 Again the Galton board is a cool experiment that show this type of distribution.
+=======
+>>>>>>> 66ebfc576503ac9253892b94f91ee153f271ed36
 
