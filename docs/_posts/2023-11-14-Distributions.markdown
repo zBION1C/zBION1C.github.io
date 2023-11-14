@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Statistical distributions"
-date:   2023-11-15 19:39:32 +0200
+date:   2023-11-14 10:39:32 +0200
 categories: statistics
 tag: thesis
 ---
