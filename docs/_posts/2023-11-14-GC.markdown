@@ -1,0 +1,10 @@
+---
+layout: post
+title:  "Glivenko cantelli theorem"
+date:   2023-11-14 18:39:32 +0200
+categories: statistics
+tag: thesis
+---
+
+## The Glivenko-Cantelli theorem
+The Glivenko-Cantelli theorem specify the asymptotic behaviour of the cumulative distribution function ase the number of observation grows.
