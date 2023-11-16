@@ -71,7 +71,7 @@ class Histogram {
     for (let i = 0; i < this.k-1; i++) {
       if (v > this.histo[i+1][0] && v <= this.histo[i][0]) {
         this.histo[i][1] += 1;
-        this.box.drawRect(this.w, i*this.distance, this.histo[i][1]*1.5, this.distance, "FireBrick");
+        this.box.drawRect(this.w, i*this.distance, this.histo[i][1], this.distance, "FireBrick");
       }
     }
   }
@@ -86,12 +86,10 @@ class Simulator {
     this.failure = failure;
     this.mid_day = mid_day;
     this.ctx = ctx;
-    this.upper = 20;
+    this.upper = 50;
     this.lower = -20;
     this.box = new Rectangle(x,y,800,600,this.ctx);
     this.box.drawLine(0, this.box.h/2, this.box.w, this.box.h/2, "DarkGray")
-    //this.box.drawLine(0, this.upper*4, this.box.w, this.upper, "Black")
-    //this.box.drawLine(0, this.lower*4, this.box.w, this.lower, "Black")
     this.scale = 5*(1-this.p);
     if (this.freq==="rel") {
       this.scale = 20*(1-this.p);
@@ -123,9 +121,10 @@ class Simulator {
       var touchedUp = false;
       var touchedLow = false;
       var color = "#"+((1<<24)*Math.random()|0).toString(16);
+      var failureTurn = 0;
       for (let j = 1; j <= this.attacks; j++) {
         if (j % (this.attacks/10) == 0){
-          await this.timer(10);
+          //await this.timer(10);
         }
         r = Math.random();
         if (r <= this.p) {
@@ -144,17 +143,17 @@ class Simulator {
         }
         
         if (esito >= this.upper && !touchedLow && !touchedUp) {
-        	touchedUp = true;
+          touchedUp = true;
         }
         if (esito <= this.lower && !touchedUp && !touchedLow){
-        	touchedLow = true;
-        	cdown++;
+          touchedLow = true;
+          failureTurn = j
+          cdown++;
         }
 
         if (j == this.mid_day){
-          this.histo1.addToBin(cdown/i * 100)
+          this.histo1.addToBin(failureTurn)
         }
-        console.log(cdown/i * 100)
 
 
         x2 = j*(1/this.attacks*this.box.w);
@@ -163,7 +162,7 @@ class Simulator {
         x1 = x2;
         y1 = y2
       }
-      this.histo2.addToBin(cdown/i * 100);
+      this.histo2.addToBin(failureTurn);
     }
   }
 }
@@ -172,11 +171,11 @@ class Simulator {
   ctx.canvas.width = 8000;
   ctx.canvas.height = 8000;
 
-  var systems = 200;
+  var systems = 500;
   var attacks = 500;
 
-  const s = new Simulator(ctx, systems, attacks, 1, -1, 0.5, "", 0, 100, 20);
+  const s = new Simulator(ctx, systems, attacks, 1, -1, 0.4, "", 0, 100, 60);
   s.simulate();
-
+  
 </script>
 
