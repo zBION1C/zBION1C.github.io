@@ -127,7 +127,7 @@ class Simulator {
       color = "#"+((1<<24)*Math.random()|0).toString(16);
       for (var time = 1; time <= this.N; time++) {
 
-        if (Math.random() < 0.5) {
+        if (Math.random() < 1) {
           outcome = this.success
         } else {
           outcome = this.failure
