@@ -128,7 +128,6 @@ class Simulator {
       color = "#"+((1<<24)*Math.random()|0).toString(16);
       for (var time = 0; time < this.N; time++) {
         outcome = this.SDE(time/this.N, this.N)
-        console.log(outcome)
           
         total += outcome
 
@@ -186,7 +185,7 @@ function OU (x,n) {
   return (-theta*(mu-x)*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
 }
 
-const s1 = new Simulator(context, 10, 10 , intervals, trials, ABM)
+var s1 = new Simulator(context, 10, 10 , intervals, trials, ABM)
 s1.simulate()
 </script>
 
@@ -227,7 +226,7 @@ function OU (x,n) {
   return (-theta*(mu-x)*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
 }
 
-const s1 = new Simulator(context, 10, 10 , intervals, trials, GBM)
+var s1 = new Simulator(context, 10, 10 , intervals, trials, GBM)
 s1.simulate()
 </script>
 
@@ -268,7 +267,7 @@ function OU (x,n) {
   return (-theta*(mu-x)*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
 }
 
-const s1 = new Simulator(context, 10, 10 , intervals, trials, OU)
+var s1 = new Simulator(context, 10, 10 , intervals, trials, OU)
 s1.simulate()
 </script>
 
