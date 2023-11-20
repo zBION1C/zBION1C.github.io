@@ -87,7 +87,7 @@ class Histogram{
 
 }
 
-const width = 900 //rectangle width
+const width = 700 //rectangle width
 const height = 400 //rectangle height
 class Simulator {
 
@@ -151,15 +151,15 @@ class Simulator {
 }
 </script>
 
-## Simulations
+### Simulations
 Simulation of Arithmetic Brownian motion:
 <canvas id="ABM"></canvas>
 
 <script>
 var canvas = document.getElementById("ABM");
 var context = canvas.getContext("2d");
-context.canvas.width = 800
-context.canvas.height = 500
+context.canvas.width = 900
+context.canvas.height = 450
 
 var trials = 30
 var intervals = 5000
@@ -198,8 +198,8 @@ Simulation of Geometric Brownian motion with mu=1 and sigma=1
 <script>
 var canvas = document.getElementById("GBM");
 var context = canvas.getContext("2d");
-context.canvas.width = 800
-context.canvas.height = 500
+context.canvas.width = 900
+context.canvas.height = 450
 
 var trials = 30
 var intervals = 5000
@@ -238,8 +238,8 @@ Simulation of Mean reverting geometric brownian motion with theta=1, mu=2 and si
 <script>
 var canvas = document.getElementById("OU");
 var context = canvas.getContext("2d");
-context.canvas.width = 800
-context.canvas.height = 500
+context.canvas.width = 900
+context.canvas.height = 450
 
 var trials = 30
 var intervals = 5000
@@ -274,3 +274,4 @@ var s1 = new Simulator(context, 10, 10 , intervals, trials, OU)
 s1.simulate()
 </script>
 
+## Comparison with other methods of simulations
