@@ -268,7 +268,7 @@ function GBM (x,n) {
 }
 
 function OU (x,n) {   
-  var theta = 4
+  var theta = 2
   var sigma = 1
   var mu = 2
   return (-theta*(mu-x)*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
@@ -280,5 +280,10 @@ s1.simulate()
 
 ## Comparison with other methods of simulations
 The *Euler–Maruyama* it's not the only method for the simulation of stochastic differential equation. There are other methods, some of wich I listed below.
-### Milstein method
-$$ \nabla_\boldsymbol{x} J(\boldsymbol{x}) $$
+### Euler–Maruyama
+Define the *Markov chain* recursively as
+$$ {\displaystyle \,Y_{n+1}=Y_{n}+a(Y_{n},\tau _{n})\,\Delta t+b(Y_{n},\tau _{n})\,\Delta W_{n},} $$
+
+### Milstein method 
+Define the *Markov chain* recursively as
+$$  $$
