@@ -152,8 +152,8 @@ Simulation of Arithmetic brownian motion:
 <canvas id="ABM"></canvas>
 
 <script>
-const canvas = document.getElementById("ABM");
-const context = canvas.getContext("2d");
+var canvas = document.getElementById("ABM");
+var context = canvas.getContext("2d");
 context.canvas.width = 800
 context.canvas.height = 500
 
@@ -193,8 +193,8 @@ s1.simulate()
 Simulation of Geometric Brownian motion with mu=1 and sigma=1
 <canvas id="GBM"></canvas>
 <script>
-const canvas = document.getElementById("GBM");
-const context = canvas.getContext("2d");
+var canvas = document.getElementById("GBM");
+var context = canvas.getContext("2d");
 context.canvas.width = 800
 context.canvas.height = 500
 
@@ -234,8 +234,8 @@ s1.simulate()
 Simulation of Mean reverting geometric brownian motion with theta=1, mu=2 and sigma=1
 <canvas id="OU"></canvas>
 <script>
-const canvas = document.getElementById("OU");
-const context = canvas.getContext("2d");
+var canvas = document.getElementById("OU");
+var context = canvas.getContext("2d");
 context.canvas.width = 800
 context.canvas.height = 500
 
