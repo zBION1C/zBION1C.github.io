@@ -135,10 +135,10 @@ class Simulator {
         total += outcome
 
         if (this.frequency == "relative") {
-          total = total / time
+          total = total / time * 50
         }
         if (this.frequency == "nRelative") {
-          total = total / Math.sqrt(time)
+          total = total / Math.sqrt(time) * 50
         }
 
         if (time == 25) {
