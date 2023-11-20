@@ -143,7 +143,6 @@ class Simulator {
         this.box.drawLine(x1, y1, x2, y2, color)
         x1 = x2
         y1 = y2
-        }
       }
       console.log(total)
       this.histogramLast.addToBin(total)
