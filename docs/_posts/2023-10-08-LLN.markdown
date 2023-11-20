@@ -12,4 +12,4 @@ The law of large numbers is a theorem that states that if we perform an experime
 
 ### Simulation
 This is a simulation of the coin flip experiment, we can see that the cumulative probability tends towards the expected value of the experiment.
-![LLN simulation](lln.png)
+![LLN simulation](https://github.com/zBION1C/zBION1C.github.io/blob/master/docs/assets/images/lln.png?raw=true)
