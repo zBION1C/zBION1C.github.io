@@ -6,6 +6,7 @@ categories: statistics
 tag: hw
 ---
 
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 <script>
 class Rectangle {
   constructor(context,x,y,width,height){
@@ -164,7 +165,8 @@ class Simulator {
 
 
 ## Simulation of poisson process
-In this simulation we are going to simulate the *Poisson process*.
+In this simulation we are going to simulate the *Poisson process*. The probability of success of an attack is
+$$ p = \lambda * T/N $$
 
 This execution is set with a value of lambda = 20.
 <canvas id="myCanvas"></canvas>
@@ -182,6 +184,8 @@ This execution is set with a value of lambda = 20.
     var s = new Simulator(ctx, 10, 10, attacks, systems, 1, 0, "", p);
     s.simulate();
 </script>
+
+We can see that the distribution is centered around the value of $$\lambda$$. This is not by chance, in fact if we see $$\lambda$$ as the average number of times an attack succeed in the time interval T.
 
 ## C#
 ### Program.cs
