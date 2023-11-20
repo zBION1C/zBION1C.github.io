@@ -136,6 +136,7 @@ class Simulator {
 
         if (this.frequency == "relative") {
           total = total / time * 50
+          console.log(total)
         }
         if (this.frequency == "nRelative") {
           total = total / Math.sqrt(time) * 50
@@ -157,7 +158,6 @@ class Simulator {
   }
 }
 </script>
-
 
 ## Simulation of cyberattacks to some servers
 In this homework we will simulate M servers that are getting attacked N times.
@@ -225,6 +225,9 @@ And in the end we have the normalized relative frequency of successfull attaccks
     var s = new Simulator(ctx, 10, 10, attacks, systems, 1, 0, "nRelative");
     s.simulate();
 </script>
+
+### Discussion point
+
 
 
 ### C# Code
