@@ -118,6 +118,7 @@ class Simulator {
     var x2 = 0
     var y2 = height/2
     var outcome = 0
+    var div = 1
     for (var trial = 0; trial < this.M; trial++){
       var x1 = 0
       var y1 = height/2
@@ -132,22 +133,22 @@ class Simulator {
           outcome = this.failure
         }
 
-        total += outcome
-
         if (this.frequency == "relative") {
-          total = total / time
-          console.log(total)
+          div = time
         }
         if (this.frequency == "nRelative") {
-          total = total / Math.sqrt(time)
+          div = Math.sqrt(time)
         }
+
+        total += outcome/div
+
 
         if (time == 25) {
           this.histogramMiddle.addToBin(total)
         }
 
         x2 = x1 + 1/this.N * width
-        step =  height * 1/this.N/2 * -outcome
+        step =  height * 1/this.N/2 * -outcome/div
         y2 = y1 + step
         this.box.drawLine(x1, y1, x2, y2, color)
         x1 = x2
@@ -229,7 +230,7 @@ And in the end we have the normalized relative frequency of successfull attaccks
 ### Discussion point
 In the first simulation, i was expecting the shape of the distribution to be close to the binomial distribution. Basically because we are simulating the Galton Board experiment. The more we increase the number of systems and attacks, the more the distribution approximate the Binomial distribution.
 
-In the second experiment 
+In the second simulation, the distribution of the relative frequency of attacks 
 
 
 ### C# Code
