@@ -280,10 +280,17 @@ s1.simulate()
 
 ## Comparison with other methods of simulations
 The *Euler–Maruyama* it's not the only method for the simulation of stochastic differential equation. There are other methods, some of wich I listed below.
-### Euler–Maruyama
+### Euler–Maruyama method
 Define the *Markov chain* recursively as
 $$ {\displaystyle \,Y_{n+1}=Y_{n}+a(Y_{n},\tau _{n})\,\Delta t+b(Y_{n},\tau _{n})\,\Delta W_{n},} $$
 
 ### Milstein method 
 Define the *Markov chain* recursively as
-$$ {\displaystyle \,Y_{n+1}=Y_{n}+a(Y_{n})\Delta t+bb(Y_{n})\Delta W_{n} + 1/2 b(Y_{n})b`(Y_{n})((\Delta W_{n})^2 - \Delta t),} $$
+$$ {\displaystyle \,Y_{n+1}=Y_{n}+a(Y_{n})\Delta t+b(Y_{n})\Delta W_{n} + 1/2 b(Y_{n})b`(Y_{n})((\Delta W_{n})^2 - \Delta t),} $$
+
+### Runge-Kutta method
+Define the *Markov chain* recursively as
+$$ {\displaystyle \,Y_{n+1}=Y_{n}+a(Y_{n})\delta + b(Y_{n})\Delta W_{n} + 1/2 (\hat(Y)_{n} - b(Y_{n}))((\Delta W_{n})^2 - \delta)\delta^{-1/2} ,} $$
+
+### Differences between methods
+As we can see the only difference is in the recursive calculation of the next step to take in the Markov chain.
