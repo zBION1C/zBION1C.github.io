@@ -135,11 +135,11 @@ class Simulator {
         total += outcome
 
         if (this.frequency == "relative") {
-          total = total / time * 50
+          total = total / time
           console.log(total)
         }
         if (this.frequency == "nRelative") {
-          total = total / Math.sqrt(time) * 50
+          total = total / Math.sqrt(time)
         }
 
         if (time == 25) {
@@ -227,7 +227,9 @@ And in the end we have the normalized relative frequency of successfull attaccks
 </script>
 
 ### Discussion point
-In the first simulation, i was expecting the shape of the distribution to be close to the binomial distribution. Basically because we are simulating the Galton Board experiment. The more we increase the number of systems, the more the distribution approximate the Binomial distribution. 
+In the first simulation, i was expecting the shape of the distribution to be close to the binomial distribution. Basically because we are simulating the Galton Board experiment. The more we increase the number of systems and attacks, the more the distribution approximate the Binomial distribution.
+
+In the second experiment 
 
 
 ### C# Code
