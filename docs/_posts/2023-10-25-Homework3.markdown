@@ -121,6 +121,7 @@ class Simulator {
     for (var trial = 0; trial < this.M; trial++){
       var x1 = 0
       var y1 = height/2
+      var y2 = height/2
       var total = 0;
       color = "#"+((1<<24)*Math.random()|0).toString(16);
       for (var time = 0; time < this.N; time++) {
@@ -140,13 +141,13 @@ class Simulator {
           total = total / Math.sqrt(time)
         }
 
-        if (time == 50) {
+        if (time == 25) {
           this.histogramMiddle(total)
         }
 
         x2 = x1 + 1/this.N * width
         step =  height * 1/this.N/2 * -total
-        y2 =  step
+        y2 += step
         this.box.drawLine(x1, y1, x2, y2, color)
         x1 = x2
         y1 = y2
