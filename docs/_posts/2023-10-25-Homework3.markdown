@@ -127,7 +127,7 @@ class Simulator {
       color = "#"+((1<<24)*Math.random()|0).toString(16);
       for (var time = 1; time <= this.N; time++) {
 
-        if (Math.random() < 1) {
+        if (Math.random() < 0.5) {
           outcome = this.success
         } else {
           outcome = this.failure
@@ -229,9 +229,6 @@ And in the end we have the normalized relative frequency of successfull attaccks
 
 ### Discussion point
 In the first simulation, i was expecting the shape of the distribution to be close to the binomial distribution. Basically because we are simulating the Galton Board experiment. The more we increase the number of systems and attacks, the more the distribution approximate the Binomial distribution.
-
-In the second simulation, the distribution of the relative frequency of attacks 
-
 
 ### C# Code
 #### Program
