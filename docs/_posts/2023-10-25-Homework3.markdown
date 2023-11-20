@@ -148,6 +148,7 @@ class Simulator {
       this.histogramLast.addToBin(total)
     }
   }
+}
 </script>
 
 
