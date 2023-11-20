@@ -1,15 +1,15 @@
 ---
 layout: post
-title:  "Homework 7: Simulation of stocastic differential equation"
+title:  "Homework 7: Simulation of stochastic differential equation"
 date:   2023-11-20 18:24:32 +0200
 categories: statistics
 tag: hw
 ---
 
-## Simulation of stocastic differential equations
-We have seen in class that finding the solutions for most of the stocastic differential equation using a pure analytical technique is very hard due to their complex nature. With the tools at disposal today, is more convinient to simulate them using some simulation technique to see what kind of behaviour they exhibit.
+## Simulation of stochastic differential equations
+We have seen in class that finding the solutions for most of the stochastic differential equation using a pure analytical technique is very hard due to their complex nature. With the tools at disposal today, is more convinient to simulate them using some simulation technique to see what kind of behaviour they exhibit.
 
-Below we can see three different stocastic processes simulated with the Euler–Maruyama method. 
+Below we can see three different stochastic processes simulated with the Euler–Maruyama method. 
 
 <script>
 class Rectangle {
@@ -97,7 +97,7 @@ class Simulator {
     this.y = y //y position of rectangle
     this.N = N //number of intervals over 1
     this.M = M //number tries
-    this.SDE = SDE //Stocastical differential equation
+    this.SDE = SDE //Stochastical differential equation
     //this.success = success //increment for success
     //this.failure = failure //increment for failure
     this.box = new Rectangle(context, x, y, width, height)
@@ -161,8 +161,8 @@ var context = canvas.getContext("2d");
 context.canvas.width = 900
 context.canvas.height = 450
 
-var trials = 30
-var intervals = 5000
+var trials = 200
+var intervals = 500
 
 // Standard Normal variate using Box-Muller transform.
 function gaussianRandom(mean=0, stdev=1) {
@@ -201,8 +201,8 @@ var context = canvas.getContext("2d");
 context.canvas.width = 900
 context.canvas.height = 450
 
-var trials = 30
-var intervals = 5000
+var trials = 200
+var intervals = 500
 
 // Standard Normal variate using Box-Muller transform.
 function gaussianRandom(mean=0, stdev=1) {
@@ -241,9 +241,8 @@ var context = canvas.getContext("2d");
 context.canvas.width = 900
 context.canvas.height = 450
 
-var trials = 30
-var intervals = 5000
-
+var trials = 200
+var intervals = 500
 // Standard Normal variate using Box-Muller transform.
 function gaussianRandom(mean=0, stdev=1) {
     const u = 1 - Math.random(); // Converting [0,1) to (0,1]
