@@ -10,8 +10,8 @@
 	context.canvas.width = 8000
 	context.canvas.height = 8000
 
-	var trials = 1
-	var intervals = 10
+	var trials = 30
+	var intervals = 5000
 
 	// Standard Normal variate using Box-Muller transform.
 	function gaussianRandom(mean=0, stdev=1) {
@@ -22,13 +22,31 @@
 	    return z * stdev + mean;
 	}
 
-
-	function ABM (n) {
-		return (Math.sqrt(1/n)*gaussianRandom())
+	function ABM (x,n) {	
+		return (gaussianRandom(0, 1))
 	}
 
-	const s = new Simulator(context, 10, 10 , intervals, trials, ABM)
-	s.simulate()
+	function GBM (x,n) {
+		var mu = 1
+		var sigma = 1
+		return (mu*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
+	}
+
+	function OU (x,n) {		
+		var theta = 1
+		var sigma = 1
+		var mu = 2
+		return (-theta*(mu-x)*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
+	}
+
+	const s1 = new Simulator(context, 10, 10 , intervals, trials, ABM)
+	s1.simulate()
+
+	const s2 = new Simulator(context, 910, 10, intervals, trials, GBM) 
+	s2.simulate()
+
+	const s3 = new Simulator(context, 10, 610, intervals, trials, OU) 
+	s3.simulate()
 
 </script>
 </body>

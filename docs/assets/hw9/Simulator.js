@@ -12,8 +12,8 @@ class Simulator {
 		//this.success = success //increment for success
 		//this.failure = failure //increment for failure
 		this.box = new Rectangle(context, x, y, width, height)
-		this.histogramMiddle = new Histogram(context, 2*N ,50, this.x + 350, this.x, 100, height)
-		this.histogramLast = new Histogram(context, 2*N, 50, this.x + width, this.x, 100, height)
+		this.histogramMiddle = new Histogram(context, 2*N ,10, this.x + 350, this.y, 100, height)
+		this.histogramLast = new Histogram(context, 2*N, 10, this.x + width, this.y, 100, height)
 		this.calcIntervals()
 	}
 
@@ -22,11 +22,11 @@ class Simulator {
 		var scaledY = 0
 		for (var i = 1/this.N; i < 1; i = i + 1/this.N){
 			scaledX = i * width
-			this.box.drawLine(scaledX, 0, scaledX, height, "Lightgrey")
+			//this.box.drawLine(scaledX, 0, scaledX, height, "Lightgrey")
 		}
 		for (var i = 1/this.N; i < 1; i = i + 1/this.N){
 			scaledY = i * height
-			this.box.drawLine(0, scaledY, width, scaledY, "Lightgrey")
+			//this.box.drawLine(0, scaledY, width, scaledY, "Lightgrey")
 		}
 	}
 
@@ -43,14 +43,14 @@ class Simulator {
 			var total = 0;
 			color = "#"+((1<<24)*Math.random()|0).toString(16);
 			for (var time = 0; time < this.N; time++) {
-				outcome = this.SDE(this.N)
+				outcome = this.SDE(time/this.N, this.N)
 				console.log(outcome)
   				
 				total += outcome
 
 
 				x2 = x1 + 1/this.N * width
-				step = (1/this.N) * height * outcome
+				step = -outcome
 				y2 =  y1 + step
 				this.box.drawLine(x1, y1, x2, y2, color)
 				x1 = x2

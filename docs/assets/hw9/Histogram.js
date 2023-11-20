@@ -15,10 +15,9 @@ class Histogram{
 	calcIntervals() {
 		var bin = -this.unit/2
 		for (var i = 0; i <= this.k; i ++) {
-			this.box.ctx.fillText(bin, this.width*7.1, this.height - i/this.k * this.height);
+			this.box.ctx.fillText(bin, this.x + this.width, this.y + this.height - i/this.k * this.height);
 			this.histo[i] = [bin, 0]
 			bin = bin + this.unit/this.k
-			console.log(this.histo[i])
 		}
 
 
@@ -33,8 +32,7 @@ class Histogram{
 		for (var i = 0; i < this.k; i++) {
 			if (v > this.histo[i][0] && v <= this.histo[i+1][0]){
 				this.histo[i][1] ++;
-				console.log(v)
-				this.box.drawRect(0, this.height - (i+1)*(1/this.k * this.height), this.histo[i][1]*1.5, 1/this.k* this.height, "Red")
+				this.box.drawRect(0, this.height - (i+1)*(1/this.k * this.height), this.histo[i][1]*5.5, 1/this.k* this.height, "Red")
 			}
 		}
 	}

@@ -1,0 +1,274 @@
+---
+layout: post
+title:  "Homework6"
+date:   2023-11-08 17:24:32 +0200
+categories: statistics
+tag: hw
+---
+
+<script>
+class Rectangle {
+  constructor(context,x,y,width,height){
+    this.ctx = context;
+    this.x = x;
+    this.y = y;
+    this.h = height;
+    this.w = width;
+    this.display();
+  }
+
+  display() {
+    this.ctx.beginPath();
+    this.ctx.rect(this.x, this.y, this.w, this.h);
+    this.ctx.stroke();
+  }
+
+
+  drawLine(x1, y1, x2, y2, color) {
+    this.ctx.beginPath();
+    this.ctx.moveTo(this.x+x1, this.y+y1);
+    this.ctx.lineTo(this.x+x2, this.y+y2);
+
+    this.ctx.strokeStyle = color;
+    this.ctx.stroke();
+    this.ctx.strokeStyle = "black";
+  }
+
+  drawRect(x, y, width, height, color) {
+    this.ctx.beginPath();
+    this.ctx.fillStyle  = color;
+    this.ctx.fillRect(this.x+x, this.y+y, width, height);
+  }
+
+}
+class Histogram{
+  constructor (context, unit, k, x, y, width, height) {
+    this.context = context
+    this.unit = unit
+    this.k = k
+    this.x = x 
+    this.y = y
+    this.height = height
+    this.width = width
+    this.box = new Rectangle(context, x, y, width, height)
+    this.histo = []
+    this.calcIntervals()
+  }
+
+  calcIntervals() {
+    var bin = -this.unit/2
+    for (var i = 0; i <= this.k; i ++) {
+      this.box.ctx.fillText(bin, this.x + this.width, this.y + this.height - i/this.k * this.height);
+      this.histo[i] = [bin, 0]
+      bin = bin + this.unit/this.k
+    }
+
+
+    var scaledY = 0
+    for (var i = 0; i < 1; i = i + 1/this.k) {
+      scaledY = i * this.height
+      this.box.drawLine(0, scaledY, this.width, scaledY, "Lightgrey")
+    }
+  }
+
+  addToBin(v) {
+    for (var i = 0; i < this.k; i++) {
+      if (v > this.histo[i][0] && v <= this.histo[i+1][0]){
+        this.histo[i][1] ++;
+        this.box.drawRect(0, this.height - (i+1)*(1/this.k * this.height), this.histo[i][1]*5.5, 1/this.k* this.height, "Red")
+      }
+    }
+  }
+
+}
+
+const width = 700 //rectangle width
+const height = 400 //rectangle height
+class Simulator {
+
+  constructor(context, x, y, N, M, SDE) {
+    this.context = context
+    this.x = x //x position of rectangle
+    this.y = y //y position of rectangle
+    this.N = N //number of intervals over 1
+    this.M = M //number tries
+    this.SDE = SDE //Stocastical differential equation
+    //this.success = success //increment for success
+    //this.failure = failure //increment for failure
+    this.box = new Rectangle(context, x, y, width, height)
+    this.histogramMiddle = new Histogram(context, 2*N ,10, this.x + 350, this.y, 100, height)
+    this.histogramLast = new Histogram(context, 2*N, 10, this.x + width, this.y, 100, height)
+    this.calcIntervals()
+  }
+
+  calcIntervals() {
+    var scaledX = 0
+    var scaledY = 0
+    for (var i = 1/this.N; i < 1; i = i + 1/this.N){
+      scaledX = i * width
+      //this.box.drawLine(scaledX, 0, scaledX, height, "Lightgrey")
+    }
+    for (var i = 1/this.N; i < 1; i = i + 1/this.N){
+      scaledY = i * height
+      //this.box.drawLine(0, scaledY, width, scaledY, "Lightgrey")
+    }
+  }
+
+  simulate(){
+    var color = ""
+    var step = 0
+    var rand = 0
+    var x2 = 0
+    var y2 = height/2
+    var outcome = 0
+    for (var trial = 0; trial < this.M; trial++){
+      var x1 = 0
+      var y1 = height/2
+      var total = 0;
+      color = "#"+((1<<24)*Math.random()|0).toString(16);
+      for (var time = 0; time < this.N; time++) {
+        outcome = this.SDE(time/this.N, this.N)
+        console.log(outcome)
+          
+        total += outcome
+
+
+        x2 = x1 + 1/this.N * width
+        step = -outcome
+        y2 =  y1 + step
+        this.box.drawLine(x1, y1, x2, y2, color)
+        x1 = x2
+        y1 = y2
+      }
+      this.histogramLast.addToBin(total)
+    }
+  }
+
+}
+</script>
+
+## Javascript
+Simulation of Arithmetic brownian motion:
+<canvas id="ABM"></canvas>
+
+<script>
+const canvas = document.getElementById("ABM");
+const ctx = canvas.getContext("2d");
+context.canvas.width = 800
+context.canvas.height = 500
+
+var trials = 30
+var intervals = 5000
+
+// Standard Normal variate using Box-Muller transform.
+function gaussianRandom(mean=0, stdev=1) {
+    const u = 1 - Math.random(); // Converting [0,1) to (0,1]
+    const v = Math.random();
+    const z = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+    // Transform to the desired mean and standard deviation:
+    return z * stdev + mean;
+}
+
+function ABM (x,n) {  
+  return (gaussianRandom(0, 1))
+}
+
+function GBM (x,n) {
+  var mu = 1
+  var sigma = 1
+  return (mu*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
+}
+
+function OU (x,n) {   
+  var theta = 1
+  var sigma = 1
+  var mu = 2
+  return (-theta*(mu-x)*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
+}
+
+const s1 = new Simulator(context, 10, 10 , intervals, trials, ABM)
+s1.simulate()
+</script>
+
+Simulation of Geometric Brownian motion with mu=1 and sigma=1
+<canvas id="GBM"></canvas>
+<script>
+const canvas = document.getElementById("GBM");
+const ctx = canvas.getContext("2d");
+context.canvas.width = 800
+context.canvas.height = 500
+
+var trials = 30
+var intervals = 5000
+
+// Standard Normal variate using Box-Muller transform.
+function gaussianRandom(mean=0, stdev=1) {
+    const u = 1 - Math.random(); // Converting [0,1) to (0,1]
+    const v = Math.random();
+    const z = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+    // Transform to the desired mean and standard deviation:
+    return z * stdev + mean;
+}
+
+function ABM (x,n) {  
+  return (gaussianRandom(0, 1))
+}
+
+function GBM (x,n) {
+  var mu = 1
+  var sigma = 1
+  return (mu*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
+}
+
+function OU (x,n) {   
+  var theta = 1
+  var sigma = 1
+  var mu = 2
+  return (-theta*(mu-x)*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
+}
+
+const s1 = new Simulator(context, 10, 10 , intervals, trials, GBM)
+s1.simulate()
+</script>
+
+Simulation of Mean reverting geometric brownian motion with theta=1, mu=2 and sigma=1
+<canvas id="OU"></canvas>
+<script>
+const canvas = document.getElementById("OU");
+const ctx = canvas.getContext("2d");
+context.canvas.width = 800
+context.canvas.height = 500
+
+var trials = 30
+var intervals = 5000
+
+// Standard Normal variate using Box-Muller transform.
+function gaussianRandom(mean=0, stdev=1) {
+    const u = 1 - Math.random(); // Converting [0,1) to (0,1]
+    const v = Math.random();
+    const z = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+    // Transform to the desired mean and standard deviation:
+    return z * stdev + mean;
+}
+
+function ABM (x,n) {  
+  return (gaussianRandom(0, 1))
+}
+
+function GBM (x,n) {
+  var mu = 1
+  var sigma = 1
+  return (mu*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
+}
+
+function OU (x,n) {   
+  var theta = 1
+  var sigma = 1
+  var mu = 2
+  return (-theta*(mu-x)*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
+}
+
+const s1 = new Simulator(context, 10, 10 , intervals, trials, OU)
+s1.simulate()
+</script>
+
