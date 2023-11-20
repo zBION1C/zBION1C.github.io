@@ -286,4 +286,4 @@ $$ {\displaystyle \,Y_{n+1}=Y_{n}+a(Y_{n},\tau _{n})\,\Delta t+b(Y_{n},\tau _{n}
 
 ### Milstein method 
 Define the *Markov chain* recursively as
-$$  $$
+$$ {\displaystyle \,Y_{n+1}=Y_{n}+a(Y_{n})\Delta t+bb(Y_{n})\Delta W_{n} + 1/2 b(Y_{n})b`(Y_{n})((\Delta W_{n})^2 - \Delta t),} $$
