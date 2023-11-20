@@ -83,7 +83,7 @@ class Histogram{
 const width = 700 //rectangle width
 const height = 400 //rectangle height
 class Simulator {
-  constructor(context, x, y, N, M, success, failure) {
+  constructor(context, x, y, N, M, success, failure, frequency) {
     this.context = context
     this.x = x //x position of rectangle
     this.y = y //y position of rectangle
@@ -91,6 +91,7 @@ class Simulator {
     this.M = M //number tries
     this.success = success //increment for success
     this.failure = failure //increment for failure
+    this.frequency = frequency // type of frequency calculated
     this.box = new Rectangle(context, x, y, width, height)
     this.histogramMiddle = new Histogram(context, 2*N ,50, this.x + 350, this.y, 100, height)
     this.histogramLast = new Histogram(context, 2*N, 50, this.x + width, this.y, 100, height)
@@ -132,8 +133,14 @@ class Simulator {
 
         total += outcome
 
-        console.log(time)
-        if (time == 350) {
+        if (this.frequency == "relative") {
+          total = total / this.N
+        }
+        if (this.frequency == "nRelative") {
+          total = total / Math.sqrt(this.N)
+        }
+
+        if (time == 50) {
           this.histogramMiddle(total)
         }
 
@@ -144,7 +151,6 @@ class Simulator {
         x1 = x2
         y1 = y2
       }
-      console.log(total)
       this.histogramLast.addToBin(total)
     }
   }
@@ -170,9 +176,55 @@ In this simulation we decrement the cumulated security score of a server by -1 i
     var systems = 150;
     var attacks = 50;
 
-    var s = new Simulator(ctx, 10, 10, attacks, systems, 1, -1);
+    var s = new Simulator(ctx, 10, 10, attacks, systems, 1, -1, "");
     s.simulate();
 </script>
+
+### Simulation 2: (1,0) security score
+In this simulation we just increment when an attack fails, thus we are computing the cumulated frequency of successfull defense.
+Below we have the cumulated frequency:
+<canvas id="Bern"></canvas>
+<script>
+    var canvas = document.getElementById("Bern");
+    var ctx = canvas.getContext("2d");
+    ctx.canvas.width = 900;
+    ctx.canvas.height = 450;
+
+    var systems = 150;
+    var attacks = 50;
+
+    var s = new Simulator(ctx, 10, 10, attacks, systems, 1, 0, "");
+    s.simulate();
+</script>
+The next simulation represent the relative frequency of attacks:
+<canvas id="BernRel"></canvas>
+<script>
+    var canvas = document.getElementById("BernRel");
+    var ctx = canvas.getContext("2d");
+    ctx.canvas.width = 900;
+    ctx.canvas.height = 450;
+
+    var systems = 150;
+    var attacks = 50;
+
+    var s = new Simulator(ctx, 10, 10, attacks, systems, 1, 0, "relative");
+    s.simulate();
+</script>
+And in the end we have the normalized relative frequency of successfull attaccks:
+<canvas id="BernnRel"></canvas>
+<script>
+    var canvas = document.getElementById("BernnRel");
+    var ctx = canvas.getContext("2d");
+    ctx.canvas.width = 900;
+    ctx.canvas.height = 450;
+
+    var systems = 150;
+    var attacks = 50;
+
+    var s = new Simulator(ctx, 10, 10, attacks, systems, 1, 0, "nRelative");
+    s.simulate();
+</script>
+
 
 ### C# Code
 #### Program
