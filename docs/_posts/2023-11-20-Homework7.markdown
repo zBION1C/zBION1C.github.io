@@ -290,7 +290,7 @@ $$ {\displaystyle \,Y_{n+1}=Y_{n}+a(Y_{n})\Delta t+b(Y_{n})\Delta W_{n} + 1/2 b(
 
 ### Runge-Kutta method
 Define the *Markov chain* recursively as
-$$ {\displaystyle \,Y_{n+1}=Y_{n}+a(Y_{n})\delta + b(Y_{n})\Delta W_{n} + 1/2 (\hat(Y)_{n} - b(Y_{n}))((\Delta W_{n})^2 - \delta)\delta^{-1/2} ,} $$
+$$ {\displaystyle \,Y_{n+1}=Y_{n}+a(Y_{n})\delta + b(Y_{n})\Delta W_{n} + 1/2 (\hat Y_{n} - b(Y_{n}))((\Delta W_{n})^2 - \delta)\delta^{-1/2} ,} $$
 
 ### Differences between methods
 As we can see the only difference is in the recursive calculation of the next step to take in the Markov chain.
