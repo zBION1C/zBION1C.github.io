@@ -1,10 +1,15 @@
 ---
 layout: post
-title:  "Homework6"
-date:   2023-11-08 17:24:32 +0200
+title:  "Homework 6: Simulation of stocastic differential equation"
+date:   2023-11-20 18:24:32 +0200
 categories: statistics
 tag: hw
 ---
+
+## Simulation of stocastic differential equations
+We have seen in class that finding the solutions for most of the stocastic differential equation using a pure analytical technique is very hard due to their complex nature. With the tools at disposal today, is more convinient to simulate them using some simulation technique to see what kind of behaviour they exhibit.
+
+Below we can see three different stocastic processes simulated. 
 
 <script>
 class Rectangle {
@@ -82,7 +87,7 @@ class Histogram{
 
 }
 
-const width = 700 //rectangle width
+const width = 900 //rectangle width
 const height = 400 //rectangle height
 class Simulator {
 
@@ -96,8 +101,8 @@ class Simulator {
     //this.success = success //increment for success
     //this.failure = failure //increment for failure
     this.box = new Rectangle(context, x, y, width, height)
-    this.histogramMiddle = new Histogram(context, 2*N ,10, this.x + 350, this.y, 100, height)
-    this.histogramLast = new Histogram(context, 2*N, 10, this.x + width, this.y, 100, height)
+    this.histogramMiddle = new Histogram(context, 2*N ,50, this.x + 350, this.y, 100, height)
+    this.histogramLast = new Histogram(context, 2*N, 50, this.x + width, this.y, 100, height)
     this.calcIntervals()
   }
 
@@ -146,8 +151,8 @@ class Simulator {
 }
 </script>
 
-## Javascript
-Simulation of Arithmetic brownian motion:
+## Simulations
+Simulation of Arithmetic Brownian motion:
 <canvas id="ABM"></canvas>
 
 <script>
@@ -188,7 +193,6 @@ function OU (x,n) {
 var s1 = new Simulator(context, 10, 10 , intervals, trials, ABM)
 s1.simulate()
 </script>
-
 Simulation of Geometric Brownian motion with mu=1 and sigma=1
 <canvas id="GBM"></canvas>
 <script>
@@ -214,7 +218,7 @@ function ABM (x,n) {
 }
 
 function GBM (x,n) {
-  var mu = 1
+  var mu = 0.8
   var sigma = 1
   return (mu*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
 }
@@ -229,7 +233,6 @@ function OU (x,n) {
 var s1 = new Simulator(context, 10, 10 , intervals, trials, GBM)
 s1.simulate()
 </script>
-
 Simulation of Mean reverting geometric brownian motion with theta=1, mu=2 and sigma=1
 <canvas id="OU"></canvas>
 <script>
@@ -263,7 +266,7 @@ function GBM (x,n) {
 function OU (x,n) {   
   var theta = 1
   var sigma = 1
-  var mu = 2
+  var mu = 1.5
   return (-theta*(mu-x)*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
 }
 
