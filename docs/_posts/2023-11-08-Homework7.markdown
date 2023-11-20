@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Homework 6: Simulation of stocastic differential equation"
+title:  "Homework 7: Simulation of stocastic differential equation"
 date:   2023-11-20 18:24:32 +0200
 categories: statistics
 tag: hw
@@ -9,7 +9,7 @@ tag: hw
 ## Simulation of stocastic differential equations
 We have seen in class that finding the solutions for most of the stocastic differential equation using a pure analytical technique is very hard due to their complex nature. With the tools at disposal today, is more convinient to simulate them using some simulation technique to see what kind of behaviour they exhibit.
 
-Below we can see three different stocastic processes simulated. 
+Below we can see three different stocastic processes simulated with the Euler–Maruyama method. 
 
 <script>
 class Rectangle {
