@@ -132,6 +132,7 @@ class Simulator {
 
         total += outcome
 
+        console.log(time)
         if (time == 350) {
           this.histogramMiddle(total)
         }
