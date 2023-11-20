@@ -1,127 +1,18 @@
 ---
 layout: post
-title:  "Homework3"
+title:  "Homework 3: Simulation of attacks to servers"
 date:   2023-10-25 18:45:32 +0200
 categories: statistics
 tag: hw
 ---
-
-## Excercise 1
-### Javascript code
-#### Program
-{% highlight javascript %}
-<script src="Rectangle.js"></script>
-<script src="Simulator.js"></script>
-<script src="Histogram.js"></script>
 <script>
-  const canvas = document.createElement("canvas");
-  document.body.appendChild(canvas);
-  const ctx = canvas.getContext("2d");
-  ctx.canvas.width = 8000;
-  ctx.canvas.height = 8000;
-
-  var systems = 300;
-  var attacks = 100;
-
-  const s = new Simulator(ctx, systems, attacks, 1, -1, 0.5, "", 0, 0, 20);
-  s.simulate();
-
-  const s1 = new Simulator(ctx, systems, attacks, 1, 0, 0.9, "", 850, 0, 20);
-  s1.simulate();
-
-  const s2 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "rel", 0, 650, 20);
-  s2.simulate();
-
-  const s3 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "reln", 850, 650, 20);
-  s3.simulate();
-</script>
-{% endhighlight %}
-#### Class Simualator
-{% highlight javascript %}
-class Simulator {
-  constructor(ctx,systems, attacks, success, failure, p, freq, x, y, mid_day){
-    this.p = p; 
-    this.freq = freq;
-    this.systems = systems;
-    this.attacks = attacks;
-    this.success = success;
-    this.failure = failure;
-    this.mid_day = mid_day;
-    this.ctx = ctx;
-    this.box = new Rectangle(x,y,800,600,this.ctx);
-    this.box.drawLine(0, this.box.h/2, this.box.w, this.box.h/2, "DarkGray")
-    this.scale = 5*(1-this.p);
-    if (this.freq==="rel") {
-      this.scale = 20*(1-this.p);
-    }
-    if (this.freq==="reln") { 
-      this.scale = 5*(1-this.p);
-    }
-    this.histo1 = new Histogram(this.ctx, 50, this.box.x+mid_day+this.box.w/7, this.box.y, this.box.w/7, this.box.h);
-    this.histo2 = new Histogram(this.ctx, 50, this.box.x+this.box.w-this.box.w/7, this.box.y, this.box.w/7, this.box.h);
-  }
-
-
-  timer(ms) {
-    return new Promise(res => setTimeout(res, ms));
-  }
-
-  async simulate() {
-    let r = 0;
-
-    for (let i = 1; i <= this.systems; i++){
-      var x1 = 0;
-      var y1 = this.box.h/2;
-      var x2 = 0;
-      var y2 = this.box.h/2;
-      var n_success = 0;
-      var divisor = 1;
-      var esito = 0;
-      var color = "#"+((1<<24)*Math.random()|0).toString(16);
-      for (let j = 1; j <= this.attacks; j++) {
-        if (j % (this.attacks/10) == 0){
-          await this.timer(10);
-        }
-        r = Math.random();
-        if (r <= this.p) {
-          n_success++;
-          if (this.freq==="rel") {
-            divisor = n_success;
-          }
-          if (this.freq === "reln") {
-            divisor = Math.sqrt(n_success);
-          }
-          esito += (this.success*this.scale)/divisor;
-
-
-        } else {
-          esito += (this.failure*this.scale)/divisor;
-        }
-        
-        if (j == this.mid_day){
-          this.histo1.addToBin(esito)
-        }
-
-        x2 = j*(this.box.w/this.attacks);
-        y2 = this.box.h/2-esito;
-        this.box.drawLine(x1, y1, x2, y2, color)
-        x1 = x2;
-        y1 = y2
-      }
-      this.histo2.addToBin(esito);
-    }
-  }
-}
-{% endhighlight %}
-#### Class Rectangle
-{% highlight javascript %}
 class Rectangle {
-  constructor(x,y,width,height,context){
+  constructor(context,x,y,width,height){
+    this.ctx = context;
     this.x = x;
     this.y = y;
     this.h = height;
     this.w = width;
-    this.ctx = context;
     this.display();
   }
 
@@ -142,220 +33,139 @@ class Rectangle {
     this.ctx.strokeStyle = "black";
   }
 
-  drawRect(x, y, w, h, color) {
+  drawRect(x, y, width, height, color) {
     this.ctx.beginPath();
     this.ctx.fillStyle  = color;
-    this.ctx.fillRect(this.x+x, this.y+y, w, h);
-  }
-
-}
-{% endhighlight %}
-#### Class Histogram
-{% highlight javascript %}
-class Histogram {
-  constructor(ctx, k, x, y, width, height) {
-    this.ctx = ctx;
-    this.k = k;
-    this.w = width;
-    this.h = height;
-    this.box = new Rectangle(x,y,this.w,this.h,this.ctx);
-    this.distance = this.h/this.k;
-    this.display();
+    this.ctx.fillRect(this.x+x, this.y+y, width, height);
+  }}
+</script>
+<script>
+class Histogram{
+  constructor (context, unit, k, x, y, width, height) {
+    this.context = context
+    this.unit = unit
+    this.k = k
+    this.x = x 
+    this.y = y
+    this.height = height
+    this.width = width
+    this.box = new Rectangle(context, x, y, width, height)
     this.histo = []
-    
-    var bin_value = -this.k/2;
-    for (let i = 0; i < this.k; i++) {
-      bin_value++
-      this.histo[i] = [(-bin_value*(this.distance)), 0]
-    }
+    this.calcIntervals()
   }
 
-  display() {
-    for (let i = 0; i <= this.h; i+=this.distance) {
-      this.box.drawLine(0, i, this.w, (i), "black");
+  calcIntervals() {
+    var bin = -this.unit/2
+    for (var i = 0; i <= this.k; i ++) {
+      this.box.ctx.fillText(bin, this.x + this.width, this.y + this.height - i/this.k * this.height);
+      this.histo[i] = [bin, 0]
+      bin = bin + this.unit/this.k
+    }
+
+
+    var scaledY = 0
+    for (var i = 0; i < 1; i = i + 1/this.k) {
+      scaledY = i * this.height
+      this.box.drawLine(0, scaledY, this.width, scaledY, "Lightgrey")
     }
   }
-
 
   addToBin(v) {
-    for (let i = 0; i < this.k-1; i++) {
-      if (v > this.histo[i+1][0] && v <= this.histo[i][0]) {
-        this.histo[i][1] += 1;
-        this.box.drawRect(this.w, i*this.distance, this.histo[i][1]*1.5, this.distance, "FireBrick");
+    for (var i = 0; i < this.k; i++) {
+      if (v > this.histo[i][0] && v <= this.histo[i+1][0]){
+        this.histo[i][1] ++;
+        this.box.drawRect(0, this.height - (i+1)*(1/this.k * this.height), this.histo[i][1]*5.5, 1/this.k* this.height, "Red")
       }
     }
+  }}
+</script>
+<script>
+const width = 700 //rectangle width
+const height = 400 //rectangle height
+class Simulator {
+  constructor(context, x, y, N, M, success, failure) {
+    this.context = context
+    this.x = x //x position of rectangle
+    this.y = y //y position of rectangle
+    this.N = N //number of intervals over 1
+    this.M = M //number tries
+    this.success = success //increment for success
+    this.failure = failure //increment for failure
+    this.box = new Rectangle(context, x, y, width, height)
+    this.histogramMiddle = new Histogram(context, 2*N ,50, this.x + 350, this.y, 100, height)
+    this.histogramLast = new Histogram(context, 2*N, 50, this.x + width, this.y, 100, height)
+    this.calcIntervals()
   }
-}
-{% endhighlight %}
+
+  calcIntervals() {
+    var scaledX = 0
+    var scaledY = 0
+    for (var i = 1/this.N; i < 1; i = i + 1/this.N){
+      scaledX = i * width
+      //this.box.drawLine(scaledX, 0, scaledX, height, "Lightgrey")
+    }
+    for (var i = 1/this.N; i < 1; i = i + 1/this.N){
+      scaledY = i * height
+      //this.box.drawLine(0, scaledY, width, scaledY, "Lightgrey")
+    }
+  }
+
+  simulate(){
+    var color = ""
+    var step = 0
+    var rand = 0
+    var x2 = 0
+    var y2 = height/2
+    var outcome = 0
+    for (var trial = 0; trial < this.M; trial++){
+      var x1 = 0
+      var y1 = height/2
+      var total = 0;
+      color = "#"+((1<<24)*Math.random()|0).toString(16);
+      for (var time = 0; time < this.N; time++) {
+
+        if (Math.random() < 0.5) {
+          outcome = this.success
+        } else {
+          outcome = this.failure
+        }
+          
+        total += outcome
+
+        x2 = x1 + 1/this.N * width
+        step = 1/this.N * this.height * outcome
+        y2 =  y1 + step
+        this.box.drawLine(x1, y1, x2, y2, color)
+        x1 = x2
+        y1 = y2
+        }
+      }
+      this.histogramLast.addToBin(total)
+    }
+  }
+</script>
+
+
+## Simulation of cyberattacks to some servers
+In this homework we will simulate M servers that are getting attacked N times.
+We will draw a cartesia graph where on the *X-axis* we indicate the attacks and on the *Y-axis* we simulate the accumulation of the *security score*.
+An attack succeed with probability p = 1/2 (and thus fail with p=1/2) in each simulation.
+
+### Simulation 1: (1,-1) security score
+In this simulation we decrement the cumulated security score of a server by -1 if an attack succeed, and increment it by 1 when an attack fails. So the higher the security score, the better the system held against the N attacks.
 #### Execution
-<canvas id="myCanvas"></canvas>
+<canvas id="Rade"></canvas>
 <script>
-class Rectangle {
-  constructor(x,y,width,height,context){
-    this.x = x;
-    this.y = y;
-    this.h = height;
-    this.w = width;
-    this.ctx = context;
-    this.display();
-  }
-
-  display() {
-    this.ctx.beginPath();
-    this.ctx.rect(this.x, this.y, this.w, this.h);
-    this.ctx.stroke();
-  }
-
-
-  drawLine(x1, y1, x2, y2, color) {
-    this.ctx.beginPath();
-    this.ctx.moveTo(this.x+x1, this.y+y1);
-    this.ctx.lineTo(this.x+x2, this.y+y2);
-
-    this.ctx.strokeStyle = color;
-    this.ctx.stroke();
-    this.ctx.strokeStyle = "black";
-  }
-
-  drawRect(x, y, w, h, color) {
-    this.ctx.beginPath();
-    this.ctx.fillStyle  = color;
-    this.ctx.fillRect(this.x+x, this.y+y, w, h);
-  }
-}
-</script>
-<script>
-class Simulator {
-  constructor(ctx,systems, attacks, success, failure, p, freq, x, y, mid_day){
-    this.p = p; 
-    this.freq = freq;
-    this.systems = systems;
-    this.attacks = attacks;
-    this.success = success;
-    this.failure = failure;
-    this.mid_day = mid_day;
-    this.ctx = ctx;
-    this.box = new Rectangle(x,y,500,300,this.ctx);
-    this.box.drawLine(0, this.box.h/2, this.box.w, this.box.h/2, "DarkGray")
-    this.scale = 5*(1-this.p);
-    if (this.freq==="rel") {
-      this.scale = 20*(1-this.p);
-    }
-    if (this.freq==="reln") { 
-      this.scale = 5*(1-this.p);
-    }
-    this.histo1 = new Histogram(this.ctx, 50, this.box.x+mid_day+this.box.w/7, this.box.y, this.box.w/7, this.box.h);
-    this.histo2 = new Histogram(this.ctx, 50, this.box.x+this.box.w-this.box.w/7, this.box.y, this.box.w/7, this.box.h);
-  }
-
-
-  timer(ms) {
-    return new Promise(res => setTimeout(res, ms));
-  }
-
-  async simulate() {
-    let r = 0;
-
-    for (let i = 1; i <= this.systems; i++){
-      var x1 = 0;
-      var y1 = this.box.h/2;
-      var x2 = 0;
-      var y2 = this.box.h/2;
-      var n_success = 0;
-      var divisor = 1;
-      var esito = 0;
-      var color = "#"+((1<<24)*Math.random()|0).toString(16);
-      for (let j = 1; j <= this.attacks; j++) {
-        if (j % (this.attacks/10) == 0){
-          await this.timer(10);
-        }
-        r = Math.random();
-        if (r <= this.p) {
-          n_success++;
-          if (this.freq==="rel") {
-            divisor = n_success;
-          }
-          if (this.freq === "reln") {
-            divisor = Math.sqrt(n_success);
-          }
-          esito += (this.success*this.scale)/divisor;
-
-
-        } else {
-          esito += (this.failure*this.scale)/divisor;
-        }
-        
-        if (j == this.mid_day){
-          this.histo1.addToBin(esito)
-        }
-
-        x2 = j*(this.box.w/this.attacks);
-        y2 = this.box.h/2-esito;
-        this.box.drawLine(x1, y1, x2, y2, color)
-        x1 = x2;
-        y1 = y2
-      }
-      this.histo2.addToBin(esito);
-    }
-  }
-}
-</script>
-<script>
-class Histogram {
-  constructor(ctx, k, x, y, width, height) {
-    this.ctx = ctx;
-    this.k = k;
-    this.w = width;
-    this.h = height;
-    this.box = new Rectangle(x,y,this.w,this.h,this.ctx);
-    this.distance = this.h/this.k;
-    this.display();
-    this.histo = []
-    
-    var bin_value = -this.k/2;
-    for (let i = 0; i < this.k; i++) {
-      bin_value++
-      this.histo[i] = [(-bin_value*(this.distance)), 0]
-    }
-  }
-
-  display() {
-    for (let i = 0; i <= this.h; i+=this.distance) {
-      this.box.drawLine(0, i, this.w, (i), "black");
-    }
-  }
-
-
-  addToBin(v) {
-    for (let i = 0; i < this.k-1; i++) {
-      if (v > this.histo[i+1][0] && v <= this.histo[i][0]) {
-        this.histo[i][1] += 1;
-        this.box.drawRect(this.w, i*this.distance, -this.histo[i][1]*1.5, this.distance, "FireBrick");
-      }
-    }
-  }
-}
-</script>
-<script>
-    const canvas = document.getElementById("myCanvas");
-    const ctx = canvas.getContext("2d");
-    ctx.canvas.width = 2000;
-    ctx.canvas.height = 1000;
+    var canvas = document.getElementById("Rade");
+    var ctx = canvas.getContext("2d");
+    ctx.canvas.width = 900;
+    ctx.canvas.height = 450;
 
     var systems = 150;
     var attacks = 100;
 
-    const s = new Simulator(ctx, systems, attacks, 1, -1, 0.5, "", 0, 0, 20);
+    var s = new Simulator(ctx, 10,10 systems, attacks, 1, -1);
     s.simulate();
-
-    const s1 = new Simulator(ctx, systems, attacks, 1, 0, 0.9, "", 550, 0, 20);
-    s1.simulate();
-
-    const s2 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "rel", 0, 350, 20);
-    s2.simulate();
-
-    const s3 = new Simulator(ctx, systems, attacks, 1, 0, 0.3, "reln", 550, 350, 20);
-    s3.simulate();
 </script>
 
 ### C# Code
