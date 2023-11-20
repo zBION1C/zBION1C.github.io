@@ -80,7 +80,7 @@ class Histogram{
     for (var i = 0; i < this.k; i++) {
       if (v > this.histo[i][0] && v <= this.histo[i+1][0]){
         this.histo[i][1] ++;
-        this.box.drawRect(0, this.height - (i+1)*(1/this.k * this.height), this.histo[i][1]*5.5, 1/this.k* this.height, "Red")
+        this.box.drawRect(0, this.height - (i+1)*(1/this.k * this.height), this.histo[i][1]*2.5, 1/this.k* this.height, "Red")
       }
     }
   }
@@ -136,7 +136,7 @@ class Simulator {
           
         total += outcome
 
-        if (j == 350/this.width) {
+        if (time == 350/this.width) {
           this.histogramMiddle.addToBin(total)
         }
 
@@ -165,7 +165,7 @@ context.canvas.width = 900
 context.canvas.height = 450
 
 var trials = 200
-var intervals = 500
+var intervals = 900
 
 // Standard Normal variate using Box-Muller transform.
 function gaussianRandom(mean=0, stdev=1) {
@@ -205,7 +205,7 @@ context.canvas.width = 900
 context.canvas.height = 450
 
 var trials = 200
-var intervals = 500
+var intervals = 900
 
 // Standard Normal variate using Box-Muller transform.
 function gaussianRandom(mean=0, stdev=1) {
@@ -245,7 +245,8 @@ context.canvas.width = 900
 context.canvas.height = 450
 
 var trials = 200
-var intervals = 500
+var intervals = 900
+
 // Standard Normal variate using Box-Muller transform.
 function gaussianRandom(mean=0, stdev=1) {
     const u = 1 - Math.random(); // Converting [0,1) to (0,1]
