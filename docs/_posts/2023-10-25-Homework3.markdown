@@ -131,11 +131,11 @@ class Simulator {
         }
           
         total += outcome
-        console.log(outcome)
 
         x2 = x1 + 1/this.N * width
         step = 1/this.N * this.height * outcome
         y2 =  y1 + step
+        console.log(step)
         this.box.drawLine(x1, y1, x2, y2, color)
         x1 = x2
         y1 = y2
