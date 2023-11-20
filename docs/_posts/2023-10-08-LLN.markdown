@@ -8,8 +8,8 @@ tag: thesis
 
 ## Law of large numbers
 
-The law of large numbers is a theorem that states that if we perform an experiment a large number of times and we take the average of the values that we get during the experiment, this average tends to become the expected value of the experiment as we increase the number of times we perform the experiment.
+The law of large numbers is a theorem that states that if we perform an experiment a large number of times and we take the average of the values that we get during the experiment, this average tends to become the expected value of the experiment as we increase the number of times we perform it. This law is fundamental in probability theory and ensures that, over time, random fluctuations in small samples are mitigated, leading to more reliable predictions and a better understanding of the underlying distribution in large datasets
 
-### Example
-If we got a 20 face dice, the expected value is 10.5.
-If we throw the dice a large number of times and we take note of the result of each throw, if we do the average of this values we get 10.5 approximately
+### Simulation
+This is a simulation of the coin flip experiment, we can see that the cumulative probability tends towards the expected value of the experiment.
+![LLN simulation](./docs/assets/lln.png)

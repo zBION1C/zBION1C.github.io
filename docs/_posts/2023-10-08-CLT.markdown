@@ -8,8 +8,8 @@ tag: thesis
 
 ## Central limit theorem
 
-The central limit theorem states that if we have independent and identically distributed random variables, if we sample from them the distribution thath we get is the standard normal distribution, even if the variables themselves are *not* normally distributed.
+The Central Limit Theorem (CLT) states that the distribution of the sum (or average) of independent and identically distributed random variables approaches a normal distribution, regardless of the original distribution's shape. As sample size increases, the resulting distribution becomes increasingly bell-shaped and centered around the true population mean. This fundamental statistical principle enables the use of normal distribution-based methods, even for non-normally distributed data, facilitating accurate statistical inferences and hypothesis testing in various fields.
 
-### Example
+### Simulation
 The galton board experiment is a pretty experiment that shows this kind of behaviour.
 
