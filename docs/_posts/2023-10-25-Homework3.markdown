@@ -133,7 +133,7 @@ class Simulator {
         total += outcome
 
         x2 = x1 + 1/this.N * width
-        step = -outcome
+        step = 1/this.N * -outcome
         y2 =  y1 + step
         console.log(step)
         this.box.drawLine(x1, y1, x2, y2, color)
@@ -163,7 +163,7 @@ In this simulation we decrement the cumulated security score of a server by -1 i
     ctx.canvas.height = 450;
 
     var systems = 150;
-    var attacks = 100;
+    var attacks = 50;
 
     var s = new Simulator(ctx, 10, 10, systems, attacks, 1, -1);
     s.simulate();
