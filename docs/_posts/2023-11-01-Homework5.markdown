@@ -176,8 +176,10 @@ This execution is set with a value of lambda = 20.
 
     var systems = 150;
     var attacks = 50;
+    var lambda = 20;
+    var p = lambda * 1/attacks;
 
-    var s = new Simulator(ctx, 10, 10, attacks, systems, 1, 0, "");
+    var s = new Simulator(ctx, 10, 10, attacks, systems, 1, 0, "", p);
     s.simulate();
 </script>
 
