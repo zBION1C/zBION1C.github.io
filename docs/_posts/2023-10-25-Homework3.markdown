@@ -102,11 +102,11 @@ class Simulator {
     var scaledY = 0
     for (var i = 1/this.N; i < 1; i = i + 1/this.N){
       scaledX = i * width
-      //this.box.drawLine(scaledX, 0, scaledX, height, "Lightgrey")
+      this.box.drawLine(scaledX, 0, scaledX, height, "Lightgrey")
     }
     for (var i = 1/this.N; i < 1; i = i + 1/this.N){
       scaledY = i * height
-      //this.box.drawLine(0, scaledY, width, scaledY, "Lightgrey")
+      this.box.drawLine(0, scaledY, width, scaledY, "Lightgrey")
     }
   }
 
@@ -131,6 +131,7 @@ class Simulator {
         }
           
         total += outcome
+        console.log(outcome)
 
         x2 = x1 + 1/this.N * width
         step = 1/this.N * this.height * outcome
