@@ -136,6 +136,9 @@ class Simulator {
           
         total += outcome
 
+        if (j == 350/this.width) {
+          this.histogramMiddle.addToBin(total)
+        }
 
         x2 = x1 + 1/this.N * width
         step = -outcome
@@ -193,7 +196,7 @@ function OU (x,n) {
 var s1 = new Simulator(context, 10, 10 , intervals, trials, ABM)
 s1.simulate()
 </script>
-Simulation of Geometric Brownian motion with mu=1 and sigma=1
+Simulation of Geometric Brownian motion with mu=2 and sigma=1
 <canvas id="GBM"></canvas>
 <script>
 var canvas = document.getElementById("GBM");
@@ -218,7 +221,7 @@ function ABM (x,n) {
 }
 
 function GBM (x,n) {
-  var mu = 0.8
+  var mu = 2
   var sigma = 1
   return (mu*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
 }
@@ -265,7 +268,7 @@ function GBM (x,n) {
 function OU (x,n) {   
   var theta = 1
   var sigma = 1
-  var mu = 1.5
+  var mu = 2
   return (-theta*(mu-x)*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
 }
 
