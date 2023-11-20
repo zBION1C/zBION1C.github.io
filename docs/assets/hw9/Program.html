@@ -10,8 +10,8 @@
 	context.canvas.width = 8000
 	context.canvas.height = 8000
 
-	var trials = 30
-	var intervals = 5000
+	var trials = 200
+	var intervals = 900
 
 	// Standard Normal variate using Box-Muller transform.
 	function gaussianRandom(mean=0, stdev=1) {
@@ -27,13 +27,13 @@
 	}
 
 	function GBM (x,n) {
-		var mu = 1
+		var mu = 2
 		var sigma = 1
 		return (mu*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
 	}
 
 	function OU (x,n) {		
-		var theta = 1
+		var theta = 2
 		var sigma = 1
 		var mu = 2
 		return (-theta*(mu-x)*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))

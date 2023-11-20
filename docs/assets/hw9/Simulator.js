@@ -12,8 +12,8 @@ class Simulator {
 		//this.success = success //increment for success
 		//this.failure = failure //increment for failure
 		this.box = new Rectangle(context, x, y, width, height)
-		this.histogramMiddle = new Histogram(context, 2*N ,10, this.x + 350, this.y, 100, height)
-		this.histogramLast = new Histogram(context, 2*N, 10, this.x + width, this.y, 100, height)
+		this.histogramMiddle = new Histogram(context, 2*N ,50, this.x + 350, this.y, 100, height)
+		this.histogramLast = new Histogram(context, 2*N, 50, this.x + width, this.y, 100, height)
 		this.calcIntervals()
 	}
 
@@ -44,7 +44,6 @@ class Simulator {
 			color = "#"+((1<<24)*Math.random()|0).toString(16);
 			for (var time = 0; time < this.N; time++) {
 				outcome = this.SDE(time/this.N, this.N)
-				console.log(outcome)
   				
 				total += outcome
 
