@@ -164,7 +164,7 @@ In this simulation we decrement the cumulated security score of a server by -1 i
     var systems = 150;
     var attacks = 100;
 
-    var s = new Simulator(ctx, 10,10 systems, attacks, 1, -1);
+    var s = new Simulator(ctx, 10, 10, systems, attacks, 1, -1);
     s.simulate();
 </script>
 
