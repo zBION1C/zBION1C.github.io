@@ -6,176 +6,224 @@ categories: statistics
 tag: hw
 ---
 
-## Javascript
-Simulation with S = 20
-<canvas id="myCanvas"></canvas>
 <script>
-	class Rectangle {
-	constructor(x,y,width,height,context){
-		this.x = x;
-		this.y = y;
-		this.h = height;
-		this.w = width;
-		this.ctx = context;
-	}
-
-	display() {
-		this.ctx.beginPath();
-		this.ctx.rect(this.x, this.y, this.w, this.h);
-		this.ctx.stroke();
-	}
-
-
-	drawLine(x1, y1, x2, y2, color) {
-		this.ctx.beginPath();
-		this.ctx.moveTo(this.x+x1, this.y+y1);
-		this.ctx.lineTo(this.x+x2, this.y+y2);
-
-		this.ctx.strokeStyle = color;
-		this.ctx.stroke();
-		this.ctx.strokeStyle = "black";
-	}
-
-	drawRect(x, y, w, h, color) {
-		this.ctx.beginPath();
-		this.ctx.fillStyle  = color;
-		this.ctx.fillRect(this.x+x, this.y+y, w, h);
-	}
-}
-class Histogram {
-  constructor(ctx, k, x, y, width, height) {
-    this.ctx = ctx;
-    this.k = k;
-    this.w = width;
+class Rectangle {
+  constructor(context,x,y,width,height){
+    this.ctx = context;
+    this.x = x;
+    this.y = y;
     this.h = height;
-    this.box = new Rectangle(x,y,this.w,this.h,this.ctx);
-    this.distance = this.h/this.k;
+    this.w = width;
     this.display();
-    this.histo = []
-    
-    var bin_value = -this.k/2;
-    for (let i = 0; i < this.k; i++) {
-      bin_value++
-      this.histo[i] = [(-bin_value*(this.distance)), 0]
-    }
   }
 
   display() {
-    for (let i = 0; i <= this.h; i+=this.distance) {
-      this.box.drawLine(0, i, this.w, (i), "black");
-    }
+    this.ctx.beginPath();
+    this.ctx.rect(this.x, this.y, this.w, this.h);
+    this.ctx.stroke();
   }
 
+
+  drawLine(x1, y1, x2, y2, color) {
+    this.ctx.beginPath();
+    this.ctx.moveTo(this.x+x1, this.y+y1);
+    this.ctx.lineTo(this.x+x2, this.y+y2);
+
+    this.ctx.strokeStyle = color;
+    this.ctx.stroke();
+    this.ctx.strokeStyle = "black";
+  }
+
+  drawRect(x, y, width, height, color) {
+    this.ctx.beginPath();
+    this.ctx.fillStyle  = color;
+    this.ctx.fillRect(this.x+x, this.y+y, width, height);
+  }
+
+}
+</script>
+
+<script>
+class Histogram{
+  constructor (context, unit, k, x, y, width, height) {
+    this.context = context
+    this.unit = unit
+    this.k = k
+    this.x = x 
+    this.y = y
+    this.height = height
+    this.width = width
+    this.box = new Rectangle(context, x, y, width, height)
+    this.histo = []
+    this.calcIntervals()
+  }
+
+  calcIntervals() {
+    var bin = -this.unit/2
+    for (var i = 0; i <= this.k; i ++) {
+      this.box.ctx.fillText(bin, this.x + this.width, this.y + this.height - i/this.k * this.height);
+      this.histo[i] = [bin, 0]
+      bin = bin + this.unit/this.k
+    }
+
+
+    var scaledY = 0
+    for (var i = 0; i < 1; i = i + 1/this.k) {
+      scaledY = i * this.height
+      this.box.drawLine(0, scaledY, this.width, scaledY, "Lightgrey")
+    }
+  }
 
   addToBin(v) {
-    for (let i = 0; i < this.k-1; i++) {
-      if (v > this.histo[i+1][0] && v <= this.histo[i][0]) {
-        this.histo[i][1] += 1;
-        this.box.drawRect(this.w, i*this.distance, this.histo[i][1], this.distance, "FireBrick");
+    for (var i = 0; i < this.k; i++) {
+      if (v > this.histo[i][0] && v <= this.histo[i+1][0]){
+        this.histo[i][1] ++;
+        this.box.drawRect(0, this.height - (i+1)*(1/this.k * this.height), this.histo[i][1]*1.5, 1/this.k* this.height, "Red")
       }
     }
   }
+
 }
+</script>
+
+<script>
+const width = 700 //rectangle width
+const height = 400 //rectangle height
 class Simulator {
-  constructor(ctx,systems, attacks, success, failure, p, freq, x, y, mid_day){
-    this.p = p; 
-    this.freq = freq;
-    this.systems = systems;
-    this.attacks = attacks;
-    this.success = success;
-    this.failure = failure;
-    this.mid_day = mid_day;
-    this.ctx = ctx;
-    this.upper = 50;
-    this.lower = -20;
-    this.box = new Rectangle(x,y,800,600,this.ctx);
-    this.box.drawLine(0, this.box.h/2, this.box.w, this.box.h/2, "DarkGray")
-    this.scale = 5*(1-this.p);
-    if (this.freq==="rel") {
-      this.scale = 20*(1-this.p);
-    }
-    if (this.freq==="reln") { 
-      this.scale = 5*(1-this.p);
-    }
-    this.histo1 = new Histogram(this.ctx, 100, this.box.x+mid_day+this.box.w/7, this.box.y, this.box.w/7, this.box.h);
-    this.histo2 = new Histogram(this.ctx, 100, this.box.x+this.box.w-this.box.w/7, this.box.y, this.box.w/7, this.box.h);
+  constructor(context, x, y, N, M, success, failure, P, S) {
+    this.context = context
+    this.x = x //x position of rectangle
+    this.y = y //y position of rectangle
+    this.N = N //number of intervals over 1
+    this.M = M //number tries
+    this.success = success //increment for success
+    this.failure = failure //increment for failure
+    this.P = P //Point of failure
+    this.S = S //Point of security
+    this.box = new Rectangle(context, x, y, width, height)
+    this.histogramMiddle = new Histogram(context, 2*N ,100, this.x + 350, this.y, 100, height)
+    this.histogramLast = new Histogram(context, 2*N, 100, this.x + width, this.y, 100, height)
+    this.calcIntervals()
   }
 
+  calcIntervals() {
+    var scaledX = 0
+    var scaledY = 0
+    for (var i = 1/this.N; i < 1; i = i + 1/this.N){
+      scaledX = i * width
+      //this.box.drawLine(scaledX, 0, scaledX, height, "Lightgrey")
+    }
+    for (var i = 1/this.N; i < 1; i = i + 1/this.N){
+      scaledY = i * height
+      //this.box.drawLine(0, scaledY, width, scaledY, "Lightgrey")
+    }
 
-  timer(ms) {
-    return new Promise(res => setTimeout(res, ms));
+
   }
 
-  async simulate() {
-    let r = 0;
-    var cdown = 0;
-
-    for (let i = 1; i <= this.systems; i++){
-      var x1 = 0;
-      var y1 = this.box.h/2;
-      var x2 = 0;
-      var y2 = this.box.h/2;
-      var n_success = 0;
-      var divisor = 1;
-      var esito = 0;
+  simulate(){
+    var color = ""
+    var step = 0
+    var x2 = 0
+    var y2 = height/2
+    var outcome = 0
+    var discarded = 0
+    for (var trial = 0; trial < this.M; trial++){
+      var x1 = 0
+      var y1 = height/2
+      var total = 0;
       var touchedUp = false;
-      var touchedLow = false;
-      var color = "#"+((1<<24)*Math.random()|0).toString(16);
+      var touchedDown = false;
       var failureTurn = 0;
-      for (let j = 1; j <= this.attacks; j++) {
-        if (j % (this.attacks/10) == 0){
-          //await this.timer(10);
+      color = "#"+((1<<24)*Math.random()|0).toString(16);
+      for (var time = 0; time < this.N; time++) {
+        if (Math.random() < 0.5)  
+          outcome = this.success
+        else {
+          outcome = this.failure
         }
-        r = Math.random();
-        if (r <= this.p) {
-          n_success++;
-          if (this.freq==="rel") {
-            divisor = n_success;
-          }
-          if (this.freq === "reln") {
-            divisor = Math.sqrt(n_success);
-          }
-          esito += (this.success*this.scale)/divisor;
+          
+        total += outcome
 
-
-        } else {
-          esito += (this.failure*this.scale)/divisor;
-        }
-        
-        if (esito >= this.upper && !touchedLow && !touchedUp) {
+        if (total >= this.S) {
           touchedUp = true;
         }
-        if (esito <= this.lower && !touchedUp && !touchedLow){
-          touchedLow = true;
-          failureTurn = j
-          cdown++;
+
+        if (total <= this.P && touchedUp == false && touchedDown == false) {
+          discarded++;
+          failureTurn = time
+          touchedDown = true;
         }
 
-        if (j == this.mid_day){
-          this.histo1.addToBin(failureTurn)
+        if (time == this.N/2) {
+          if (failureTurn != 0){
+            this.histogramMiddle.addToBin(failureTurn)
+          }
         }
 
-
-        x2 = j*(1/this.attacks*this.box.w);
-        y2 = this.box.h/2-esito/2;
+        x2 = x1 + 1/this.N * width
+        step = height * 1/this.N/2 * -outcome
+        y2 =  y1 + step
         this.box.drawLine(x1, y1, x2, y2, color)
-        x1 = x2;
+        x1 = x2
         y1 = y2
       }
-      this.histo2.addToBin(failureTurn);
+      if (failureTurn != 0) {
+        this.histogramLast.addToBin(failureTurn)
+      }
     }
   }
 }
-  const canvas = document.getElementById("myCanvas");
-  const ctx = canvas.getContext("2d");
-  ctx.canvas.width = 8000;
-  ctx.canvas.height = 8000;
+</script>
 
-  var systems = 500;
-  var attacks = 500;
 
-  const s = new Simulator(ctx, systems, attacks, 1, -1, 0.4, "", 0, 100, 60);
-  s.simulate();
-  
+### The gambler's ruin problem
+In the gambler's ruin problem a gambler want's to achieve an amount of money S, but he can become broke, reaching an amount of money P. The problem is asking the following question:
+*What is the probability of the gambler going broke, after reaching the desired amount of money?*
+In the following simulations we give an answer to this question. 
+
+This is the simulation with S=20
+<canvas id="first"></canvas>
+<script>
+  const canvas = document.getElementById("first");
+  const context = canvas.getContext("2d")
+  context.canvas.width = 900
+  context.canvas.height = 500
+
+  var trials = 1000
+  var intervals = 200
+
+  var s = new Simulator(context, 10, 10 , intervals, trials, 1, -1, -10, 20)
+  s.simulate()
+</script>
+
+This is the simulation with S=60.
+<canvas id="snd"></canvas>
+<script>
+  const canvas = document.getElementById("snd");
+  const context = canvas.getContext("2d")
+  context.canvas.width = 900
+  context.canvas.height = 500
+
+  var trials = 1000
+  var intervals = 200
+
+  var s = new Simulator(context, 10, 10 , intervals, trials, 1, -1, -10, 60)
+  s.simulate()
+</script>
+
+And finally this is the simulation with S = 100.
+<canvas id="trd"></canvas>
+<script>
+  const canvas = document.getElementById("trd");
+  const context = canvas.getContext("2d")
+  context.canvas.width = 900
+  context.canvas.height = 500
+
+  var trials = 1000
+  var intervals = 200
+
+  var s = new Simulator(context, 10, 10 , intervals, trials, 1, -1, -10, 100)
+  s.simulate()
 </script>
 
