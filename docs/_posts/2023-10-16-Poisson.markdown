@@ -17,7 +17,7 @@ Below we list some charateristics of the Poisson proecess:
 
 - *Homogeneity*: The process is homogeneous, meaning that the probability of multiple events occurring in a small interval is negligible.
 
-The probability of a random variable X that is distributed according to the Poisson distribution is the following \\
+The probability of a random variable X that is distributed according to the Poisson distribution is the following \\\\
 $$ P(X=k)=\frac{e^{-\lambda}\lambda^k}{k!} $$
 Where
 - $$ e $$ is the base of the natural logarithm
