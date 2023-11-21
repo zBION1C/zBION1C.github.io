@@ -216,7 +216,7 @@ And finally this is the simulation with S = 100.
 <canvas id="trd"></canvas>
 <script>
   var canvas = document.getElementById("trd");
-  const context = canvas.getContext("2d")
+  var context = canvas.getContext("2d")
   context.canvas.width = 900
   context.canvas.height = 500
 
