@@ -7,18 +7,8 @@ tag: thesis
 ---
 
 ## Statistical distributions
-We can differentiate beetwen to types of distribution:
-* Discrete: A distribution in wich the random variable X can take a countable number of values
-* Continuous: A distribution in which the random variable X can take on any value
+A *statistical distribution* (or *probability distribution*) describes how values are distributed across the range of all possible values (thus providing the probability of a value). We can distinguish two big types of distribution: *continuous distributions* and *discrete distributions*.
 
-### Discrete distributions
-Some example of discrete distributions are:
-* Binomial distribution
-* Poisson binomial distribution
-* Bernoulli distribution
+A probability distribution is a *continuous distribution* when the random variable X that we are sampling can take infinte values. Because X can take infinite values, the probability that X take a spacific value is zero. One example of continuous distribution that we studied is the *normal distribution*.
 
-### Continous distributions
-Some example of continuous distributions are:
-* Beta distribution
-* Uniform distribution
-* Triangular distribution
+A probability distribution is a *discrete distribution* when the random variable X that we are sampling can take a fininte number of values. So a discrete distribution gives us the probability of each value that X can take. Some examples of discrete distributions that we studied are binomial distribution and Bernoulli distribution.
