@@ -6,6 +6,20 @@ categories: statistics
 tag: thesis
 ---
 
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 ## The Poisson process
+A Poisson process is a stochastic (random) process that models the occurrence of events over time or space. The key characteristic of a Poisson process is that it gives us a good estimate of the number of events that occur in some intervals of time.
 
+Below we list some charateristics of the Poisson proecess:
+- *Independence*: The occurrence of events in disjoint intervals is independent. This means that the number of events in one interval does not affect the number of events in another.
 
+- *Stationarity*: The average rate of event occurrences is constant over time or space. This means that the probability of an event occurring in a small time or space interval is proportional to the length of that interval.
+
+- *Homogeneity*: The process is homogeneous, meaning that the probability of multiple events occurring in a small interval is negligible.
+
+The probability of a random variable X that is distributed according to the Poisson distribution is the following \\
+$$ P(X=k)=\frac{e^{-\lambda}\lambda^k}{k!} $$
+Where
+- $$ e $$ is the base of the natural logarithm
+- $$ \lambda $$ is the average rate of events
+- $$ k! $$ is the number of events in th interval
