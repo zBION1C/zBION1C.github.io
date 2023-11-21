@@ -5,7 +5,7 @@ date:   2023-10-08 10:39:32 +0200
 categories: statistics
 tag: thesis
 ---
-
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 ## Gaussian distribution
 The Gaussian distribution is one the most famous distribution of all statistics. Also known as the normal distribution, is a probability distribution that is symmetric and characterized by its bell-shaped curve. The formula that descrive this distribution is
 $$ f(x|\mu,\sigma^2)=1/{\sqrt{w\pi\sigma^2}}e^{-(x-\mu)^2/w\sigma^2}$$
