@@ -5,6 +5,7 @@ date:   2023-11-14 18:39:32 +0200
 categories: statistics
 tag: thesis
 ---
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
 ## The Glivenko-Cantelli theorem
-The Glivenko-Cantelli theorem specify the asymptotic behaviour of the cumulative distribution function ase the number of observation grows.
+The Glivenko-Cantelli theorem asserts that if we have a sample of *n* observation $$X_1,X_2,...,X_n$$ from an underlying distribution, the resulting distribution we get is an approximation of the underlying distribution where we got the samples.
