@@ -7,8 +7,19 @@ tag: thesis
 ---
 
 ## Gaussian distribution
-The Gaussian distribution is one the most famous distribution of all statistics. A.K.A normal distribution, has the shape of a bell and it is used very often in natural and social sciences. Indeed we already saw that this distribution arise naturally from the sampling of independent and identically distributed random variables.
+The Gaussian distribution is one the most famous distribution of all statistics. Also known as the normal distribution, is a probability distribution that is symmetric and characterized by its bell-shaped curve. The formula that descrive this distribution is
+$$ f(x|\mu,\sigma^2)=1/{\sqrt{w\pi\sigma^2}}e^{-(x-\mu)^2/w\sigma^2}$$
+where
+- x is a random variable
+- $$\mu$$ is the mean of the distribution (where it is centered)
+- $$\sigma$$ is the standard deviation (how much wide it is)
+
+It has some nice properties that is worth to note:
+- *Simmetry* The distribution is symmetric around its mean, and the mean, mode and median are all equal.
+- *Empirical rule* In a normal distribution around 68% of the data falls within one standard deviation from the mean, 95% falls within two standard deviations, and 99.7%  falls within three standard deviations
+
+The Gaussian distribution can be derived as the sum of a large number of independent, identically distributed random variables, regardless of the original distribution. Indeed this sum will approximate the Gaussian distribution.
 
 ### Simulation
-We already simulated this type of distribution in some homeworks of the course.
-Again the Galton board is a cool experiment that show this type of distribution.
+The following figure represent three normal distribution with different standard deviations.
+![CLT](https://github.com/zBION1C/zBION1C.github.io/blob/master/docs/assets/images/normal.png?raw=true)

@@ -11,5 +11,6 @@ tag: thesis
 The Central Limit Theorem (CLT) states that the distribution of the sum (or average) of independent and identically distributed random variables approaches a normal distribution, regardless of the original distribution's shape. As sample size increases, the resulting distribution becomes increasingly bell-shaped and centered around the true population mean. This fundamental statistical principle enables the use of normal distribution-based methods, even for non-normally distributed data, facilitating accurate statistical inferences and hypothesis testing in various fields.
 
 ### Simulation
+In the following simulation we can see that the distribution of the experiment approximate a normal distribution as we increase the numbers of samples.
 ![CLT](https://github.com/zBION1C/zBION1C.github.io/blob/master/docs/assets/images/clt.png?raw=true)
 
