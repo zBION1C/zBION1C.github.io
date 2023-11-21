@@ -28,4 +28,4 @@ Where
 ### Simulation
 The following pictures represent a poisson distribution with  $$ \lambda = 5 $$. $$\lambda$$ can be interpreted as the number of patients that walks into the ER in one hour. The graph below represent the probability that $$k$$ patients walks into the ER in one hour. We can indeed see that in this plot the probability peaks around the value of $$\lambda$$.
 
-![poisson.png](https://github.com/zBION1C/zBION1C.github.io/blob/master/docs/assets/images/poisson.png?raw=true)
+![poisson.png](https://github.com/zBION1C/zBION1C.github.io/blob/master/docs/assets/images/poisson.PNG?raw=true)
