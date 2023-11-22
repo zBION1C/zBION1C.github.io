@@ -6,6 +6,23 @@ categories: statistics
 tag: thesis
 ---
 
-## Online algorithms
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
+## Online algorithms
+In computer science, an **online algorithm** is one that can process its input piece-by-piece in a serial fashion, i.e., in the order that the input is fed to the algorithm, without having the entire input available from the start.
+
+This type of algorithms are applied in statistics and one particular and famous application is the statistical inference of the behaviour of the stock market. Note that online algorithms are more powerfull then offline algorithm. This is because a set of data can be treated as streams, but streams cannot be interpreted as sets.
+
+Let's consider an example. Let's consider the following stream of prices of a particular stock
+<center>$$x_1 \rightarrow x_2 \rightarrow x_3 \rightarrow x_4 \rightarrow . . . $$</center>
+We want to compute the average price without knowing the full stream of prices. We would normally compute the average like this
+<center>$$\bar{x} = \frac{\sum_{i=1}^{n}x_i}{n}$$</center>
+But now we cannot because we do not know *n*!
+
+Suppose that we are at 
+<center>...\rightarrow x_n \rightarrow x_{n+1}</center>
+and we have the current average
+<center>$$\bar{x} = \frac{\sum_{i=1}^{n}x_i}{n}$$</center>
+We want to update $$\bar{x}$$ without recomputing the average from start. We can do like this
+<center>$$\bar{x}_{n+1} = x_n + \frac{x_i - \bar{x}_n}{n}$$</center>
 
