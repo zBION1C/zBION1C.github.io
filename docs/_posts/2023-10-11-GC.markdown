@@ -24,3 +24,5 @@ where $$I_A(\omega)$$ is the indicator function for set *A*.
 Let $$X_1,...,X_n$$ be a colection of independent and identical distributed random variables with *cumulative distribution function* $$F_X$$, and let $$F_n(x)$$ denote the *empirical distribution function*. Then, as n tends to $$\infty$$,
 <center>$$P[sup_{x\in\mathbb{R}}|F_n(x) - F_X(x)|\rightarrow 0]=1$$</center>
 Intuitively this is telling us that for n large, the empirical distribution approximate the cumulative distribution.
+
+![Glivenko-Cantelli.png](https://github.com/zBION1C/zBION1C.github.io/blob/master/docs/assets/images/gct.png?raw=true)
