@@ -26,5 +26,4 @@ Let $$X_1,...,X_n$$ be a colection of independent and identical distributed rand
 Intuitively this is telling us that for n large, the empirical distribution approximate the cumulative distribution.
 
 The simulation below show this behaviour.
-
-![Glivenko-Cantelli.png](https://github.com/zBION1C/zBION1C.github.io/blob/master/docs/assets/images/gct.png?raw=true){: .align-center}
+![Glivenko-Cantelli.png](https://github.com/zBION1C/zBION1C.github.io/blob/master/docs/assets/images/gct.png?raw=true)
