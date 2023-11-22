@@ -20,7 +20,7 @@ We want to compute the average price without knowing the full stream of prices. 
 But now we cannot because we do not know *n*!
 
 Suppose that we are at 
-<center>...\rightarrow x_n \rightarrow x_{n+1}</center>
+<center>$$...\rightarrow x_n \rightarrow x_{n+1}$$</center>
 and we have the current average
 <center>$$\bar{x} = \frac{\sum_{i=1}^{n}x_i}{n}$$</center>
 We want to update $$\bar{x}$$ without recomputing the average from start. We can do like this
