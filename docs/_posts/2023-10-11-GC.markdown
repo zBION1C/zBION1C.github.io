@@ -17,5 +17,5 @@ Intuitevely this function gives us for a given *x* the probability that the rand
 
 **The empirical distribution**
 Let $$X_1,...,X_n$$ be a colection of independent and identical distributed random variables with *cumulative distribution function* $$F_X$$. Then the *empirical distribution function* will be denoted as $$F_n(x)$$ and defined for $$x\in\mathbb{R}$$ by \\
-$$F_n(x)=\frac{1}{n}*\sum{i=1}{n} I_{[X, \infty)}(x)$$ \\
+<center>$$F_n(x)=\frac{1}{n}*\sum{i=1}{n} I_{[X, \infty)}(x)$$</center> \\
 where $$I_A(\omega)$$ is the indicator function for set *A*.
