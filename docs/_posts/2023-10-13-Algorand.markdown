@@ -7,5 +7,9 @@ tag: thesis
 ---
 
 ## Algorithms for random variates generation
+A *random variate* or simply *variate* is a particular outcome of a random variable. Basically it means sampling from a random variable. A random variate generation algorithm is defined by *Devroye* as follows:
 
-
+Assume that:
+-Computers can manipulate real numbers
+-Computers have access to a source of random variates that are uniformly distributed on the closed interval [0,1]
+Then a random variate generation algorithm is any program that halts almost surely and exits with a real number x. This x is called a random variate.
