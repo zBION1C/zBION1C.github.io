@@ -142,7 +142,7 @@ class Simulator {
         }
 
         x2 = x1 + 1/this.N * width
-        step = -outcome
+        step = height/10 * -outcome
         y2 =  y1 + step
         this.box.drawLine(x1, y1, x2, y2, color)
         x1 = x2
@@ -178,20 +178,20 @@ function gaussianRandom(mean=0, stdev=1) {
 }
 
 function ABM (x,n) {  
-  return (gaussianRandom(0, 1))
+  return (gaussianRandom(0, Math.sqrt(1/n)))
 }
 
 function GBM (x,n) {
   var mu = 1
   var sigma = 1
-  return (mu*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
+  return ((mu*1/n) + (sigma*gaussianRandom(0, Math.sqrt(1/n))))
 }
 
 function OU (x,n) {   
-  var theta = 1
+  var theta = 5
   var sigma = 1
-  var mu = 2
-  return (-theta*(mu-x)*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
+  var mu = 0
+  return ((-theta*(mu-x)*1/n) + (sigma*gaussianRandom(0, Math.sqrt(1/n))))
 }
 
 var s1 = new Simulator(context, 10, 10 , intervals, trials, ABM)
@@ -218,20 +218,20 @@ function gaussianRandom(mean=0, stdev=1) {
 }
 
 function ABM (x,n) {  
-  return (gaussianRandom(0, 1))
+  return (gaussianRandom(0, Math.sqrt(1/n)))
 }
 
 function GBM (x,n) {
-  var mu = 2
+  var mu = 1
   var sigma = 1
-  return (mu*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
+  return ((mu*1/n) + (sigma*gaussianRandom(0, Math.sqrt(1/n))))
 }
 
 function OU (x,n) {   
-  var theta = 1
+  var theta = 5
   var sigma = 1
-  var mu = 2
-  return (-theta*(mu-x)*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
+  var mu = 0
+  return ((-theta*(mu-x)*1/n) + (sigma*gaussianRandom(0, Math.sqrt(1/n))))
 }
 
 var s1 = new Simulator(context, 10, 10 , intervals, trials, GBM)
@@ -258,20 +258,20 @@ function gaussianRandom(mean=0, stdev=1) {
 }
 
 function ABM (x,n) {  
-  return (gaussianRandom(0, 1))
+  return (gaussianRandom(0, Math.sqrt(1/n)))
 }
 
 function GBM (x,n) {
   var mu = 1
   var sigma = 1
-  return (mu*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
+  return ((mu*1/n) + (sigma*gaussianRandom(0, Math.sqrt(1/n))))
 }
 
 function OU (x,n) {   
-  var theta = 2
+  var theta = 5
   var sigma = 1
-  var mu = 2
-  return (-theta*(mu-x)*Math.sqrt(1/n) + sigma*gaussianRandom(0, 1))
+  var mu = 0
+  return ((-theta*(mu-x)*1/n) + (sigma*gaussianRandom(0, Math.sqrt(1/n))))
 }
 
 var s1 = new Simulator(context, 10, 10 , intervals, trials, OU)
