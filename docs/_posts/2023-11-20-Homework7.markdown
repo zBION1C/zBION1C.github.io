@@ -197,7 +197,7 @@ function OU (x,n) {
 var s1 = new Simulator(context, 10, 10 , intervals, trials, ABM)
 s1.simulate()
 </script>
-Simulation of Geometric Brownian motion with mu=2 and sigma=1
+Simulation of Geometric Brownian motion with mu=1 and sigma=1
 <canvas id="GBM"></canvas>
 <script>
 var canvas = document.getElementById("GBM");
@@ -237,7 +237,7 @@ function OU (x,n) {
 var s1 = new Simulator(context, 10, 10 , intervals, trials, GBM)
 s1.simulate()
 </script>
-Simulation of Mean reverting geometric brownian motion with theta=2, mu=2 and sigma=1
+Simulation of Mean reverting geometric brownian motion with theta=5, mu=0 and sigma=1
 <canvas id="OU"></canvas>
 <script>
 var canvas = document.getElementById("OU");
