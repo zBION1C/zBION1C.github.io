@@ -101,8 +101,8 @@ class Simulator {
     this.P = P //Point of failure
     this.S = S //Point of security
     this.box = new Rectangle(context, x, y, width, height)
-    this.histogramMiddle = new Histogram(context, 2*N ,100, this.x + 350, this.y, 100, height)
-    this.histogramLast = new Histogram(context, 2*N, 100, this.x + width, this.y, 100, height)
+    this.histogramMiddle = new Histogram(context, 2*N ,25, this.x + 350, this.y, 100, height)
+    this.histogramLast = new Histogram(context, 2*N, 25, this.x + width, this.y, 100, height)
     this.calcIntervals()
   }
 
@@ -190,8 +190,8 @@ This is the simulation with S=20
   context.canvas.width = 900
   context.canvas.height = 500
 
-  var trials = 1000
-  var intervals = 200
+  var trials = 100
+  var intervals = 2000
 
   var s = new Simulator(context, 10, 10 , intervals, trials, 1, -1, -10, 20)
   s.simulate()
@@ -205,8 +205,8 @@ This is the simulation with S=60.
   context.canvas.width = 900
   context.canvas.height = 500
 
-  var trials = 1000
-  var intervals = 200
+  var trials = 100
+  var intervals = 2000
 
   var s = new Simulator(context, 10, 10 , intervals, trials, 1, -1, -10, 60)
   s.simulate()
@@ -220,8 +220,8 @@ And finally this is the simulation with S = 100.
   context.canvas.width = 900
   context.canvas.height = 500
 
-  var trials = 1000
-  var intervals = 200
+  var trials = 100
+  var intervals = 2000
 
   var s = new Simulator(context, 10, 10 , intervals, trials, 1, -1, -10, 100)
   s.simulate()

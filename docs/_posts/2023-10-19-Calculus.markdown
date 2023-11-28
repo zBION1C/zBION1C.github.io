@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  "Integration and calculus"
+title:  "Ito calculus"
 date:   2023-10-19 18:39:32 +0200
 categories: statistics
 tag: thesis
 ---
 
-## Integration and calculus
-
+## Ito calculus
 
