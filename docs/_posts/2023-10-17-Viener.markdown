@@ -1,11 +1,24 @@
 ---
 layout: post
-title:  "Viener process"
+title:  "Wiener process"
 date:   2023-10-17 19:39:32 +0200
 categories: statistics
 tag: thesis
 ---
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+## The Wiener process and the geometric Brownian motion
 
-## The Viener process and the geometric Brownian motion
+The **Wiener process** is a real-valued *continuous-time* stochastic process. It is also called *Brownian motion* due to its historical connection with the physical process of the same name originally observed by Robert Brown. It is used in pure and applied mathematics, economics, quantitative finance, evolutionary biology and physics.
 
+The Wiener process $$W_t$$ is characterised by the following properties:
+- $$W_0$$ = 0 **almost surely**
+- *W* has **independent increments**: for every $$t > 0$$,the future increments $$W_{t+u} - W_t$$ are independent of the past values $$W_s$$ with $$s < t$$
+- *W* has **Gaussian increments**: $$W_{t+u} - W_t$$ is normally distributed with mean 0 and variance *u*.
+- *W* has almost surely **continuous paths**: $$W_t$$ is almost surely continuous in *t*.
+Another thing that we saw in another thesis of this course is that the *Wiener process* can be seen as a limit of random walk.
 
+From the *Wiener process* we can derive another famous stochastic process: The **geometric brownian motion** (**GBM**).
+The *geometric brownian motion* is indeed defined using the *Wiener process* *W* as follows:
+<center>$$dS_t=\mu S_tdt+\sigma S_t dW_t$$</center>
+where $$\mu$$ is the *percentage drift* and $$\sigma$$ is the *percentage volatility* and they are constants.
+The first parameter is used to model deterministic trends, while the second is used to model unpredictable events occuring during the motion. It is easy to see that one natural application of this particular stochastic process is in finance, or more specifically it can model the fluctuation of stock prices.
