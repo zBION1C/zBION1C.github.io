@@ -31,7 +31,7 @@ The algorithm to generate a random variate from X is the following:
 
 **Composition**: We wanto to generate from CDF F. Suppose we can find other CDFs $$F_1,F_2...$$ and weights $$p_1,p_2...$$ with 
 
-$$p_j \geq 0 $$ and $$p_1+p_2+... = 1$$
+<center>$$p_j \geq 0 $$ and $$p_1+p_2+... = 1$$</center>
 
 such that for all *x*
 
