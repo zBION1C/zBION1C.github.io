@@ -18,7 +18,7 @@ Then a random variate generation algorithm is any program that halts almost sure
 ### Generation of random variates
 The generation of a random variate is achieved by obtaining an observation on a random variable with a particular distribution. **Every** method of generation of a random variate is based on the assumption that there exist a source *U(0,1)*, that is a uniform random variable beetween 0 and 1.
 
-Let's see rwo of the general methods to generate a random variate.
+Let's see two of the general methods to generate a random variate.
 
 **Inverse transform**: Suppose **X** is a random variable with CFD
 
@@ -29,7 +29,7 @@ The algorithm to generate a random variate from X is the following:
 - Find the *X* such that *F(X)=U* and return *X*.
 
 
-**Composition**: We wanto to generate from CDF F. Suppose we can find other CDFs $$F_1,F_2...$$ and weights $$p_1,p_2...$$ with 
+**Composition**: We want to generate from CDF F. Suppose we can find other CDFs $$F_1,F_2...$$ and weights $$p_1,p_2...$$ with 
 
 <center>$$p_j \geq 0 $$ and $$p_1+p_2+... = 1$$</center>
 

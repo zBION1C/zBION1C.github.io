@@ -5,7 +5,9 @@ date:   2023-10-18 18:39:32 +0200
 categories: statistics
 tag: thesis
 ---
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
 ## Functional Central limit theorem and the Donsker's invariance principle
+The **Functional central limit theorem** or **Donsker's theorem** is an extension of the central limit theorem.
 
-
+**Donsker's theorem**: Let $$X_1,X_2,X_3,...$$ be a sequence of independent and identically distributed random variables with mean 0 and variance 1. Let $$S_n=\sum{i=1}{n}X_i$$. The stocastic process $$S:=(S_n)_{n\in\mathbb{N}}$$ is known as a random walk.*Donsker's theorem* assert that the *random walk* stochastic process converges to a **standard brownian motion** as *n* tends to $$\infty$$
