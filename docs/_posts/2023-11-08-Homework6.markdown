@@ -193,7 +193,7 @@ This is the simulation with S=20
   var trials = 200
   var intervals = 4000
 
-  var s = new Simulator(context, 10, 10 , intervals, trials, 1, -1, -10, 20)
+  var s = new Simulator(context, 10, 10 , intervals, trials, 1, -1, -5, 5)
   s.simulate()
 </script>
 
@@ -208,7 +208,7 @@ This is the simulation with S=60.
   var trials = 200
   var intervals = 4000
 
-  var s = new Simulator(context, 10, 10 , intervals, trials, 1, -1, -10, 60)
+  var s = new Simulator(context, 10, 10 , intervals, trials, 1, -1, -5, 10)
   s.simulate()
 </script>
 
@@ -223,7 +223,7 @@ And finally this is the simulation with S = 100.
   var trials = 200
   var intervals = 4000
 
-  var s = new Simulator(context, 10, 10 , intervals, trials, 1, -1, -10, 100)
+  var s = new Simulator(context, 10, 10 , intervals, trials, 1, -1, -5, 20)
   s.simulate()
 </script>
 
