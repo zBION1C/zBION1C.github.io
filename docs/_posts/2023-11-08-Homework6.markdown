@@ -182,7 +182,7 @@ In the gambler's ruin problem a gambler want's to achieve an amount of money S, 
 *What is the probability of the gambler going broke, after reaching the desired amount of money?*
 In the following simulations we give an answer to this question. 
 
-This is the simulation with S=20
+This is the simulation with S=5
 <canvas id="first"></canvas>
 <script>
   var canvas = document.getElementById("first");
@@ -197,7 +197,7 @@ This is the simulation with S=20
   s.simulate()
 </script>
 
-This is the simulation with S=60.
+This is the simulation with S=10.
 <canvas id="snd"></canvas>
 <script>
   var canvas = document.getElementById("snd");
@@ -212,7 +212,7 @@ This is the simulation with S=60.
   s.simulate()
 </script>
 
-And finally this is the simulation with S = 100.
+And finally this is the simulation with S = 20.
 <canvas id="trd"></canvas>
 <script>
   var canvas = document.getElementById("trd");
