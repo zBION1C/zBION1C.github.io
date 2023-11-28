@@ -101,8 +101,8 @@ class Simulator {
     this.P = P //Point of failure
     this.S = S //Point of security
     this.box = new Rectangle(context, x, y, width, height)
-    this.histogramMiddle = new Histogram(context, 2*N ,25, this.x + 350, this.y, 100, height)
-    this.histogramLast = new Histogram(context, 2*N, 25, this.x + width, this.y, 100, height)
+    this.histogramMiddle = new Histogram(context, 2*N ,5, this.x + 350, this.y, 100, height)
+    this.histogramLast = new Histogram(context, 2*N, 5, this.x + width, this.y, 100, height)
     this.calcIntervals()
   }
 
