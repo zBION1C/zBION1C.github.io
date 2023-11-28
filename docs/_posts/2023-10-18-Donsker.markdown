@@ -11,3 +11,9 @@ tag: thesis
 The **Functional central limit theorem** or **Donsker's theorem** is an extension of the central limit theorem.
 
 **Donsker's theorem**: Let $$X_1,X_2,X_3,...$$ be a sequence of independent and identically distributed random variables with mean 0 and variance 1. Let $$S_n=\sum{i=1}{n}X_i$$. The stocastic process $$S:=(S_n)_{n\in\mathbb{N}}$$ is known as a random walk.*Donsker's theorem* assert that the *random walk* stochastic process converges to a **standard brownian motion** as *n* tends to $$\infty$$
+
+Below we can see a visualization of the above theorem.
+
+![FCLTLow.png](https://github.com/zBION1C/zBION1C.github.io/blob/master/docs/assets/images/fcltlow.png?raw=true)
+
+![FCLTHigh.png](https://github.com/zBION1C/zBION1C.github.io/blob/master/docs/assets/images/fclth.png?raw=true)
