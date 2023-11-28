@@ -5,7 +5,7 @@ date:   2023-10-13 18:39:32 +0200
 categories: statistics
 tag: thesis
 ---
-
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 ## Algorithms for random variates generation
 A *random variate* or simply *variate* is a particular outcome of a random variable. Basically it means sampling from a random variable. A random variate generation algorithm is defined by *Devroye* as follows:
 
@@ -14,3 +14,28 @@ Assume that:
 - Computers have access to a source of random variates that are uniformly distributed on the closed interval [0,1]
 
 Then a random variate generation algorithm is any program that halts almost surely and exits with a real number x. This x is called a random variate.
+
+### Generation of random variates
+The generation of a random variate is achieved by obtaining an observation on a random variable with a particular distribution. **Every** method of generation of a random variate is based on the assumption that there exist a source *U(0,1)*, that is a uniform random variable beetween 0 and 1.
+
+Let's see rwo of the general methods to generate a random variate.
+
+**Inverse transform**: Suppose **X** is a random variable with CFD
+
+$$ F(x) = P(X \leq x) \forall x \in \mathbb{R} $$
+The algorithm to generate a random variate from X is the following:
+- Generate U ~ U(0,1).
+- Find the *X* such that *F(X)=U* and return *X*.
+
+
+**Composition**: We wanto to generate from CDF F. Suppose we can find other CDFs $$F_1,F_2...$$ and weights $$p_1,p_2...$$ with 
+
+$$ p_j \geq 0 $$ and $$p_1+p_2+... = 1$$
+
+such that for all *x*
+
+$$F(x) = p_1F_1(x) + p_2F_2(x) + ...$$
+
+Then the algorithm is the following:
+- Generate a positive random integer *J* such that $$P(J=j)=p_j$$
+- Return *X* with CDF $$F_j$$.
