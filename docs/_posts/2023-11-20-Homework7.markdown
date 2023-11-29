@@ -138,7 +138,7 @@ class Simulator {
         total += outcome
 
         if (time == 350/this.width) {
-          this.histogramMiddle.addToBin(total)
+          this.histogramMiddle.addToBin(total * 100)
         }
 
         x2 = x1 + 1/this.N * width
@@ -148,7 +148,7 @@ class Simulator {
         x1 = x2
         y1 = y2
       }
-      this.histogramLast.addToBin(total)
+      this.histogramLast.addToBin(total * 100)
     }
   }
 
