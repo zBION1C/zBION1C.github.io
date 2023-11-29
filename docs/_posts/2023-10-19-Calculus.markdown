@@ -7,4 +7,26 @@ tag: thesis
 ---
 
 ## Ito calculus
+The **Ito calculus** extends the methods of calculus to stochastic processes. Let's explore this new branch of mathematics using a simple example.
 
+Consider a coin-tossing experiment
+- Head: you win 1$
+- Tail: you give me 1$
+
+Let $$R_i$$ be the outcome of the *i*-th toss
+- $$R_i=+1$$ with probability $$\frac{1}{2}$$
+- $$R_i=-1$$ with probability $$\frac{1}{2}$$
+It's easy to convice ourself that $$R_i$$ is a **random variable**.
+
+Now let 
+
+<center>$$S_i=\sum{j=1}{i}R_j$$</center>
+
+Be the total amount of money you have up to and including the *i*-th toss.
+What we defined above is a **stochastic process**, more preciseley a **random walk**.
+As the number of tosses approaches $$\infty$$ then the random walk becomes the **brownian motion**
+stochastic process, as seen with the *Donsker theorem*. The *Brownian motion* can be define with the following *stochastic differential equation*:
+
+<center>$$dS_t=\mu S_tdt+\sigma S_t dW_t$$</center>
+
+Ito calculus provide a method to find the solutions of this particular type of differential equations. Even though with Ito calculus we can find analitically a solution for this type of differential equations, it is very **hard** to do so for particulary intricate stochastic processes. For this reason Ito calculus is used in conjunction with computational simulation methods of stochastic processes to study them.
