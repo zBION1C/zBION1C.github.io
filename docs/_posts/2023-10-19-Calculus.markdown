@@ -23,7 +23,7 @@ Now let
 
 <center>$$S_i=\sum_{j=1}^{i}R_j$$</center>
 
-Be the total amount of money you have up to and including the *i*-th toss.
+be the total amount of money you have up to and including the *i*-th toss.
 What we defined above is a **stochastic process**, more preciseley a **random walk**.
 As the number of tosses approaches $$\infty$$ then the random walk becomes the **brownian motion**
 stochastic process, as seen with the *Donsker theorem*. The *Brownian motion* can be define with the following *stochastic differential equation*:
