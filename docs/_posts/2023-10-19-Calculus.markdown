@@ -16,6 +16,7 @@ Consider a coin-tossing experiment
 Let $$R_i$$ be the outcome of the *i*-th toss
 - $$R_i=+1$$ with probability $$\frac{1}{2}$$
 - $$R_i=-1$$ with probability $$\frac{1}{2}$$
+
 It's easy to convice ourself that $$R_i$$ is a **random variable**.
 
 Now let 
