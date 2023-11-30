@@ -7,6 +7,16 @@ tag: thesis
 ---
 
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+## Stochastic processes
+
+### Functions and equations
+### Defining functions as equations
+### An alternative way of defining functions: differential equations
+### Ordinary differential equations
+### Stochastic differential equations
+
+
+
 ## Stochastic processes and stochastic differential equation
 
 A **Stochastic process** or **random process** is a mathematical object usually defines as a sequence of random variables where the index of the variable is interpreted as the time. **Stochastic processes** are widely used as mathematical models of systems and phenomena that appear to have a random behaviour.
