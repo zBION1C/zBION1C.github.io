@@ -148,7 +148,7 @@ class Simulator {
         }
 
         x2 = x1 + 1/this.N * width
-        step =  height * 1/this.N/2 * -outcome/div
+        step =  height * 1/this.N/2 * -outcome
         y2 = y1 + step
         this.box.drawLine(x1, y1, x2, y2, color)
         x1 = x2
