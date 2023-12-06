@@ -135,8 +135,7 @@ class Simulator {
 
         if (this.frequency == "relative") {
             div = time
-            step = 15 * (height * 1/this.N/2 * -outcome/div)
-            console.log("inside if " + step)
+            step = 10 * (height * 1/this.N/2 * -outcome/div)
         }
         else if (this.frequency == "nRelative") {
             div = Math.sqrt(time)
@@ -152,7 +151,6 @@ class Simulator {
             this.histogramMiddle.addToBin(total)
         }
 
-        console.log("outside " + step)
         x2 = x1 + 1/this.N * width
         y2 = y1 + step
         this.box.drawLine(x1, y1, x2, y2, color)
