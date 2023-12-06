@@ -128,27 +128,30 @@ class Simulator {
       for (var time = 1; time <= this.N; time++) {
 
         if (Math.random() < 0.5) {
-          outcome = this.success
+            outcome = this.success
         } else {
-          outcome = this.failure
+            outcome = this.failure
         }
 
         if (this.frequency == "relative") {
-          div = time
+            div = time
+            step = 7 * (height * 1/this.N/2 * -outcome/div)
         }
         if (this.frequency == "nRelative") {
-          div = Math.sqrt(time)
+            div = Math.sqrt(time)
+            step = 5 * (height * 1/this.N/2 * -outcome/div)
+        } else {
+            step =  height * 1/this.N/2 * -outcome/div
         }
 
         total += outcome/div
 
 
         if (time == 25) {
-          this.histogramMiddle.addToBin(total)
+            this.histogramMiddle.addToBin(total)
         }
 
         x2 = x1 + 1/this.N * width
-        step =  height * 1/this.N/2 * -outcome
         y2 = y1 + step
         this.box.drawLine(x1, y1, x2, y2, color)
         x1 = x2
