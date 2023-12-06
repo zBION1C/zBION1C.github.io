@@ -111,7 +111,7 @@ class Simulator {
     }
   }
 
-  simulate(){
+  async simulate(){
     var color = ""
     var step = 0
     var rand = 0
@@ -135,7 +135,7 @@ class Simulator {
 
         if (this.frequency == "relative") {
             div = time
-            step = 25 * (height * 1/this.N/2 * -outcome/div)
+            step = 100 * (height * 1/this.N/2 * -outcome/div)
         }
         if (this.frequency == "nRelative") {
             div = Math.sqrt(time)
