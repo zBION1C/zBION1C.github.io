@@ -136,6 +136,7 @@ class Simulator {
         if (this.frequency == "relative") {
             div = time
             step = 100 * (height * 1/this.N/2 * -outcome/div)
+            console.log(step)
         }
         if (this.frequency == "nRelative") {
             div = Math.sqrt(time)
