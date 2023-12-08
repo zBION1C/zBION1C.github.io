@@ -281,6 +281,41 @@ s1.simulate()
 ### The code
 This is a slight modification of homework3 code. The outcome of the system at each interval of time is calculated by following a SDE given in input to the Simulator class.
 
+{% highlight javascript %}
+<script>
+  simulate(){
+    var color = ""
+    var step = 0
+    var rand = 0
+    var x2 = 0
+    var y2 = height/2
+    var outcome = 0
+    for (var trial = 0; trial < this.M; trial++){
+      var x1 = 0
+      var y1 = height/2
+      var total = 0;
+      color = "#"+((1<<24)*Math.random()|0).toString(16);
+      for (var time = 0; time < this.N; time++) {
+        outcome = this.SDE(time/this.N, this.N)
+          
+        total += outcome
+
+        if (time == 350/this.width) {
+          this.histogramMiddle.addToBin(total * 100)
+        }
+
+        x2 = x1 + 1/this.N * width
+        step = height/10 * -outcome
+        y2 =  y1 + step
+        this.box.drawLine(x1, y1, x2, y2, color)
+        x1 = x2
+        y1 = y2
+      }
+      this.histogramLast.addToBin(total * 100)
+    }
+  }
+</script>
+{% endhighlight %}
 
 
 ## Comparison with other methods of simulations
