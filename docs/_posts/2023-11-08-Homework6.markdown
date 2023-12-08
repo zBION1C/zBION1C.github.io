@@ -227,3 +227,61 @@ And finally this is the simulation with S = 20.
   s.simulate()
 </script>
 
+### The code
+Even in this case, the code is a slight modification of the homework 3 code. The Simulator class get's in input the thresholds P and S and for every system check if the score of the system reaches one threshold or the other. Another difference is that I plot in the histograms the eventual round of failure of each system. We can see that in the first case, where the S=5 there are a lot of systems that fail early. In the second case with S=10 there are some systems that take longer to fail. And in the third case with S=20 there are even more systems that takes longer time to fail. This is intuitive, in fact if we raise the threshold of winning, the gambler will play more to reach that threshold, but likely he will fail before reaching it.
+{% highlight javascript %}
+<script>
+  simulate(){
+    var color = ""
+    var step = 0
+    var x2 = 0
+    var y2 = height/2
+    var outcome = 0
+    var discarded = 0
+    for (var trial = 0; trial < this.M; trial++){
+      var x1 = 0
+      var y1 = height/2
+      var total = 0;
+      var touchedUp = false;
+      var touchedDown = false;
+      var failureTurn = 0;
+      color = "#"+((1<<24)*Math.random()|0).toString(16);
+      for (var time = 0; time < this.N; time++) {
+        if (Math.random() < 0.5)  
+          outcome = this.success
+        else {
+          outcome = this.failure
+        }
+          
+        total += outcome
+
+        if (total >= this.S) {
+          touchedUp = true;
+        }
+
+        if (total <= this.P && touchedUp == false && touchedDown == false) {
+          discarded++;
+          failureTurn = time
+          touchedDown = true;
+        }
+
+        if (time == this.N/2) {
+          if (failureTurn != 0){
+            this.histogramMiddle.addToBin(failureTurn)
+          }
+        }
+
+        x2 = x1 + 1/this.N * width
+        step = height * 1/this.N/2 * -outcome
+        y2 =  y1 + (step * this.M/15)
+        this.box.drawLine(x1, y1, x2, y2, color)
+        x1 = x2
+        y1 = y2
+      }
+      if (failureTurn != 0) {
+        this.histogramLast.addToBin(failureTurn)
+      }
+    }
+  }
+</script>
+{% endhighlight %}

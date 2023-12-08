@@ -229,6 +229,62 @@ And in the end we have the normalized relative frequency of successfull attaccks
     var s = new Simulator(ctx, 10, 10, attacks, systems, 1, 0, "nRelative");
     s.simulate();
 </script>
+### The code 
+The following class is the Simulator class that simulate the attacks. 
+{% highlight javascript %}
+<script>
+  async simulate(){
+    var color = ""
+    var step = 0
+    var rand = 0
+    var x2 = 0
+    var y2 = height/2
+    var outcome = 0
+    var div = 1
+    for (var trial = 0; trial < this.M; trial++){
+      var x1 = 0
+      var y1 = height/2
+      var y2 = height/2
+      var total = 0;
+      color = "#"+((1<<24)*Math.random()|0).toString(16);
+      for (var time = 1; time <= this.N; time++) {
+
+        if (Math.random() < 0.5) {
+            outcome = this.success
+        } else {
+            outcome = this.failure
+        }
+
+        if (this.frequency == "relative") {
+            div = time
+            step = 10 * (height * 1/this.N/2 * -outcome/div)
+        }
+        else if (this.frequency == "nRelative") {
+            div = Math.sqrt(time)
+            step = 5 * (height * 1/this.N/2 * -outcome/div)
+        } else {
+            step =  height * 1/this.N/2 * -outcome/div
+        }
+
+        total += outcome/div
+
+
+        if (time == 25) {
+            this.histogramMiddle.addToBin(total)
+        }
+
+        x2 = x1 + 1/this.N * width
+        y2 = y1 + step
+        this.box.drawLine(x1, y1, x2, y2, color)
+        x1 = x2
+        y1 = y2
+      }
+      this.histogramLast.addToBin(total)
+    }
+  }
+</script>
+{% endhighlight %}
+
 
 ### Discussion point
 In the first simulation, i was expecting the shape of the distribution to be close to the binomial distribution. Basically because we are simulating the Galton Board experiment. The more we increase the number of systems and attacks, the more the distribution approximate the Binomial distribution.

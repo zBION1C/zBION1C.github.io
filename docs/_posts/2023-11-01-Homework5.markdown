@@ -187,6 +187,25 @@ This execution is set with a value of lambda = 20.
 
 We can see that the distribution is centered around the value of $$\lambda$$. This is not by chance, in fact if we see $$\lambda$$ as the average number of times an attack succeed in the time interval T.
 
+### The code
+The only change with respect to homework3 is definition of probability that this time depends on the number of attacks and from $$\lambda$$ The simulation is the same.
+{% highlight javascript %}
+<script>
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    ctx.canvas.width = 900;
+    ctx.canvas.height = 450;
+
+    var systems = 150;
+    var attacks = 50;
+    var lambda = 20;
+    var p = lambda * 1/attacks;
+
+    var s = new Simulator(ctx, 10, 10, attacks, systems, 1, 0, "", p);
+    s.simulate();
+</script>
+{% endhighlight %}
+
 ## C#
 ### Program.cs
 {% highlight csharp %}
