@@ -280,7 +280,7 @@ s1.simulate()
 
 ### The code
 This is a slight modification of homework3 code. The outcome of the system at each interval of time is calculated by following a SDE given in input to the Simulator class.
-<% highlights javascript %>
+<% highlight javascript %>
 <script>
   simulate(){
     var color = ""
