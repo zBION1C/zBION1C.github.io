@@ -280,7 +280,28 @@ s1.simulate()
 
 ### The code
 This is a slight modification of homework3 code. The outcome of the system at each interval of time is calculated by following a SDE given in input to the Simulator class.
+SDE's as functions:
+{% highlight javascript %}
+<script>
+  function ABM (x,n) {  
+    return (gaussianRandom(0, Math.sqrt(1/n)))
+  }
 
+  function GBM (x,n) {
+    var mu = 1
+    var sigma = 1
+    return ((mu*1/n) + (sigma*gaussianRandom(0, Math.sqrt(1/n))))
+  }
+
+  function OU (x,n) {   
+    var theta = 5
+    var sigma = 1
+    var mu = 0
+    return ((-theta*(mu-x)*1/n) + (sigma*gaussianRandom(0, Math.sqrt(1/n))))
+  }
+</script>
+{% endhighlight %}
+Simulate method of class Simulator:
 {% highlight javascript %}
 <script>
   simulate(){
