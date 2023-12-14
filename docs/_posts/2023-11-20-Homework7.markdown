@@ -223,7 +223,7 @@ function ABM (x,n) {
 
 function GBM (x,n) {
   var mu = 1
-  var sigma = 1
+  var sigma = 1.5
   return ((mu*1/n) + (sigma*gaussianRandom(0, Math.sqrt(1/n))))
 }
 
