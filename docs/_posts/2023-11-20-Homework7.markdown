@@ -197,7 +197,7 @@ function OU (x,n) {
 var s1 = new Simulator(context, 10, 10 , intervals, trials, ABM)
 s1.simulate()
 </script>
-Simulation of Geometric Brownian motion with mu=1 and sigma=1
+Simulation of Geometric Brownian motion with mu=1 and sigma=1.8
 <canvas id="GBM"></canvas>
 <script>
 var canvas = document.getElementById("GBM");
