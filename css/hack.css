@@ -144,14 +144,14 @@ nav a[href="/cowork/southeast-asia/bali/"] {
 /* ## End Hacks */
 
 .hack,.hack em,.hack strong {
-  font-family: Helvetica Neue,Helvetica,Arial,Geneva,sans-serif;
-  font-size: 1.25rem;
+  font-family: VT323;
+  font-size: 22px;
   line-height: 1.8rem;
 }
 .hack h1,.hack h2,.hack h3,.hack h4,.hack h5,.hack h6,.hack blockquote {
-  font-family: klinic,Consolas,Andale Mono,Rockwell,Courier,sans-serif;
+  font-family: VT323;
   font-weight: 500;
-  font-size: 1.25rem;
+  font-size: 33px;
 }
 a {
   border-bottom: none;
@@ -190,7 +190,7 @@ summary {
   margin-left: -3px;
 }
 @font-face {
-  font-family: klinic;
+  font-family: VT323;
   src: url(/web/20180808224336im_/https://hackcabin.com/fonts/klinicslabbook-webfont.eot);
   src: url(/web/20180808224336im_/https://hackcabin.com/fonts/klinicslabbook-webfont.eot#iefix) format("embedded-opentype"),url(/web/20180808224336im_/https://hackcabin.com/fonts/klinicslabbook-webfont.woff2) format("woff2"),url(/web/20180808224336im_/https://hackcabin.com/fonts/klinicslabbook-webfont.woff) format("woff"),url(/web/20180808224336im_/https://hackcabin.com/fonts/klinicslabbook-webfont.ttf) format("truetype"),url(/web/20180808224336im_/https://hackcabin.com/fonts/klinicslabbook-webfont.svg#klinic_slabbook) format("svg");
   font-weight: 400;
