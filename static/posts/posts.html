@@ -9,18 +9,19 @@
         <link rel="stylesheet" href="../../css/l337.css"/>   
 
         <script type="text/javascript" src="../../js/l337.js"></script>
-        <script src="jquery.js"></script> 
+        <script type="text/javascript" src="../../js/nav.js"></script>
+
     </head>
 
     <body class="hack dark main container">
         
-        <!--Navigation bar-->
-        <div id="nav-placeholder"></div>
-        <script> 
-            $(function(){
-                $("#nav-placeholder").load("/static/nav.html"); 
-            });
-        </script> 
+        <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
+            
+            <a itemprop="url" class="active" href="/index.html"><span itemprop="name">Home</span></a>
+          
+            <a itemprop="url" class="" href="/static/posts/posts.html"><span itemprop="name">Posts</span></a>
+        
+        </nav>
 
         <main>
             <header>
