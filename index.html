@@ -18,7 +18,11 @@
         
         <!--Navigation bar-->
         <div id="nav-placeholder"></div>
-        <script type="text/javascript" src="/js/nav.js"></script>
+        <script>
+            $(function(){
+              $("#nav-placeholder").load("/static/nav.html");
+            });
+        </script>
         <!--end of Navigation bar-->
 
         <main>
