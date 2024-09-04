@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // Load the navigation bar into the placeholder div
-    $("#navbar-placeholder").load("../static/nav.html", function() {
+    $("#navbar-placeholder").load("/static/nav.html", function() {
         // Get the current URL path
         var currentPath = window.location.pathname;
 
