@@ -16,5 +16,7 @@ $(document).ready(function() {
             $("nav a").removeClass("active");
             $("#home").addClass("active");
         }
+
+        // Add more conditions if needed for other pages
     });
 });
