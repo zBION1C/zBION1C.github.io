@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $("#nav-placeholder").load("/static/nav.html");
     var links = $('#nav-placeholder a');
+    console.log(links)
     links.each(function() {
         // Get the href attribute of each <a>
         var href = $(this).attr('href');
