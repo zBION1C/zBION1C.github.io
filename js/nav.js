@@ -5,7 +5,9 @@ $(document).ready(function() {
     links.each(function() {
         // Get the href attribute of each <a>
         var href = $(this).attr('href');
-        console.log(href)
+        links.each(function() {
+            console.log($(this).attr('href'));
+        });
 
         // Check if the href matches the current path
         if (currentPath === href) {
