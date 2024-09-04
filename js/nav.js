@@ -1,4 +1,3 @@
 $(document).ready(function() {
-  // Load the navigation bar into the placeholder div
-  $("#navbar-placeholder").load("/static/nav.html");
+    $("#nav-placeholder").load("/static/nav.html");
 });
