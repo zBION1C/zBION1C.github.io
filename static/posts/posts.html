@@ -20,7 +20,9 @@
 
         <script>
             $(function(){
-            $("#nav-placeholder").load("/static/nav.html");
+            $("#nav-placeholder").load("/static/nav.html",  function() {                
+                $("#Posts").attr("class", "active");
+            });
         });
         </script>
         <!--end of Navigation bar-->
