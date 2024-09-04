@@ -1,5 +1,5 @@
-<script>
-$(function(){
-  $("#nav-placeholder").load("/static/nav.html");
+$(document).ready(function() {
+  $(function(){
+    $("#nav-placeholder").load("../static/nav.html");
+  });
 });
-</script>
