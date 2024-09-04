@@ -6,32 +6,40 @@
 
         <!-- Import the hack.css stylesheet -->
         <link rel="stylesheet" href="css/hack.css"/>   
+        <link rel="stylesheet" href="css/l337.css"/>   
+
+        <script type="text/javascript" src="js/l337.js"></script>
+
+        <script src="jquery.js"></script> 
     </head>
 
     <body class="hack dark main container">
         
-        <nav itemscope itemtype="http://schema.org/SiteNavigationElement">
-            <a itemprop="url" class="active" href="/index.html"><span itemprop="name">Home</span></a>
-          
-            <a itemprop="url" class="" href="/static/writeups/writeup.html"><span itemprop="name">Writeups</span></a>
-        </nav>
+        <!--Navigation bar-->
+        <div id="nav-placeholder"></div>
+        <script> 
+            $(function(){
+              $("#nav-placeholder").load("/static/nav.html"); 
+            });
+        </script> 
 
         <main>
             <header>
-                <h1>
-                    <span class="fancy" data-text="Nicholas Montana's Blog">Nicholas Montana's Blog</span>
+                <h1 id="animated-title">
+                    Nicholas Montana's stuff
                 </h1>
             </header>
+            <hr>
             <p>
                 Hi, I'm Nicholas Montana. I am a 24 years old cybersecurity student at <a href="https://www.uniroma1.it/it/pagina-strutturale/home">Sapienza University of Rome</a>. 
-                I am very passionate about malware analysys, forensics and reverse engineering and this passion it's the same that is driving me to become a cybersecurity researcher.
+                I am very passionate about malware analysys, forensics and reverse engineering.
                 <br><br>
                 I am also interested in theoretical computer science, mathematical logic and philosophy (which i know very little about).
                 <br><br>
-                I was a finalist of the <a href="https://cyberchallenge.it/">Cyberchallenge.it</a> program together with the guys from the <a href="https://web.uniroma2.it/"> Tor Vergata University </a>.
+                I was a finalist of the <a href="https://cyberchallenge.it/">Cyberchallenge.it</a> program together with the guys from <a href="https://web.uniroma2.it/"> Tor Vergata University </a>.
                 <br><br>
-                Very proud to actively play CTFs competitions with <a href="https://theromanxpl0.it/">TheRomanXpl0it</a> team, an amazing group of people always there to teach me something new.
+                Very proud of actively playing CTFs competitions with <a href="https://theromanxpl0.it/">TheRomanXpl0it</a> team, an amazing group of people always there to teach me something new.
             </p>
-        </main>
+        </main>        
     </body>
 </html>
