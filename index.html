@@ -10,7 +10,7 @@
 
         <script type="text/javascript" src="js/l337.js"></script>
 
-        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     </head>
 
@@ -18,7 +18,29 @@
         
         <!--Navigation bar-->
         <div id="nav-placeholder"></div>
-        <script type="text/javascript" src="/js/nav.js"></script>
+        <script>
+            $(document).ready(function() {
+                // Load the navigation bar into the placeholder div
+                $("#navbar-placeholder").load("/path/to/navbar.html", function() {
+                    // Remove 'active' class from any currently active element
+                    $("#navbar-placeholder nav a").removeClass("active");
+            
+                    // Get the current URL path
+                    var currentPath = window.location.pathname;
+            
+                    // Highlight based on the current path
+                    if (currentPath.includes("/static/posts/posts.html")) {
+                        // Add 'active' class to the Posts link
+                        $("#navbar-placeholder #post").addClass("active");
+                    } else if (currentPath.includes("/index.html")) {
+                        // Add 'active' class to the Home link
+                        $("#navbar-placeholder #home").addClass("active");
+                    }
+            
+                    // Add more conditions if needed for other pages
+                });
+            });
+            </script>
         <!--end of Navigation bar-->
 
         <main>
