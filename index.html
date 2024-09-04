@@ -5,10 +5,11 @@
 
 
         <!-- Import the hack.css stylesheet -->
-        <link rel="stylesheet" href="/css/hack.css"/>   
-        <link rel="stylesheet" href="/css/l337.css"/>   
+        <link rel="stylesheet" href="css/hack.css"/>   
+        <link rel="stylesheet" href="css/l337.css"/>   
 
-        <script type="text/javascript" src="/js/l337.js"></script>
+        <script type="text/javascript" src="js/l337.js"></script>
+
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     </head>
@@ -17,14 +18,7 @@
         
         <!--Navigation bar-->
         <div id="nav-placeholder"></div>
-
-        <script>
-            $(function(){
-            $("#nav-placeholder").load("/static/nav.html",  function() {                
-                $("#Home").attr("class", "active");
-            });
-        });
-        </script>
+        <script type="text/javascript" src="js/nav.js"></script>
         <!--end of Navigation bar-->
 
         <main>
