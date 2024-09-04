@@ -7,7 +7,7 @@ $(document).ready(function() {
         // Check if the path matches the Posts page
         if (currentPath.includes("/static/posts/posts.html")) {
             // Remove 'active' class from any currently active element
-            $("#navbar-placeholder nav a").removeClass("active");
+            $("nav a").removeClass("active");
 
             // Add 'active' class to the Posts link
             $("#post").addClass("active");
