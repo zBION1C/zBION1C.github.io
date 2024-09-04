@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (letter !== ' ') { // Only randomize non-space characters
                         span.textContent = getRandomSpecialCharacter();
                     }
-                }, 100); // Change every 100ms
+                }, 50); // Change every 100ms
 
                 // Revert back to the original letter after a short delay
                 setTimeout(() => {
@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     span.textContent = originalLetter
                     span.style.transform = 'scale(1)';
                     span.style.color = '';
-                }, 300); // Random changes last for 300ms
-            }, Math.random() * 500); // Random delay up to 500ms for each letter
+                }, 100); // Random changes last for 300ms
+            }, Math.random() * 800); // Random delay up to 500ms for each letter
         }
     });
 });
