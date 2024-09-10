@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadPosts() {
         try {
             // Fetch the directory listing or manually maintain a list of posts
-            postFiles = ["post1.html", "post2.html"]
+            postFiles = ["post1.html", "post2.html", "post3.html", "post4.html"]
 
             // Load each post
             for (const file of postFiles) {
