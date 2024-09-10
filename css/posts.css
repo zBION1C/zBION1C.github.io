@@ -25,6 +25,13 @@
   .card {
     width: 100px;
   }
+  .card_container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 32px 32px;
+  }
 }        
 
 .card:hover {
