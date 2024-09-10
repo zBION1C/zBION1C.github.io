@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Load each post
             for (const file of postFiles) {
+                console.log(file);
                 const post = await fetch(`${postsPath}/${file}`);
                 const postContent = await post.text();
                 display(postContent, file);
