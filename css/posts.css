@@ -21,19 +21,6 @@
   transition: all 300ms ease;
 }
 
-@media (max-width: 600px) {
-  .card {
-    width: 100px;
-  }
-  .card_container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 32px 32px;
-  }
-}        
-
 .card:hover {
   transform: translateY(-5px);
   cursor: pointer;
@@ -46,6 +33,16 @@
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 32px 32px;
 }
+
+@media (max-width: 600px) {
+  .card_container {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 32px 32px;
+    margin-top: 100px;
+  }
+}        
 
 .card_cover {
   height: 250px;
