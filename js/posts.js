@@ -21,11 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to display the first <h1> and first <p> of a post, making the entire div clickable
     function display(content, file) {
-        const currentDate = new Date();
-        const day = currentDate.getDate();
-        const month = currentDate.toLocaleString('default', { month: 'short' });
-        const year = currentDate.getFullYear();
-        const date = day + ' ' + month + ' ' + year;
+        const what = document.getElementsByClassName("card_container");
+
+        const card_container = what[0];
 
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = content;
@@ -36,44 +34,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Create a container for the extracted elements
         if (header && summary) {
-            const media = document.createElement('div');
-            media.classList.add('media');
+            const card = document.createElement('div');
+            card.classList.add('card');
 
-            const media_body = document.createElement('div');
-            media_body.classList.add('media-body')
+            const card_cover = document.createElement('div');
+            card_cover.classList.add('card_cover');
+            
+            card_cover.style.backgroundImage = 'url(https://cdn.dribbble.com/users/250235/screenshots/7885863/media/b2a6d5fb3c27de51d1c0c424296460ba.png)';
 
-            const media_heading = document.createElement('div');
-            media_heading.classList.add('media-heading');
+            const card_body = document.createElement('div');
+            card_body.classList.add('card_body')
 
-            const media_content = document.createElement('div');
-            media_content.classList.add('media-content')
+            const card_title = document.createElement('div');
+            card_title.classList.add('card_title');
 
-            media.appendChild(media_body);
-            media_body.appendChild(media_heading)
-            media_body.appendChild(media_content);
+            const card_desc = document.createElement('div');
+            card_body.classList.add('card_desc');
 
+            card.appendChild(card_cover);
+            card.appendChild(card_body);
+            
+            card_body.appendChild(card_title);
+            card_body.appendChild(card_desc);
+            
             // Create a link and wrap only the text of the <h1> inside it
-            const link = document.createElement('a');
-            link.href = `${postsPath}/${file}`; // Link to the full post
-            link.textContent = header.textContent; // Wrap only the text of the <h1>
+            const title = document.createElement('p');
+            title.href = `${postsPath}/${file}`; // title to the full post
+            title.textContent = header.textContent; // Wrap only the text of the <h1>
             header.innerHTML = ''; // Clear the <h1> content
-            link.style.fontSize = "30px";
+            title.style.fontSize = "30px";
 
-            media_heading.appendChild(link); // Append the link inside <h1>
-            media_content.appendChild(summary)
-
+            card_title.appendChild(title); // Append the link inside <h1>
+            card_desc.appendChild(summary)
+            
             // Make the entire div clickable
-            media.addEventListener('click', () => {
+            card.addEventListener('click', () => {
                 window.location.href = `${postsPath}/${file}`; // Redirect to the full post
             });
 
-            // Prevent event propagation when clicking on the link to avoid redundant navigation
-            media.querySelector('a').addEventListener('click', (event) => {
-                event.stopPropagation();
-            });
-
             // Append the container to the posts container
-            postsContainer.appendChild(media);
+            card_container.appendChild(card);
         }
     }
 

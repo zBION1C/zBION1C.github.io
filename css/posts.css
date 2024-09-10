@@ -1,0 +1,87 @@
+/* Colors */
+:root {
+  --bg: #e5e5e5;
+  --red: #dd2020;
+  --text: #0d0c0c;
+  --text-light: #858484;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Box shadow mixin */
+.box-shadow {
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+}
+
+.card {
+  border-radius: 8px;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  transition: all 300ms ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
+.card_container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 32px 32px;
+}
+
+.card_cover {
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+}
+
+.card_tag {
+  background: var(--red);
+  display: inline-block;
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.card_body {
+  padding: 20px;
+}
+
+.card_title {
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.card_desc {
+  margin-bottom: 20px;
+  font-size: 15px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* .card_cover--one {
+  background-image: url(https://cdn.dribbble.com/users/250235/screenshots/7885863/media/b2a6d5fb3c27de51d1c0c424296460ba.png);
+} */
+
+
+#huck {
+  max-width: 80px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+}
