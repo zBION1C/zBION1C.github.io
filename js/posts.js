@@ -79,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
             header.innerHTML = ''; // Clear the <h1> content
             link.style.fontSize = "30px";
 
-
             media_heading.appendChild(link); // Append the link inside <h1>
             media_content.appendChild(summary)
 
