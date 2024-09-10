@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Extract post links or filenames from the response (this might vary depending on the server setup)
             const postFiles = parsePostLinks(text); // Implement this function based on your server response
 
-            console.log(file);
+            console.log(postFiles);
 
             // Load each post
             for (const file of postFiles) {
