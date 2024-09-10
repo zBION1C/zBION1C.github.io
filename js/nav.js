@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#nav-placeholder").load("/static/nav.html", function() {
+    $("#nav-placeholder").load("/nav.html", function() {
         // Get current path
         var currentPath = window.location.pathname;
 

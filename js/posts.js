@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const postsContainer = document.getElementById('posts-container');
-    const postsPath = '/static/posts'; // Path to your posts directory
+    const postsPath = '/posts'; // Path to your posts directory
 
     // Function to load the list of posts
     async function loadPosts() {
