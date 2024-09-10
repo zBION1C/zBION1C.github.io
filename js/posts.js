@@ -31,16 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // Find the first <h1> and first <p> elements in the post
         const header = tempDiv.querySelector('h1');
         const summary = tempDiv.querySelector('p');
+        const cover = tempDiv.querySelector('img');
 
         // Create a container for the extracted elements
-        if (header && summary) {
+        if (header && summary && cover) {
             const card = document.createElement('div');
             card.classList.add('card');
 
             const card_cover = document.createElement('div');
             card_cover.classList.add('card_cover');
             
-            card_cover.style.backgroundImage = 'url(https://cdn.dribbble.com/users/250235/screenshots/7885863/media/b2a6d5fb3c27de51d1c0c424296460ba.png)';
+            card_cover.style.backgroundImage = 'url(' + cover.src + ')';
 
             const card_body = document.createElement('div');
             card_body.classList.add('card_body')
