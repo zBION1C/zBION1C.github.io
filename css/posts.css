@@ -21,6 +21,12 @@
   transition: all 300ms ease;
 }
 
+@media (max-width: 600px) {
+  .card {
+    width: 100px;
+  }
+}        
+
 .card:hover {
   transform: translateY(-5px);
   cursor: pointer;
