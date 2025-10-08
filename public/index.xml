@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>About me on Nicholas Montana&#39;s Blog</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in About me on Nicholas Montana&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Oct 2025 01:16:06 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Thu, 02 Oct 2025 01:16:06 +0200</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;I am a cybersecurity student at Sapienza University of Rome.&lt;/p&gt;&#xA;&lt;p&gt;I attended the &lt;a href=&#34;cyberchallenge.it&#34;&gt;cyberchallenge.it&lt;/a&gt; 2024 national program and was able to qualify for the finals in Turin with &lt;a href=&#34;https://web.uniroma2.it/&#34;&gt;Università di Roma Tor Vergata&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Currently developing a master thesis on the &lt;a href=&#34;https://llvm.org/&#34;&gt;LLVM&lt;/a&gt; compiler with particular focus on profile guided optimization under the supervision of Prof. Daniele Cono D&amp;rsquo;Elia.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hello World</title>
+      <link>http://localhost:1313/posts/hello-world/</link>
+      <pubDate>Wed, 01 Oct 2025 22:51:53 +0200</pubDate>
+      <guid>http://localhost:1313/posts/hello-world/</guid>
+      <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Code block&#xA;&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+  </channel>
+</rss>
