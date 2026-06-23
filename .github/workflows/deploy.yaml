@@ -43,7 +43,7 @@ jobs:
         run: npx playwright install chromium
 
       - name: Build Slidev
-        run: nr build --base /phd_presentation/
+        run: nr build --base /${{github.event.repository.name}}/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
